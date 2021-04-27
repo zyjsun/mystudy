@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 标题 -->
+    <div id="wrapBg">
+        <div id="headTitle">
+        <img src="img/bird0.png" alt="" id="headBrid">
+        </div>
+         <!-- 开始按钮 -->
+        <button id="startBtn"></button>
+        <!-- 草地 -->
+        <div id="grassLand1"  style="overflow: hidden"></div>
+        <div id="grassLand2"  style="overflow: hidden"></div>
+    </div>
+    <script src='./bird.js'></script>
+    <script src='./baseObj.js'></script>
+    <script src='./block.js'></script>
+    <script>
+        var jsWrapBg=document.getElementById('wrapBg')
+        var jsHeadTitle=document.getElementById('headTitle')
+        var jsHeadBrid=document.getElementById('headBrid')
+        var Y=4//标题摆动的幅度
+        var imgArr=['./img/bird0.png','./img/bird1.png']
+        var index=0
+        var jsGrassLand1=document.getElementById('grassLand1')
+        var jsGrassLand2=document.getElementById('grassLand2')
+        function landRun() {//草地跑动
+            if(jsGrassLand1.offsetLeft<=-343){
+                 jsGrassLand1.style.left='343px'  
+            }
+            if(jsGrassLand2.offsetLeft<=-343){
+                 jsGrassLand2.style.left='343px'    
+            }
+             jsGrassLand1.style.left=jsGrassLand1.offsetLeft-3+'px'
+             jsGrassLand2.style.left=jsGrassLand2.offsetLeft-3+'px'
+        }
+        function headWave(){
+            Y=Y*-1
+            jsHeadBrid.src=imgArr[index++]
+            jsHeadTitle.style.top=jsHeadTitle.offsetTop+Y+'px'//获取标题距离顶部的距离
+            if(index==2)
+            {
+                index=0
+            }
+        }
+        var headWaveTimer=setInterval(headWave,200)
+        setInterval(landRun,30)
+        
+        //点击开始按钮
+        var jsStartBtn=document.getElementById('startBtn')
+
+        jsStartBtn.onclick=function(){
+            jsHeadTitle.style.display='none' //容器消失
+            jsStartBtn.style.display='none'
+            clearInterval(headWaveTimer)
+
+            //插入小鸟到页面上
+            bird.showBird(jsWrapBg)
+            bird.flyBird()//起飞
+            bird.wingWave()
+            jsWrapBg.onclick=function(){
+                bird.fallSpeed=-8
+            }
+               //出现管道
+        var b=new Block
+        b.creatBlock()
+        }
+  
+    </script>
+</body>
+</html>

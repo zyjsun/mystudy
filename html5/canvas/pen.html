@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .canvas{
+        border: 1px solid red;
+        margin: 0 auto;
+        display: block;
+    }
+</style>
+<body>
+    <canvas class="canvas" width="600" height="600">
+        <!-- 行内块级 -->
+
+    </canvas>
+    <script>
+        var cas=document.querySelector('.canvas')
+        var ctx=cas.getContext('2d')
+        // ctx.fillRect(0,0,600,600)
+        var isDraw=false
+        //鼠标摁下事件
+        cas.addEventListener('mousedown',function(){
+             isDraw=true
+            ctx.beginPath()
+          // console.log(ctx.beginPath())
+        })
+        //鼠标移动事件
+        cas.addEventListener('mousemove',function(e){
+               if(!isDraw){
+                   return 
+               }
+            var x=e.offsetX//相对于容器
+            var y=e.offsetY
+            ctx.lineTo(x,y)
+            ctx.stroke()
+        })
+        cas.addEventListener('mouseup',function(){
+              isDraw=false
+        })
+    </script>
+</body>
+</html>

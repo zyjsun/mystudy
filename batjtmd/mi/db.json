@@ -1,0 +1,24 @@
+{
+    "data":{
+    "photo":["https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9b064ee21bc9a4e619e85902b0b5d7d2.jpg","https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/dffc5335a4403b5b392a22bd790dd7c5.jpg"
+    ,"https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/75b35105f31cc19a83be4ba9a3fcf80c.jpg"],
+    "price":"5299",
+    "title":"小米11 Pro",
+    "desc":"",
+    "discount":[{
+        "id":1,
+        "title":"两倍米金",
+        "desc":"预计的260米金"
+    }],
+    "pz":[
+        {
+            "cpu":"高通骁龙888"
+        }, {
+            "三摄像头":"480万+8000万"
+        }, {
+            "超大屏":"6.53英寸"
+        }
+    ]
+
+        }
+}

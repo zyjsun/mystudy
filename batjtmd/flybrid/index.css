@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* 
+id #
+class .
+ */
+
+#wrapBg{
+    width: 343px;
+    height: 480px;
+    margin: 0 auto;/*上下0 左右auto */
+    position: relative;
+    top: 100px;/* 距离上部分100px */
+    background-image: url(./img/bg.jpg);
+    overflow: hidden;
+}
+#headTitle{
+    width: 236px;
+    height: 77px;
+    background-image: url(./img/head.jpg);
+    position: absolute;
+    left: 53px;
+    top: 100px;
+}
+#headBrid{
+    float:right;
+    margin-top: 25px;
+}
+#startBtn{
+    width: 85px;
+    height: 29px;
+    background-image: url(./img/start.jpg);
+    position: absolute;
+    left: 129px;
+    top: 250px;
+}
+#grassLand1,#grassLand2{
+    width: 343px;
+    height: 14px;
+    background-image: url(./img/banner.jpg);
+    position: absolute;
+    top: 423px;
+}
+#grassLand1{
+    left: 0px;
+}
+
+#grassLand2{
+    left: 343px;
+}

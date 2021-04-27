@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* 所有子元素居中 */
+body{
+    min-height: 100vh;
+    background: slategray url(https://unsplash.it/1500/900?image=1021);
+    background-size: cover;
+    /* 以容器为基准 覆盖满 */
+    display: flex;
+    /* 弹性布局 */
+    justify-content: center;
+    /* 在x轴居中 */
+    align-items: center;
+}
+#wrapper{
+    width: 850px;
+    margin: 0 auto; 
+    display: flex;
+  
+}
+.speed{
+    /* display: inline-block; */
+    flex: 1;
+    /* 等比继承 */
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 50px;
+    /* 变圆 */
+    display: flex;
+    overflow: hidden;
+    align-items: flex-start;
+}
+.speed-bar{
+    width: 100%;
+    height: 16.3%;
+    background:linear-gradient(-170deg,#2376ae 0%,#c16ecf 100%);
+    display: flex;
+    justify-content: center;
+    /* flex的专有属性 */
+    align-items: center;
+    color:#fff;
+    cursor:pointer;
+    /* 变成小手 */
+}

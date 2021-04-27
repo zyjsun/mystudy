@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            /* 文字line-height */
+        }
+        /* body{
+             display: flex; 
+        } */
+        .box{
+            /* 标准盒模型  盒子的大小=内容（w/h）+padding+border+margin*/
+            /* box-sizing: border-box; */
+            /* border以内都是 */
+            padding: 10px;
+            border: 5px solid red;
+            margin: 20px;
+            width: 50%;
+        /* display: inline-block; */
+        /* float: left; */
+            height: 100px;
+            background:pink;
+        }
+        .box:nth-child(2) {
+            margin: 30px;
+            background: #000;
+        }  
+        /* BFC 全新的BFC区域 Block Format Context */
+        .row{
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="div row">
+    <div class="div box">a simple box</div></div></div>
+    <div class="div box">another box</div>
+</body>
+<script>
+    document.querySelector('.box')
+    .style
+    .backgroundColor='green'//第一个
+</script>
+</html>

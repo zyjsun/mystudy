@@ -1,0 +1,409 @@
+*{
+    margin: 0;
+    padding: 0;
+   }
+   body{
+    width: 100%;
+    display: block;
+    background: linear-gradient(#48dbfb, #2980b9);
+   }
+   .background-linear{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#48dbfb, #2980b9);
+    z-index: 1;
+   }
+   .wrapper{
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    min-height: 100vh;
+   }
+   .summer-wrapper{
+    width: 600px;
+    height: 450px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* 居中 */
+   }
+   .summer-wrap{
+    width: 100%;
+    height: 100%;
+   }
+   .bird-wrapper{
+    position: absolute;
+    left: 166px;
+    bottom: 226px;
+    z-index: 8;
+    animation: birdFly 3.5s ease infinite;
+    animation-delay: 0.4s;
+   }
+   .bird-wrapper.snd{
+    left: 340px;
+    bottom: 215px;
+    animation-delay: 0s;
+   }
+   .bird-wrapper.trd{
+    left: 450px;
+    bottom: 282px;
+    animation-delay: 1s;
+   }
+   
+   @keyframes birdFly {
+       /* 小鸟上下移动 */
+    0% {
+     transform: translateY(0);
+    }
+    50% {
+     transform: translateY(-40px);
+    }
+    100% {
+     transform: translateY(0);
+    }
+   }
+   
+   .left-wing{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    animation: wingLeft 0.4s ease infinite;
+    /* 动画效果 0.4s舒缓 摆动 */
+    transform-origin: right bottom;
+   }
+   
+   @keyframes wingLeft{
+    0% {
+     transform: rotate(0);
+    }
+    50% {
+     transform: rotate(40deg);
+    }
+    100% {
+     transform: rotate(0);
+    }
+   }
+   
+   .left-wing span{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border: 2px solid #030308;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    border-color: #030308 transparent transparent transparent;
+    transform: translate(1px, 15px);
+   }
+   
+   .right-wing{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 14px;
+    height: 14px;
+    animation: wingRight 0.4s ease infinite;
+    transform-origin: left bottom;
+    /* 旋转基点  左下*/
+   }
+   
+   @keyframes wingRight {
+    0% {
+     transform: rotate(0);
+    }
+    50% {
+     transform: rotate(-40deg);
+    }
+    100% {
+     transform: rotate(0);
+    }
+   }
+
+   .right-wing span{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border: 2px solid #030308;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    border-color: #030308 transparent transparent transparent;
+    transform: translate(-2px, 14px);
+   }
+
+
+   @keyframes sunHalo {
+    0% {
+        background-color: #E57C22;
+        box-shadow: 0 0 0 6px #ffbd4b,0 0 0 12px #fad086;
+      }
+      50% {
+        background-color: #E57C22;
+        box-shadow: 0 0 0 8px #ffbd4b,0 0 0 14px #fad086;
+      }
+      100% {
+        background-color: #E57C22;
+        box-shadow: 0 0 0 6px #ffbd4b,0 0 0 12px #fad086;
+      }
+}
+.sun{
+    position: absolute;
+    top:40px;
+    left:70px;
+    width: 37px;
+    height:37px;
+    border-radius: 50%;
+    background-color: #E57C22;
+    box-shadow: 0 0 0 6px #ffbd4b,0 0 0 12px #fad086;
+    animation: sunHalo 1s ease infinite;
+}
+
+.bottom-snow{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 21%;
+    background-color: #1dcd59;
+    z-index: 1;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    overflow: hidden;
+}
+.bottom-snow span{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 7px;
+    background-color: #1AB74F;
+    border-radius: 4px;
+}
+.middle-snow{
+    position: absolute;
+    bottom: 21px;
+    left: 15px;
+    width: calc(100%-30px);
+    background-color: #17a145;
+    z-index: 1;
+    overflow: hidden;
+    height: 30px;
+}
+.buildings {
+position: absolute;
+bottom: 15px;
+left: 15px;
+width: calc(100%-30px);
+height: 399px;
+z-index: 2;
+overflow: hidden;
+}
+.buildings span{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 180px;
+    background-color:#1096eb;
+}
+.buildings span:nth-child(2){
+	left: 40px;
+	width: 55px;
+	height: 240px;
+}
+.buildings span:nth-child(3){
+	left: 95px;
+	width: 65px;
+	height: 140px;
+}
+.buildings span:nth-child(4){
+	left: 160px;
+	width: 50px;
+	height: 120px;
+}
+.buildings span:nth-child(5){
+	left: 210px;
+	width: 10px;
+	height: 80px;
+}
+.buildings span:nth-child(6){
+	left: 220px;
+	width: 60px;
+	height: 140px;
+}
+.buildings span:nth-child(7){
+	left: 280px;
+	width: 50px;
+	height: 270px;
+}
+.buildings span:nth-child(8){
+	left: 330px;
+	width: 30px;
+	height: 170px;
+}
+.buildings span:nth-child(9){
+	left: 360px;
+	width: 20px;
+	height: 120px;
+}
+.buildings span:nth-child(10){
+	left: 380px;
+	width: 60px;
+	height: 230px;
+}
+.buildings span:nth-child(11){
+	left: 440px;
+	width: 40px;
+	height: 170px;
+}
+.buildings span:nth-child(12){
+	left: 480px;
+	width: 50px;
+	height: 190px;
+}
+.buildings span:nth-child(13){
+	left: 530px;
+	width: 40px;
+	height: 150px;
+}
+
+
+.buildings.back span{
+    /* 后面的楼 */
+	width: 20px;
+	height: 140px;
+	background-color: #12aed6;
+}
+.buildings.back span:nth-child(2){
+	left: 20px;
+	width: 60px;
+	height: 200px;
+}
+.buildings.back span:nth-child(3){
+	left: 80px;
+	width: 40px;
+	height: 220px;
+}
+.buildings.back span:nth-child(4){
+	left: 120px;
+	width: 20px;
+	height: 170px;
+}
+.buildings.back span:nth-child(5){
+	left: 140px;
+	width: 60px;
+	height: 250px;
+}
+.buildings.back span:nth-child(6){
+	left: 200px;
+	width: 60px;
+	height: 290px;
+}
+.buildings.back span:nth-child(7){
+	left: 260px;
+	width: 40px;
+	height: 210px;
+}
+.buildings.back span:nth-child(8){
+	left: 300px;
+	width: 65px;
+	height: 310px;
+}
+.buildings.back span:nth-child(9){
+	left: 365px;
+	width: 45px;
+	height: 200px;
+}
+.buildings.back span:nth-child(10){
+	left: 410px;
+	width: 60px;
+	height: 260px;
+}
+.buildings.back span:nth-child(11){
+	left: 470px;
+	width: 50px;
+	height: 240px;
+}
+.buildings.back span:nth-child(12){
+	left: 520px;
+	width: 50px;
+	height: 220px;
+}
+
+
+.swing {
+    position: absolute;
+    bottom: 2px;
+    left: 240px;
+    width: 40px;
+    height: 90px;
+    border: 5px solid #366a78;
+    z-index: 5;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+  }
+  .swing-over-wrap{
+    position: absolute;
+    bottom: 2px;
+    left: 265px;
+    z-index: 6;
+    perspective: 400px;
+  }
+  .swing-over{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: -25px;
+    width: 50px;
+    height: 95px;
+    animation: swinging 3s ease infinite;
+    transform-origin: center top;
+  }
+  @keyframes swinging {
+    0%, 100% {
+      transform: rotateX(25deg);
+    }
+    50% {
+      transform: rotateX(-25deg);
+    }
+  }
+  
+  .swing-over span{
+    position: absolute;
+    bottom: 22px;
+    left: 10px;
+    width: 30px;
+    height: 6px;
+    border-radius: 3px;
+    background-color: #f08139;
+    z-index: 5;
+    overflow: hidden;
+  }
+  .swing-over span:nth-child(2) {
+    bottom: auto;
+    top: 0;
+    left: 13px;
+    width: 2px;
+    height: 74px;
+    border-radius: 0;
+    background-color: #4f4c4d;
+    z-index: 4;
+  }
+  .swing-over span:nth-child(3) {
+    bottom: auto;
+    top: 0;
+    left: auto;
+    right: 13px;
+    width: 2px;
+    height: 74px;
+    border-radius: 0;
+    background-color: #4f4c4d;
+    z-index: 4;
+  }

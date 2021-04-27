@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body{
+  height: 100%;
+}
+
+body{
+  overflow: hidden;
+  display: flex;
+  background: #111;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+#darg-container, #spin-container{
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  margin: auto;
+  transform-style: preserve-3d;
+  transform: rotateX(-10deg);
+ 
+}
+
+#darg-container img, #darg-container video{
+  transform-style: preserve-3d;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  line-height: 200px;
+  font-size: 50px;
+  text-align: center;
+  box-shadow: 0 0 8px #fff;
+  -webkit-box-reflet:below 10px liner-gradient(transparent,transparent,#0005)
+  /* 线性渐变 */
+}
+
+#darg-container p {
+  font-family: serif;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  color: #fff;
+  transform: translate(-50%, -50%) rotateX(90deg);
+}
+
+#ground {
+  width: 900px;
+  height: 900px;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateX(90deg);
+  background: -webkit-radial-gradient(center center, farthest-side, #9993, transparent);
+}
+
+@keyframes spin {
+  from{
+    transform: rotateY(0deg);
+  }
+  to{
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes spinRevert {
+  from{
+    transform: rotateY(360deg);
+  }
+  to{
+    transform: rotateY(0deg);
+  } 
+}
+/* #spin-container{
+  animation: spin 10s infinite linear;
+} */

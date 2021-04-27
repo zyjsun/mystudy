@@ -1,0 +1,95 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //作用域 Scope 全局作用域
+        //校长 书记 document html 文档对象 线程 代码运行的最小单元 html css js 
+        //window 新的进程 资源分配的最小单元
+        //var 的变量提升的空间对象与let 不在一起 并存，let 临时暂死区
+        //JS的God parts bad parts 变量提升Bad 看过去跟运行不一致  let 是用来修补变量提升Bug的方案
+        //JS 的运行机制无法改变 即让传统的错误可以运行,同时又出新的方案
+        var textValue=123;
+        var testFunc=function(){
+            console.log('just test');
+        }
+        // let ddc='滴滴陈';//var有区别 
+
+        // function foo(value){
+        //     var a=1;
+        // }
+        // foo();
+        // {
+        //     let i=1
+        //     var c=2;
+        // }
+        // console.log(c)
+       // console.log(a);
+       var name='bhn';
+       window.localStorage.setItem('username',name)  //本地保存
+    </script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+
+
+    <script>
+        // var name=localStorage.getItem('username')//获取另一个html文件的参数
+        // console.log(name)
+      const lis=document.querySelectorAll('ul>li');//获取所有的li
+    //   lis.addEventListener('click',function(){
+    //       console.log('------')
+    //   })
+    //作用域链 俄罗斯套娃
+    //同步
+    //通过创建一个块级作用域，
+       for(var i=0;i<lis.length;i++){
+    //        (function(i){
+    //           console.log('hello 立即执行函数')
+    //           lis[i].addEventListener('click',()=>{
+    //         //异步
+    //       console.log(i+1);//变量的查找 作用域
+    //    });
+    //    })(i)//立即执行函数
+       addClickListener(i);
+    //     lis[i].addEventListener('click',()=>{
+    //         //异步
+    //       console.log(i+1);//变量的查找 作用域
+    //    });
+    }
+  function  addClickListener(i){
+      //i 在函数作用域内
+      lis[i].addEventListener('click',()=>{
+          console.log(i+1);
+      },false);
+  }
+    </script>
+</body>
+</html>

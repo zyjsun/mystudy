@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    width: 100%;
+    height: 200vh;
+    /* font-size: 0;  */
+    /* 去除换行空格 三列布局 左右容器固定宽度 中间自适应 */
+}
+
+#left,#right{
+    width: 200px;
+    height: 200px;
+    background: pink;
+    
+}
+#left{
+   position: absolute;
+   left: 0;
+   top: 0;
+}
+#right{
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+#middle{
+    height: 200px;
+    background: green;
+    margin: 0 200px;
+    overflow: scroll;
+  
+}

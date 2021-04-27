@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .canvas{
+        border: 1px solid red;
+        margin: 0 auto;
+        display: block;
+    }
+</style>
+<body>
+    <canvas class="canvas" width="600" height="600">
+        <!-- 行内块级 -->
+
+    </canvas>
+    <script>
+        var cas=document.querySelector('.canvas')
+        var ctx=cas.getContext('2d')
+        ctx.fillRect(0,0,600,600)
+        var isClear=false
+      
+        //鼠标摁下事件
+        cas.addEventListener('mousedown',function(){
+             isClear=true
+        })
+        //鼠标移动事件
+        cas.addEventListener('mousemove',function(e){
+              if(!isClear){return}
+              var x=e.offsetX
+              var y=e.offsetY
+              var w=20
+              var h=20
+              ctx.clearRect(x,y,w,h)
+        })
+        cas.addEventListener('mouseup',function(){
+            isClear = false
+        })
+    </script>
+</body>
+</html>

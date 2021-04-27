@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://at.alicdn.com/t/font_1369980_xg32nhyckuj.css">
+  <title>Document</title>
+  <style>
+    input{ 
+      /* input 框 */
+      -webkit-appearance: none;
+      border:none;
+      outline: none;
+      cursor: pointer;
+    }
+    .rate-content input[name='rate']{
+       font-family: "iconfont";
+       font-size: 30px;
+       padding-right: 10px;
+    }
+    .rate-content input[name='rate']::after{
+      /* 伪元素放星星 用阿里图标库引入*/
+         content:'\e60f';
+         color:#999;
+    }
+    input[name='rate']:checked::after{
+            content: '\e623';
+            color: #ffa822;
+            transition:color 0.4s ease ;
+            /* 一切属性 */
+    }
+    input[name='rate']:checked~input[name='rate']::after{
+            content: '\e623';
+            color: #ffa822;
+            transition:color 0.4s ease ;
+    }
+    .rate-content{
+      display: flex;
+      flex-flow:row-reverse;
+      /* 反转 */
+    }
+    input[name='rate']{
+      transition: transform .2s ease;
+    }
+    input[name='rate']:hover{
+      transform:scale(1.2);
+      /* 点上去放大 */
+    }
+  </style>
+</head>
+<body>
+  <div class="rate-content">
+    <input type="radio" name='rate'>
+    <input type="radio" name='rate'>
+    <input type="radio" name='rate'>
+    <input type="radio" name='rate'>
+    <input type="radio" name='rate'>
+  </div>
+</body>
+</html>

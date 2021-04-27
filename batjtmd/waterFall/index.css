@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  #container{
+    position: relative;
+  }
+  .box{
+    float: left;
+       /* 脱离文档流 给每个存放的照片box设置为浮动元素，让所有的图片浮动到网页第一行*/
+    padding: 5px;
+  }
+  .box-img{
+    width: 150px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 5px #ccc;
+    border-radius: 5px;
+  }
+  .box-img img{
+    width: 100%;
+    height: auto;
+  }

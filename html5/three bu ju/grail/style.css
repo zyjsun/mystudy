@@ -1,0 +1,44 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/* 圣杯布局 */
+.wrap{
+    min-width: 600px;
+}
+#header,#footer{
+    height: 50px;
+    width: 100%;
+    background: grey;
+}
+#middle,#left,#right{
+    float: left;
+}
+#middle{
+    background: greenyellow;
+    width: 100%;
+    /* 继承content的宽度 */
+}
+#content{
+   overflow: hidden;
+   padding: 0 200px;
+   /* 父容器高度塌陷 */
+}
+#left,#right{
+ width: 200px;
+ height: 200px;
+ background: pink;
+}
+#left{
+    margin-left: -100%;
+    /*往左移 移掉middle的宽度  距离右边父容器100%*/
+    position: relative;
+    /* 定位才能移动 */
+    left: -200px;
+}
+#right{
+    margin-left: -200px;
+    position: relative;
+    right: -200px;
+    /* left: 200px; 也ok */
+}

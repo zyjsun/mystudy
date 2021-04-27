@@ -1,0 +1,14 @@
+.swiper-container{
+   height: 100%;
+   width: 100%;
+}
+
+.swiper-wrapper .swiper-slide{
+    background:red;
+}
+.swiper-wrapper :nth-child(2){
+    background:orange;
+}
+.swiper-wrapper :nth-child(3){
+    background:green;
+}

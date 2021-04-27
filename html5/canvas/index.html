@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script>
+        var canvas=document.getElementById('canvas')
+        var ctx=canvas.getContext('2d')
+        // ctx.moveTo(10,10)
+        // ctx.lineTo(100,100)
+        // ctx.stroke()
+
+        //myRect(ctx,50,50,200,200)//画矩形
+       // ctx.fillRect(50,50,200,200)
+        //ctx.strokeRect(50,50,200,200)
+       // ctx.clearRect(50,50,200,200)
+        ctx.arc(300,300,200,degToArc(125),degToArc(300))
+        //自动连接原点
+        ctx.closePath()
+        ctx.stroke()
+         function degToArc(num){
+             return (Math.PI/180)*num
+         }
+        //角度转弧度
+        // if(canvas.getContext){
+
+        //     console.log('浏览器支持canvas')
+        // }else{
+        //     console.log('你的浏览器不支持canvas')
+        // }
+     function myRect(ctxTmp,x,y,w,h){
+           ctx.moveTo(x,y)
+           ctx.lineTo(x+w,y)
+           ctx.lineTo(x+w,y+h)
+           ctx.lineTo(x,y+h)
+           ctx.lineTo(x,y)
+           ctxTmp.stroke()     
+     }
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img{
+      width: 600px;
+      height: 600px;
+      position: absolute;
+      top: 10%;
+      left: 30%;
+    }
+    canvas{
+      width: 600px;
+      height: 600px;
+      position: absolute;
+      top: 10%;
+      left: 30%;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <img class="img" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.zhimg.com%2F50%2Fv2-e73ebe5fb7fbae39d69ed94dcc82f145_hd.jpg&refer=http%3A%2F%2Fpic1.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622032323&t=f4cc1a205e17888d0d808f50ff9b4870" alt="">
+  <canvas class="canvas" width="600" height="600"></canvas>
+
+  <script>
+    var cas = document.querySelector('.canvas')
+    var ctx = cas.getContext('2d')
+    var img = document.querySelector('.img')
+    setImgUrl()
+
+    ctx.fillStyle = '#ccc'
+    ctx.fillRect(0, 0, cas.width, cas.height)
+
+    var isClear = false
+    cas.addEventListener('mousedown', function() {
+      isClear = true
+    })
+    cas.addEventListener('mousemove', function(e) {
+      if (!isClear) return 
+      var x = e.offsetX
+      var y = e.offsetY
+      ctx.clearRect(x, y, 30, 30) 
+    })
+    cas.addEventListener('mouseup', function() {
+      isClear = false
+    })
+
+        //刮刮乐
+    function setImgUrl() {
+      var arr = ['https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdiy.qqjay.com%2Fu%2Ffiles%2F2012%2F0510%2Fd2e10cb3ac49dc63d013cb63ab6ca7cd.jpg&refer=http%3A%2F%2Fdiy.qqjay.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622033115&t=de8df463c110191fc44f72b14a48d128', 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.zhimg.com%2F50%2Fv2-e73ebe5fb7fbae39d69ed94dcc82f145_hd.jpg&refer=http%3A%2F%2Fpic1.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622032323&t=f4cc1a205e17888d0d808f50ff9b4870', 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic3.zhimg.com%2F50%2Fv2-484fc9ed5aaa4d55c68ab4387ce58528_hd.jpg&refer=http%3A%2F%2Fpic3.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1622033115&t=01289b52af6f22c1039893047d12c64e']
+      var random = Math.floor(Math.random() * 3)
+      console.log(random);
+      img.src = arr[random]
+    }
+  </script>
+</body>
+</html>

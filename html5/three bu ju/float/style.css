@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    min-width: 600px;
+}
+#left,#right{
+    width: 200px;
+    height: 200px;
+    background: red;
+}
+#left{
+    float: left;
+}
+#right{
+    float: right;
+}
+#middle{
+    height: 200px;
+    background: green;
+    
+}
+/* 浮动布局 */
