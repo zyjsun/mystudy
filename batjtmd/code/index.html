@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          *{
+              margin: 0;
+              padding: 0;
+          }
+          .box{
+              margin: 20px auto;
+          }
+        i.arrow{
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border: 1px solid black;
+            border-left: transparent;
+            border-bottom: transparent;
+        }
+    .arrow{
+    width: 20px;
+    height: 20px;
+    /* border-top: 1px solid black;
+    border-right: 1px solid black; */
+    border: 1px solid black;
+    border-left: transparent;
+    border-bottom: transparent;
+    transform: rotate(45deg) scale(1.5);
+  }
+  html,body {
+      height: 100%;
+    }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  .tx{
+      width:100px;
+      height: 100px;
+      display: block;
+      border: 100px solid black;
+      border-left-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      position: relative;
+     
+    }
+    </style>
+</head>
+<body>
+    <!-- <span>&lt</span>
+    <span>&gt</span>
+    <div class="arrow"></div>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <div class="box">
+        <i class="arrow"></i>
+    </div> -->
+    <div class="tx"></div>
+</body>
+<script>
+    var cans=document.getElementById('canvas')
+    var ctx=cans.getContext('2d')
+    ctx.moveTo(0,0)
+    ctx.lineTo(10,10)
+    ctx.lineTo(0,20)
+    ctx.stroke()
+</script>
+</html>

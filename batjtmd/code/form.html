@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+  label {
+    display: inline-block;
+    width: 100px;
+  }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form name="loginForm" method="post">
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" class="form-control" id="phone" placeholder="请输入手机号" name="phone">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password">
+      </div>
+      <button type="submit" class="btn btn-default">Login</button>
+    </form>
+  </div>
+  <script>
+  const oForm =document.forms["loginForm"] //获取表单
+  
+  oForm.addEventListener('submit',function(event){
+    event.preventDefault();
+    const phone = oForm["phone"].value;
+    const password = oForm["password"].value;
+    console.log(phone,password);
+    const reg=/^\d{11}$/
+    // console.log(reg.test(phone));
+    if(!reg.test(phone)){
+      console.log('手机号格式有误')
+      return false
+    }
+    const len = password.length
+    if(len < 6 || len > 16){
+      console.log("password 长度在6-16位之间");
+      return false;
+    }
+//     fetch('http://localhost:3000/users', { //向地址发送请求
+//       method:"POST",
+//       headers: {
+// 　　　　'Content-Type': 'application/json'
+// 　　  },
+//      body:JSON.stringify({
+//  　　 'phone' : phone,
+//       'password':password
+// 　　  })
+//     })
+fetch(' http://localhost:3000/user', {
+      method:"POST",
+      headers: {
+　　　　'Content-Type': 'x-www-form-urlencoded'
+　　  },
+     body:JSON.stringify({
+       id: 3,
+ 　　 'phone' : phone,
+      'password':password
+　　  })
+    })
+  })
+  
+  </script>
+</body>
+</html>
