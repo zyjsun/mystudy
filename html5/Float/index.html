@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        .topDiv{
+            width: 500px;
+            border: 2px solid #000;
+            /* overflow: hidden; */
+        }
+        .floatDiv{
+            width: 100px;
+            height: 100px;
+            border: 2px dotted red;
+            color:red;
+            margin: 4px;
+            float: left;
+        }
+        .textDiv{
+           color: blue;
+           border: 2px solid blue;
+           clear: both;
+        }
+        .bottomDiv{
+            width: 500px;
+            height: 100px;
+            margin:5px 0;
+            border:black 2px dotted;
+        }
+        /* .clearfix:after{
+            content: ',';
+            display: block;
+            clear:both;
+        } */
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="topDiv clearfix">
+       
+        <div class="textDiv">v8中数据主要分到两块存储，分别是堆栈
+            js有7种基本数据类型和一个object类型
+        </div>
+        <div class="floatDiv">float left</div>
+
+        <!-- <div class="clearfix"></div> -->
+    </div>
+    <div class="bottomDiv">v8中数据主要分到两块存储，分别是堆栈
+        js有7种基本数据类型和一个object类型
+     </div>
+</body>
+</html>

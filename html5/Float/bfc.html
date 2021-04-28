@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+   
+    .box{
+        background: #888;
+        height: 100%;
+        margin-left: 50px;
+    }
+    .left{
+        background: #73DE80;
+        border: 3px solid #f41264;
+        height: 200px;
+        width: 200px;
+        opacity: 0.5;
+        flex:left;
+    }
+    .right{
+        background: #ef5be2;
+        opacity: 0.5;
+        border: 3px solid #f41264;
+        width: 400px;
+        min-height: 100px;;
+    }
+    .BFC{
+        overflow: hidden;
+    }
+    .little{
+        background: #fff;
+        width: 60px;
+        height: 60px;
+        margin-left: 10px;
+        float: left;
+    }
+</style>
+<body>
+    <div class="box BFC">
+        <div class="left"></div>
+        <div class="right BFC">
+        <div class="little"></div>
+        <div class="little"></div>
+        <div class="little"></div>
+    </div>
+    </div>
+</body>
+</html>

@@ -4,9 +4,10 @@ var minwindow=function(s,t){
       const need=new Map();
       for(let c of t){
           need.set(c,need.has(c)?need.get(c)+1:1)
+          //t为子串，记录每个的字母出现的次数
       }
-      let needType=need.size;
-      let res=''
+      let needType=need.size;//图中的个数
+      let res='';
       while(r<s.length){
           const c=s[r];
           if(need.has(c)){
@@ -18,8 +19,8 @@ var minwindow=function(s,t){
               if(!res||newstr.length<res.length)res=newstr;
               const c2=s[l]
               if(need.has(c2)){
-                  need.set(c2,need.get(c2)+1);
-                  if(need.get(c2)===1) needType+=1;
+                  need.set(c2,need.get(c2)+1);//左指针移动
+                  if(need.get(c2)===1) needType+=1;//需求加一
               }
               l=l+1
           }
