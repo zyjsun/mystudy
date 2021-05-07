@@ -1,0 +1,63 @@
+.container{
+  background: #f1f1f1;
+  height: 100%;
+}
+.header{
+  display: flex;
+  height: 45px;
+  width: 100%;
+  background: #fff;
+}
+.header_hd{
+  width: 45px;
+  height: 100%;
+  line-height: 45px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header_hd text{
+  color: #666;
+}
+.downtips{
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top:   5px solid #aaa;
+}
+.header_ct{
+  flex: 1;
+  /*占据父容器剩下的位置 */
+  display: flex;
+  padding: 0 30px;
+  position: relative;
+
+}
+.header_ct-btn{
+  flex:1;
+  font-size: 14px;
+  line-height: 45px;
+  text-align: center;
+}
+.header_bd{
+  width: 45px;
+  height: 100%;
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+.bottomLine{
+  width: 30px;
+  height: 3px;
+  background: #e54847;
+  position: absolute;
+  bottom: 0;
+  /* left: 49px; */
+  transition: left 0.3;
+}
+.header_bd image{
+  width: 23px;
+  height: 23px;
+}
