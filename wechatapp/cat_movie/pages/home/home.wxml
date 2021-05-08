@@ -5,10 +5,10 @@
     <view class="downtips"></view>
    </view>
    <view class="header_ct">
-      <view class="header_ct-hot header_ct-btn" bindtap="tabchange"    style="font-size:{{size}}px" data-index="1">热映</view>
-      <view class="header_ct-cinema header_ct-btn" bindtap="tabchange"  style="font-size:{{size}}px" data-index="2">影院</view>
-      <view class="header_ct-wait header_ct-btn"  bindtap="tabchange"   style="font-size:{{size}}px" data-index="3">待映</view>
-      <view class="header_ct-classic header_ct-btn" bindtap="tabchange"  style="font-size:{{size}}px" data-index="4">经典电影</view>
+      <view class="header_ct-hot header_ct-btn" bindtap="tabchange"    style="font-size:{{size1}}px"   data-index="1">热映</view>
+      <view class="header_ct-cinema header_ct-btn" bindtap="tabchange"  style="font-size:{{size2}}px" data-index="2">影院</view>
+      <view class="header_ct-wait header_ct-btn"  bindtap="tabchange"   style="font-size:{{size3}}px"  data-index="3">待映</view>
+      <view class="header_ct-classic header_ct-btn" bindtap="tabchange"  style="font-size:{{size4}}px" data-index="4">经典电影</view>
        <view class="bottomLine" style="left:{{left}}px" ></view>
    </view>
    <view class="header_bd">

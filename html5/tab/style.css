@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+}
+.tab{
+    width: 298px;
+    height: 98px;
+    border: 1px solid #000;
+}
+.tab-title{
+    height: 27px;
+    background: #f7f7f7;
+}
+.tab-title ul{
+    display: flex;
+}
+.tab-title li{
+   flex:1;
+   height: 26px;
+   text-align: center;
+   line-height: 26px;
+   padding: 0 1px;
+   border-bottom: 1px solid #eee;
+}
+
+.tab li a:link,.tab li a:visited{
+    text-decoration: none;
+    color:#000;
+}
+.tab li a:hover{
+  color:#f90;
+  font-weight: 700;
+}
+.tab-title li.select{
+    background: #fff;
+    border-bottom-color: #fff;
+    padding: 0;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+.tab-content .tabct{
+    margin: 10px,10px,10px,19px;
+}
+
+.tab-content .tabct ul li{
+    float: left;
+    width: 134px;
+    height: 25px;
+    overflow: hidden;
+}

@@ -6,32 +6,48 @@ Page({
    */
   data: {
     left:49,
-    size:15
+    size1:14,
+    size2:14,
+    size3:14,
+    size4:14
   },
 
 
   tabchange(e) {
     // console.log(e);
     let index = e.currentTarget.dataset.index
+    
     if (index == '1') {
       this.setData({
         left: 49,
-        size: 20
+        size1: 16,
+        size2:14,
+        size3:14,
+        size4:14
       })
     } else if (index == '2') {
       this.setData({
         left: 115,
-        size: 20
+        size1: 14,
+        size2:16,
+        size3:14,
+        size4:14
       })
-    } else if (index == '3') {
+    } else if (index =='3') {
       this.setData({
         left: 181,
-        size: 20
+        size1: 14,
+        size2:14,
+        size3:16,
+        size4:14
       })
     } else {
       this.setData({
         left: 245,
-        size: 20
+        size1: 14,
+        size2:14,
+        size3:14,
+        size4:16
       })
     }
     
