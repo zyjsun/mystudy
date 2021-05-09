@@ -1,4 +1,7 @@
 <view class="container"> 
+<!-- 大容器 -->
+
+     <!-- 头部 -->
    <view class="header">
    <view class="header_hd">
     <text>南昌</text>
@@ -15,4 +18,37 @@
    <image src="../../images/search.png"></image>
    </view>
    </view>
+
+
+
+   <scroll-view class="sc-view" scroll-y="true">
+       <!-- y轴滑动 -->
+         <view class="most-like">
+            <view class="mostlike_title">
+               <text>最受好评的电影</text>
+               <view class="mostlike_list">
+                  <scroll-view class="list"  scroll-x="true" >
+                     <!-- x轴滑动 -->
+                     
+                     <view class="movie-item">
+                     <view wx:for="{{list.movieList}}" class="movie-item">
+                        <view class="item-pic">
+                           <image mode="widthFix" src="{{item.img}}" role="image"/>
+                           <view class="item-score">
+                                 <text>观众评分</text>
+                                    <text>{{item.sc}}</text>
+                           </view>
+                        </view>
+                        <text class="item-name">{{item.nm}}</text>
+                     </view>
+                  </view>
+
+                     
+                  </scroll-view>
+               </view>
+            </view>
+         </view>
+
+   </scroll-view>
+   
 </view>

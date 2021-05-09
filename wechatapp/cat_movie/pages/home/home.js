@@ -9,7 +9,8 @@ Page({
     size1:14,
     size2:14,
     size3:14,
-    size4:14
+    size4:14,
+    list:{}
   },
 
 
@@ -57,7 +58,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.request({
+      url: 'https://www.fastmock.site/mock/39ac87de3060aa2bb2ba20a0ff375c81/cat-movie/mostLike',
+      method:'GET',
+      success:res=>{
+        // console.log(res);
+        this.setData({
+          list:res.data
+        })
+      }
+    })
   },
 
   /**
@@ -85,7 +95,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+          
   },
 
   /**
