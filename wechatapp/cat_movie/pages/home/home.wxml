@@ -19,8 +19,6 @@
    </view>
    </view>
 
-
-
    <scroll-view class="sc-view" scroll-y="true">
        <!-- y轴滑动 -->
          <view class="most-like">
@@ -41,14 +39,28 @@
                         </view>
                         <text class="item-name">{{item.nm}}</text>
                      </view>
-                  </view>
-
-                     
+                    </view>
                   </scroll-view>
                </view>
             </view>
          </view>
 
+         <view class="list2">
+            <view wx:for="{{list2.movieList}}" class="movie-item">
+               <view class="item-pic">
+                           <image mode="widthFix" src="{{item.img}}" role="image"/>
+                           <view class="item-score">
+                                 <text>观众评分</text>
+                                    <text>{{item.sc}}</text>
+                           </view>
+               </view>
+         
+         </view>
+
    </scroll-view>
    
+
+
+
+
 </view>

@@ -10,7 +10,8 @@ Page({
     size2:14,
     size3:14,
     size4:14,
-    list:{}
+    list:{},
+    list2:{}
   },
 
 
@@ -68,6 +69,18 @@ Page({
         })
       }
     })
+    wx.request({
+      url: 'https://www.fastmock.site/mock/39ac87de3060aa2bb2ba20a0ff375c81/cat-movie/hot',
+      method:'GET',
+      success:res=>{
+        console.log(res);
+        this.setData({
+         list2 :res.data
+        })
+      }
+    })
+ 
+
   },
 
   /**
