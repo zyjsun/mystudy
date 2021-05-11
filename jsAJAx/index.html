@@ -26,4 +26,81 @@
        }
    )
 </script>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- <script>
+    // let app = document.getElementById('app')
+    // let app = $('#app')
+    $.ajax({
+      url: 'https://autumnfish.cn/search?keywords="海阔天空"',
+      // data: {
+      //   keywords: '海阔天空'
+      // },
+      dataType: 'JSON',
+      method: 'Get',
+      success: (res) => {
+        console.log(res);
+      }
+    })
+  </script> -->
+  <!-- <script>
+    // 创建异步对象
+    var xhr = new XMLHttpRequest() 
+    // 设置请求的url，参数
+    xhr.open('get', 'https://autumnfish.cn/search?keywords="海阔天空"')
+    // 发起请求
+    xhr.send()
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr.responseText);
+      }
+    }
+  </script> -->
+
+  <script>
+    function myAjax({method, url, data, success}) {
+      var ajax = new XMLHttpRequest()
+      if (method.toLowerCase() == 'get') {
+        if (data) {
+          url += '?'
+          for (let key in data) {
+            url += `${key}=${data[key]}&`
+          }
+        } else {}
+        ajax.open(method, url)
+        ajax.send()
+      }
+
+      // 注册事件
+      ajax.onreadystatechange = function() {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+          console.log(ajax.responseText);
+          success(ajax.responseText)
+        }
+      }
+    }
+
+    myAjax({
+      method: 'GET',
+      url: 'https://www.fastmock.site/mock/39ac87de3060aa2bb2ba20a0ff375c81/cat-movie/mostLike',
+      data: {},
+      success: (res) => {
+        console.log(res);
+      }
+    })
+
+
+
+  </script>
+</body>
 </html>
