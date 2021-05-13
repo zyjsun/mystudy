@@ -10,6 +10,12 @@ text-align: center;
 pad: 30rpx 0;
 color: #ab956d;
 }
+.newst-title
+{
+  text-align: center;
+  pad: 30rpx 0;
+  color: #ab956d;
+}
 .select-top ,.select-bottom{
   width: 100%;
   height: 375rpx;
@@ -48,3 +54,4 @@ color: #ab956d;
 .newstlist:nth-child(2n){
     margin-right: 0;
 }
+

@@ -1,2 +1,54 @@
-<!--pages/card/card.wxml-->
-<text>pages/card/card.wxml</text>
+<view class="main">
+  <view>
+    <view class="cart-box">
+      <view class="cart-list" wx:for="{{carts}}" wx:key="{{index}}">
+    
+        <icon wx:if="{{item.selected}}" class="cart-pro-select" type="success" color="red" data-index="{{index}}" bindtap="selectList"/>
+       <icon wx:else class="cart-pro-select " type="success" color="#d9d9d9" size="23" data-index="{{index}}" bindtap="selectList"/>
+        <navigator class="cart-pro-goods" url="">
+          <image class="cart-thumb" src="{{item.image}}"/>
+        </navigator>
+
+        <text class="cart-pro-name">{{item.title}}</text>
+        <text class="cart-pro-price">{{item.price}}</text>
+
+        <view class="cart-count-box">
+          <text class="cart-count-down">-</text>
+          <text class="cart-count-num">{{item.num}}</text>
+          <text class="cart-count-add">+</text>
+        </view>
+        <text class="cart-del">x</text>
+   
+      </view>
+    </view>
+
+    <view class="cart-footer">
+        <icon wx:if="{{selectAllStatus}}"  class="total-select" type="success" color="red" bindtap="selectAll"/>
+        <icon wx:else class="total-select " type="success" color="white" size="23" bindtap="selectAll" />
+        <text>全选</text>
+        <text class="cart-total-price"  >{{totalPrice}}</text>
+    </view>
+  </view>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</view>

@@ -1,8 +1,9 @@
 {
   "pages":[
+        "pages/card/card",
         "pages/index/index",
         "pages/category/category",
-        "pages/card/card",
+     
         "pages/user/user",
         "pages/detail/detail"
   ],
