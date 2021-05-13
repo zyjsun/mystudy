@@ -1,0 +1,110 @@
+
+<view class="main">
+  <swiper indicator-dots="true" indicator-color="white" autoplay="true" interval="1000"  duration="2000" circular="true"> 
+  <!-- circular 图片循环从头开始   duration 图片停顿时长 indicator-dots 轮播图加点 -->
+  <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+      <swiper-item >
+      <image src="{{item}}" class="slide-image" width="100%"/>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="selected">
+  
+  <view class="select-title">
+       <text>精选主题</text>
+  </view>
+  <view class="select-top">
+        <view class="select-top_small">
+             <navigator url="../detail/detail">
+                    <image src="/images/s1.png"></image>
+                </navigator>
+        </view>
+        <view class="select-top_small">
+              <navigator url="../detail/detail">
+                    <image src="/images/s2.png" ></image>
+                </navigator>
+        </view>
+  </view>
+  <view class="select-bottom">
+    <navigator url="../detail/detail">
+      <image mode="widthFix" src="/images/s3.png"/>
+                </navigator>
+  </view>
+  </view>
+<view class="newsst">
+  <view class="newst-title">
+  <text>最近新品</text>
+  </view>
+  <view class="newst-box">
+      <view class="newslist">
+      
+      <navigator url="">
+      <image src="/images/s4.png"/>
+      <view class="newst-name">
+        <text>瓜子  100g</text>
+      </view>
+
+      <view class="newst-price">
+      <text>￥0.01</text>
+      </view>
+      </navigator>
+      </view>
+     
+      <view class="newslist">
+      
+        <navigator url="">
+      <image src="/images/s5.png"/>
+      <view class="newst-name">
+        <text>芹菜  500g</text>
+      </view>
+
+      <view class="newst-price">
+      <text>￥0.02</text>
+      </view>
+      </navigator>
+       </view>
+       <view class="newslist">
+        <navigator url="">
+      <image src="/images/s6.png"/>
+      <view class="newst-name">
+        <text>素米  500g</text>
+      </view>
+
+      <view class="newst-price">
+      <text>￥0.05</text>
+      </view>
+      </navigator>
+      
+      
+       </view>
+
+    <view class="newslist">
+      <navigator url="">
+    <image src="/images/s5.png"/>
+    <view class="newst-name">
+      <text>芹菜  500g</text>
+    </view>
+    <view class="newst-price">
+    <text>￥0.02</text>
+    </view>
+    </navigator>
+     </view>
+     
+    <view class="newslist">
+    <navigator url="">
+    <image src="/images/s6.png"/>
+    <view class="newst-name">
+      <text>素米  500g</text>
+    </view>
+    <view class="newst-price">
+    <text>￥0.05</text>
+    </view>
+    </navigator>
+    </view>
+
+    </view>
+  
+</view>
+
+</view>

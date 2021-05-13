@@ -1,0 +1,50 @@
+swiper{
+  height: 421rpx;
+}
+.slide-image{
+  width: 100%;
+  height: 100%;
+}
+.select-title{
+text-align: center;
+pad: 30rpx 0;
+color: #ab956d;
+}
+.select-top ,.select-bottom{
+  width: 100%;
+  height: 375rpx;
+  display: flex;
+}
+.select-top_small navigator,.select-top_small image,
+.select-bottom navigator,.select-bottom image{
+  width: 100%;
+  height: 100%;
+}
+.select-top_small {
+  flex: 1;
+}
+/* .select-title text{
+  color: #ab956d;
+} */
+
+.newst-box{
+  padding: 0 40rpx;
+}
+
+.newslist{
+  display: inline-block;
+  width: 315rpx;
+  height: 325rpx;
+  background: #f5f6f5;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0 20rpx 20rpx 0;
+}
+.newslist image{
+  width: 175rpx;
+  height: 175rpx;
+}
+
+.newstlist:nth-child(2n){
+    margin-right: 0;
+}
