@@ -60,7 +60,7 @@ Page({
     let price=0
     for(let i = 0; i < carts.length; i++) {
       if (carts[i].selected) {
-       price+=carts[i].price
+       price+=carts[i].price*carts[i].num
       }  
     }
     console.log(price)
