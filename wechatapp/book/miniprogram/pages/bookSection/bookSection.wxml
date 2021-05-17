@@ -1,0 +1,45 @@
+<!--小说章节-->
+<view class="introduce">
+  <view class="detail-left">
+    <image src="{{bookDetailData.imgurl}}" />
+  </view>
+  <view class="detail-right">
+    <view>
+      <view class="name">{{bookDetailData.name}}</view>
+      <view>
+        <text>{{bookDetailData.author}}</text>
+      </view>
+      <view>
+        <text>{{bookDetailData.status}}</text>
+      </view>
+      <view>
+        <text>{{bookDetailData.lastTime}}</text>
+      </view>
+      <view class="lastNew">
+        最新：
+        <text>{{bookDetailData.lastSection}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="join-book">
+  <van-button type="warning" size="small">加入书架</van-button>
+</view>
+
+<!-- 内容简介 -->
+<view class="brief">
+  <view class="introduce-title">内容简介</view>
+  <view class="introduce-content">{{bookDetailData.bookDetail}}</view>
+</view>
+
+<!-- 最新章节 -->
+<view class="last-section">
+  <view class="introduce-title">最新章节</view>
+  <view class="section" wx:for="{{lastDate}}" wx:key="index">我的新书《深空彼岸》上传了</view>
+</view>
+
+<!-- 所有章节 -->
+<view class="last-section"  wx:key="index">
+  <view class="introduce-title">章节列表</view>
+  <view class="section">第一章 沙漠中的彼岸花</view>
+</view>

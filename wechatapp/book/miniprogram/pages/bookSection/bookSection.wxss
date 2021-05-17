@@ -1,0 +1,64 @@
+
+.introduce{
+  display: flex;
+  padding: 12rpx;
+  margin-top: 30rpx;
+}
+
+
+.detail-lefts, .detail-left image{
+  width: 200rpx;
+  height: 260rpx;
+}
+.detail-right{
+  flex: 1;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  color: #888;
+}
+.detail-right view{
+  margin: 12rpx 0;
+}
+.lastNew{
+  width: 500rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* .detail-right .name{
+  font-size:;
+} */
+.brief{
+  padding: 0 12rpx;
+  margin: 30rpx 0;
+}
+.introduce-title{
+  height: 70px;
+  line-height: 70rpx;
+  background: #68aac2;
+  color: #fff;
+  font-size: 32rpx;
+  padding: 0 12rpx;
+}
+.introduce-content{
+  padding: 20rpx;
+  color: #888;
+  font-size:28rpx;
+}
+.last-section{
+  padding: 0 12rpx;
+  margin: 0 0 30rpx 0;
+  color: #222;
+  font-size: 28rpx;
+}
+.last-section .section{
+  padding: 20rpx 0;
+  margin: 0 20rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+  color: #888;
+  border-bottom: 1px dotted #888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
