@@ -1,0 +1,40 @@
+.user-info-container{
+  display: flex;
+  margin: 0 40px;
+  margin-top: 32rpx;
+}
+.user-info-container .avatar{
+  width: 100rpx;
+  height: 100rpx;
+  border: 5rpx solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 6rpx 16rpx rgba(25,118,210, 0.1);
+}
+.user-info-container .info{
+  margin-left: 24rpx;
+  color: #000;
+  font-weight: bold;
+  font-size: 36rpx;
+}
+.info .name{
+  color: #1976d2;
+  font-weight: bold;
+  font-size: inherit;
+}
+
+.info .statistics{
+  font-size: 32rpx;
+}
+
+.authorize{
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 12rpx 48rpx;
+  border-radius: 36rpx;
+  background-color: #ffee58;
+  text-align: center;
+  font-weight: bold;
+  font-size: 26rpx;
+  line-height: 28rpx;
+
+}
