@@ -7,3 +7,29 @@
     <view class="statistics">你的总累计时间为100小时</view>
     </view>
 </view>
+
+<!-- 饼转图 -->
+
+<view class="pie-container">
+    <image class="empty-img" wx:if="{{goalList.length===0||!goalList}}"
+       mode="aspectFill" 
+       src="../../images/home/empty.png"/>
+    <view class="pie" hidden="{{isCreating}}">
+        <ec-canvas ec="{{pieOpt}}" id="chart"></ec-canvas>
+    </view>
+</view>
+
+<!-- 当前记录提示 -->
+<view class="time-tips">
+    <view class="timer-detail">
+    当前
+    <view class="time-goal-title">标题</view>
+    123
+    <view class="check-timer">查看</view>
+    </view>
+    <view class="timer">2021-5-21</view>
+</view>
+
+<!-- 创建按钮 -->
+
+<image class="create" src="../../images/home/create.png"/>

@@ -1,0 +1,22 @@
+{
+  "pages":[
+   
+    "pages/mine/mine",
+    "pages/login/login",
+  
+    "pages/cloud/cloud",
+    "pages/find/find",
+    "pages/video/video"
+  
+ 
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "网易云音乐",
+    "navigationBarTextStyle":"black",
+    "navigationStyle": "custom"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
