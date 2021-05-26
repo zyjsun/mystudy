@@ -43,7 +43,6 @@ function Factory(name,age,carrer){
             break
         case 'product manager':
             work=['定会议室','写PRD','催更']
-
             break
             //...
     }

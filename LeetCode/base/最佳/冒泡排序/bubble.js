@@ -1,7 +1,6 @@
 let arr=[9,8,7,6,5,4,3,2,1]
 const maopao=arr=>{
 
-    
 for(let i=0;i<arr.length-1;i++){
     var flag=false;//提前退出冒泡循环的标志
     for(let j=0;j<arr.length-i-1;j++)
