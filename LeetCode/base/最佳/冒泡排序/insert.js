@@ -16,5 +16,7 @@ function insertSort(arr){
         //循环让位
         arr[j]=temp//上位
     }
-    return　       
+    return　arr  
 }
+
+console.log(insertSort(arr))
