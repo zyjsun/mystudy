@@ -10,6 +10,7 @@ Function.prototype.myapply=function(context){
     context=context||window
     context.fn=this //this为test
     context.fn()//a把test函数执行掉了
+    
     let [arr]=[...arguments].slice(1)//解构出来 数组取出赋值
     let resArr=[...arr]
     let result

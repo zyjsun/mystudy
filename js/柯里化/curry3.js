@@ -21,7 +21,8 @@ function sub_curry(fn) {
   var fn1 = curry(fn0)
   fn1()()()
   
-  // fn1()   
+  // fn1()  
+  
   // curry(sub_curry(fn0))   
   // curry(function() {  
   //   return fn0() 
@@ -32,11 +33,13 @@ function sub_curry(fn) {
   // curry(sub_curry(function() {
   //   return fn0()
   // })) 
+
   // curry(function() {
   //   return (function() {
   //     return fn0()
   //   })()
   // })
+  
   // curry(function() {
   //   return fn0()
   // })

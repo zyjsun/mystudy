@@ -6,6 +6,7 @@ function curry(fn, args) {
   
     return function() {
       var _args = args.slice(0), arg, i;
+      console.log(_args)
   
       for (i = 0; i < arguments.length; i++) {
         arg = arguments[i]
