@@ -27,3 +27,9 @@ var msg=person.map(function(item){
     return item.name;
 })
 console.log(msg);
+
+var prop=curry(function(key,obj){
+    return obj[key]
+})
+
+var msg2=person.map(prop('name'))
