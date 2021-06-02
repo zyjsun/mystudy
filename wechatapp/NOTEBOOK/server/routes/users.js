@@ -1,7 +1,57 @@
 const router = require('koa-router')()
 const userService=require('../controllers/mySqlConfig')
 router.prefix('/users')
+//根据id查找文章类型
+router.post('/findNoteDetailByid',async(ctx,next)=>{
+  let id=ctx.request.body.id;
+  await userService.findNoteDetailByid(id).then(res=>{
+    // console.log(res);
+    let r='';
+    //匹配
+    if (res.length) {
+      r = 'ok'
+      ctx.body = {
+        code: 200,
+        data: res,
+        mess: '查找成功'
+      }
+    } else {
+      r = 'error'
+      ctx.body = {
+        code: '80004',
+        data: r,
+        mess: '查找失败'
+      }
+    }
+  })
+})
 
+//找到类型
+router.post('/findNoteListByType',async(ctx,next)=>{
+  let note_type=ctx.request.body.note_type;
+  console.log(note_type);
+  await userService.findNoteListByType(note_type).then(res=>{
+    // console.log(res);
+    let r='';
+    //匹配
+    if (res.length) {
+      r = 'ok'
+      ctx.body = {
+        code: 200,
+        data: res,
+        mess: '查找成功'
+      }
+    } else {
+      r = 'error'
+      ctx.body = {
+        code: '80004',
+        data: r,
+        mess: '查找失败'
+      }
+    }
+
+  })
+})
 //定义登录的接口
 router.post('/userLogin',async(ctx,next)=>{
   //拿到前端给我的参数
@@ -69,7 +119,7 @@ router.post('/userRegister',async(ctx,next)=>{
       //注册成功
      await userService.insertUser(result).then(res=>{
        let r=''
-      if(res.affectedRows!==0){
+      if(res.affectedRows!==0){//注册的操作成功
         ctx.body={
           code: 200,
           data: r,
@@ -93,5 +143,6 @@ router.post('/userRegister',async(ctx,next)=>{
   }
 
 })
+
 
 module.exports = router
