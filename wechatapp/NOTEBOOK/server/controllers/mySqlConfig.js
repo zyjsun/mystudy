@@ -60,12 +60,17 @@ let findNoteDetailByid=function(id){
     let _sql=`select *from note where id="${id}"`
     return allServices.query(_sql)
 }
+let insertNote=function(options){
+    let _sql=`insert into note set c_time=?,m_time=?,note_content=?,head_img=?,title=?,note_type=?,useId=?,nickname=?;`
+    return allServices.query(_sql,options)
+}
 
 module.exports={
     userLogin,
     insertUser,
     findUser,
     findNoteListByType,
-    findNoteDetailByid
+    findNoteDetailByid,
+    insertNote
 }
 

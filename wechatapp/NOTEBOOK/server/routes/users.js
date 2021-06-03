@@ -92,6 +92,36 @@ router.post('/userLogin',async(ctx,next)=>{
 
 })
 
+//发布接口
+router.post('/publishNote',async(ctx,next)=>{
+  let c_time = ctx.request.body.c_time;
+  let m_time=ctx.request.body.m_time;
+  let noteContent=ctx.request.body.noteContent;
+  let noteTitle=ctx.request.body.noteTitle;
+  let noteImage=ctx.request.body.noteImage;
+  let note_type=ctx.request.body.note_type;
+  let useId=ctx.request.body.useId;
+  let nickname=ctx.request.body.nickname;
+  // console.log(c_time,m_time,noteContent,noteImage,noteTitle,note_type,useId,nickname)
+  await userService.insertNote([c_time,m_time,noteContent,noteImage,noteTitle,note_type,useId,nickname]).then(res=>{
+    let r='ok'
+    if(res.affectedRows!==0){
+      ctx.body={
+        code: 200,
+        data: r,
+        mess: '插入成功'
+        }
+    }else{
+      r='error'
+      ctx.body={
+        code: '80002',
+        data: r,
+        mess: '插入失败'
+        }
+    }
+  })
+
+})
 router.post('/userRegister',async(ctx,next)=>{
   let _username=ctx.request.body.username
   let _userpwd=ctx.request.body.userpwd
