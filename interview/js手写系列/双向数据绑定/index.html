@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="text"  id='zz' onchange="get(this.id)">
+        <span id='sp'>hello world</span>
+    </div>
+    <script>
+        var text=document.getElementById('zz')
+        // text.addEventListener('input',function(e){
+            
+        //      document.getElementById('sp').innerHTML=e.data
+        // })
+    //    function get(e){
+    //        console.log(e)
+    //         var y=document.getElementById(e).value
+            var x=document.getElementById('sp')
+    //         x.innerHTML=y 
+    //    }
+    let obj={
+        text: 1,
+        test: 'hello'
+    }
+    let temp=null
+
+   //数据劫持
+    Object.defineProperty(obj,'text',{//只能在set里面设置text的值
+        get(){
+                console.log('获取数据');
+                return temp
+        },
+        set(newVal){
+                console.log('数据更新');
+                console.log(newVal);
+                x.innerHTML=newVal
+                temp=newVal;
+        }
+    })
+   
+    // setTimeout(()=>{
+    //     obj.text=1
+    // },2000)
+
+text.addEventListener('keyup',function(e){
+    obj.text=e.target.value//  截取输入框输入值
+    console.log(obj.text);
+})
+
+    </script>
+</body>
+</html>
