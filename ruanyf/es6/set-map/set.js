@@ -29,7 +29,19 @@ delete obj.a;
 //     console.log(item)
 // }
 
-for(let item of s.entries()){//返回键值对
+for(let item of s){//返回键值对
     // console.log(s.keys())
-    console.log(item)
+    console.log(item)    //key与value一样
 }
+// console.log(Set.prototype[Symbol.iterator]===Set.prototype.values())
+
+s.forEach((val,key,o)=>{//对象自己
+    console.log(`${key}`,`${val}`,o)
+})
+
+//Set不具备filter方法
+let newS=[...s].filter(x=>{
+    return x==='green'
+})
+
+console.log(newS)
