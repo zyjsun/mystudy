@@ -10,9 +10,41 @@
 // })
 // console.log(newArr)
 
-const m=new Map()
-const o={p: 'Hello World'}
+// const m=new Map()
+// const o={p: 'Hello World'}
 
-m.set(o,'content')
+// m.set(o,'content')
+// m.delete(o)
 
-console.log(m);
+// console.log(m.has(o));
+
+// const m=new Map([
+//     ['name','zz'],
+//     ['title','作家']
+// ])
+//等价于
+// const item=[
+//     ['name','zz'],
+//     ['title','作家']
+// ]
+// const m=new Map()
+
+// item.forEach(([key,val])=>{
+//     return m.set(key,val)
+// })
+// // m.has('name')
+// console.log(m)
+
+const set=new Set([
+    ['foo',1],
+    ['bar',2]
+])
+
+ const m=new Map(set)
+// m.clear()//清空所有值
+// m.get('foo')
+
+for(let key of m.entries()){
+    console.log(key[0],key[1])
+}
+console.log([...m.entries()])
