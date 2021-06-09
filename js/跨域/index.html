@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <button class="btn">click</button>
+
+    <!-- <script>
+        //   $('.btn').click(function(){
+        //     $.ajax({
+        //       url: 'http://127.0.0.1:3000',
+        //        success: function(res){
+        //            console.log(res)
+        //        }
+        //     })
+        //   })
+          
+      class Jsonp{
+          constructor(req){
+              this.url=req.url
+              this.callbackName=req.callbackName
+          }
+          create(){
+               const script=document.createElement('script')
+               const url=`${this.url}?callback=${this.callbackName}`//回调
+               script.src=url//src为我想要的地址
+               document.getElementsByTagName('head')[0].appendChild(script)
+          }
+      }
+      new Jsonp({//利用script属性来解决不跨域
+          url: 'http://127.0.0.1:3000',
+          callbackName: 'getMsg'
+      }).create()
+      //getMsg()
+      function getMsg(data){
+          data=JSON.parse(data)
+          console.log(`My name is ${data.name},and my age is ${data.age}`)
+      }
+    </script> -->
+    <script>
+        const jsonp=({url,params,callbackName})=>{
+                const  generateURl=()=>{
+                    let dataStr=''
+                    //往url后面拼接参数
+                    for(let key in params){
+                        dataStr+=`${key}=${params[key]}&`
+                    }
+                    //往url后面拼回调
+                    dataStr+=`callback=${callbackName}`
+                    console.log(dataStr)
+                    return `${url}?${dataStr}`
+                }
+
+               return new Promise((resolve,reject)=>{
+                   callbackName=callbackName||'cb'+Math.random().toString().replace('.', '')
+                   const script=document.createElement('script')
+                   const url=generateURl()//回调
+                   script.src=url//src为我想要的地址
+               document.body.appendChild(script)
+               window[callbackName]=data=>{
+                   resolve(data)
+                   document.body.removeChild(script)
+               }
+               }) 
+        }
+
+        jsonp({
+            url: 'http://127.0.0.1:3000',
+            params: {
+                name: 'hh',
+                age: 18
+            },
+            callbackName: 'getData'
+        }).then(data=>JSON.parse(data))
+        .then(data=>{
+            console.log(data);
+        })
+
+    </script>
+</body>
+</html>
