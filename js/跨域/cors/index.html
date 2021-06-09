@@ -31,8 +31,8 @@
             const myHeaders=new Headers({
                 'X-Custom-Header': 'xxx'
             })//创建请求头
-            fetch(url,{//发送请求
-                method: 'PUT',
+            fetch(url,{
+                method: 'PUT',//发送请求
                 headers: myHeaders,
                 body: JSON.stringify(data),
                 mode: 'cors'
