@@ -47,4 +47,49 @@ let tt:any=['11',11,true]//可以被赋值为任意类型
 //     WEST
 // }
 
+//异构枚举
+// enum Enum{
+//     A,
+//     B,
+//     C='c',
+//     D='D',
+//     E=8,
+//     F
+// }
+
+// let notSure: any=666 //赋值给任意类型
+// notSure='Hello'
+// notSure=false
+// notSure.trim()
+
+//unknown 除了赋值给unknow 与any 其他都不能
+let value: unknown;
+value=true
+value=42
+
+//void 表示无任何类型
+// function warnUser():void{
+//     console.log(123)
+// }
+
+// let unusable: void=null||undefined
+
+//null undefine
+let u:undefined=undefined
+let n:null=null
+
+//object
+
+interface Object{
+    name:string,
+    age:number,
+    like?:string//可有可无
+}
+
+let person : Object={
+    name: 'Mrchen',
+    age:19
+}
+
+
 
