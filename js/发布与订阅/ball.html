@@ -28,11 +28,37 @@
 </style>
 <body>
     <div class="box"></div>
+    <script src="ball-emit.js"></script>
     <script src="ball.js"></script>
-    <script>
+    <script src="dragExtend.js"></script>
+    <!-- <script>
         let box=document.querySelector('.box')
         // window.drag=Drag
-       new Drag(box)
+    //    new Drag(box)
+
+
+    let subscribe=new Subscribe()
+    let fn1=function(x,y){
+        console.log(1,x,y)
+    }
+    let fn2=function(x,y){
+        console.log(2)
+    }
+    let fn3=function(x,y){
+        console.log(3)
+        subscribe.remove(fn1)
+        subscribe.remove(fn2)
+    }
+    let fn4=function(){
+        console.log(4)
+    }
+    subscribe.add(fn1)
+    subscribe.fire(100,200)//发布
+    </script> -->
+    <script>
+        let box=document.querySelector('.box')
+        let drag=new Drag(box)
+        extendDrag(drag)
     </script>
 </body>
 </html>
