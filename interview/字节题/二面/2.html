@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    ul>li{
+        list-style: none;
+    }
+    .item{
+        height: 100px;
+        width: 200px;
+        font-size: 50px;
+        float: left;
+    }
+    .item:nth-child(2n){
+        background: hotpink;
+    }
+    .item:nth-child(2n-1){
+        background: forestgreen;
+    }
+    /* .clearFix::after{
+        /* after为元素要为块级元素 
+        clear: both;
+        display: block;
+        height: 0;
+        content: "";
+    } */
+
+    /* .list{
+        去浮动
+        overflow: hidden;
+    } */
+    .list{
+        float: left;
+    }
+
+</style>
+<body>
+    <ul class="list clearFix">
+        <li class="item">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+        <li class="item">5</li>
+        <!-- <p class="clearFix"></p>相当于这个 伪类 after 为开与闭标签之间 -->
+    </ul>
+    <div class="wrap">hello</div>
+</body>
+</html>
