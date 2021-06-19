@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../underscore.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <ul id="name_list">
+    <!-- <li>张三</li>
+    <li>李四</li>
+    <li>王二</li> -->
+    <li><a href="http://xhs.com">慧慧</a></li>
+    <li><a href="http://lol.com">杰哥</a></li>
+    <li><a href="http://mh.com">张老板</a></li>
+  </ul>
+
+  <!-- 打造模版引擎 -->
+  <script id="user_tmpl" type="text/html">
+    <% for (let i = 0; i < users.length; i++) { %>
+      <li>
+        <a href="<%= users[i].url%>">
+          <%= users[i].name%>
+        </a>
+      </li>
+    <% } %>
+  </script>
+
+  <script>
+    let Ul = document.getElementById('name_list')
+    let users =  [
+        { name: '慧慧慧慧', url: 'http://xhs.com' },
+        { name: '杰哥', url: 'http://lol.com' },
+        { name: '张老板', url: 'http://mh.com' }
+      ]
+
+
+    function tmpl(name, data) {
+      let str = document.getElementById(name).innerHTML
+
+      let string = "var p = []; p.push('" +
+                str.replace(/[\r\t\n]/g, "")
+                    .replace(/<%=(.*?)%>/g, "');p.push($1);p.push('")
+                    .replace(/<%/g, "');")
+                    .replace(/%>/g, "p.push('")
+                    + "')"
+      eval(string)
+
+      return p.join('')
+    }
+
+    // let precompile = tmpl('user_tmpl', data.users)
+    Ul.innerHTML = tmpl('user_tmpl', users)
+
+
+
+    // for (let i = 0; i < data.users.length; i++) {
+    //   let Li = document.createElement("li")
+    //   Ul.appendChild(Li)
+    //   Li.innerHTML = data.users[i].name
+    // }
+  </script>
+
+  <!-- <script>
+    let tpl = 'hello: <%= name %>'
+    let compiled = _.template(tpl)
+    // compiled({ name: '金总' })
+    // console.log(compiled({ name: '金总' }));
+  </script> -->
+</body>
+
+</html>
