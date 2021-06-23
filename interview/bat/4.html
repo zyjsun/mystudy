@@ -1,14 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>js事件流</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js的事件流</title>
 </head>
 <body>
-    <div class="wrap">
-        <p class="text">hello</p>
-    </div>
+  <div id="wrap">
+    <p id="text">
+      <span id="span">hello</span>
+    </p>
+  </div>
+
+  <script>
+    // 事件捕获阶段  处于目标阶段  事件冒泡阶段
+    let wrap = document.getElementById('wrap')
+    let text = document.getElementById('text')
+    let span = document.getElementById('span')
+
+    span.addEventListener('click', function(e) {
+      console.log('hello span');
+    }, false)
+
+    text.addEventListener('click', function() {
+      console.log('hello p');
+    }, true)
+
+    wrap.addEventListener('click', function(e) {
+      console.log('hello div');
+      // e.stopPropagation()
+      e.stopImmediatePropagation()
+    }, true)
+  </script>
 </body>
 </html>
