@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .item{
+        width: 200px;
+        grid-row-start:auto ;
+    }
+    .item img{
+        width: 100%;
+    }
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 5px;
+        grid-auto-rows: 10px;
+    }
+</style>
+<body>
+    <div class="container" id="app">
+        <div class="item" v-for="item in list" ref="item">
+            <img :src="item.img" >
+        </div>
+    </div>
+    <script>
+            let app=new Vue({
+                el: "#app",
+                data(){
+                    return {
+                        list: [{
+    "id": 0,
+    "value": "Consequatur in ipsa ab sapiente enim. Accusantium aut est voluptas sequi. Quibusdam neque aperiam dolor. Excepturi sunt a minus fuga autem excepturi cupiditate. Fuga aspernatur incidunt aliquid.",
+    "img": "https://i.pinimg.com/236x/7f/24/8c/7f248c9e18abe79de0d6c79617e03361.jpg"
+  },
+  {
+    "id": 1,
+    "value": "Sit qui consequuntur vel quibusdam sit ea sint. Repellendus unde ducimus sed dolor sint iste. Expedita voluptas iste adipisci eos. Impedit dignissimos ratione animi dolorem est.",
+    "img": "https://i.pinimg.com/236x/a6/cd/0a/a6cd0a15d5b2909539dd7944201127d2.jpg"
+  },
+  {
+    "id": 2,
+    "value": "Fugiat deserunt doloremque molestiae veritatis beatae aut. Eveniet voluptas sunt accusamus. Quis quos hic itaque. Eveniet est repellendus. Odit sed sint. Repellendus est et.",
+    "img": "https://i.pinimg.com/236x/d7/fb/60/d7fb60b2321149a83ab5dbe94744ced6.jpg"
+  },
+  {
+    "id": 3,
+    "value": "Quas et fuga eos ducimus reprehenderit necessitatibus. Molestiae fuga maiores nobis id. Id debitis id dignissimos magni repellendus quae. Neque aut officia quia dolorem consequatur facilis esse. Ipsam et in aut est voluptatibus qui labore. Esse qui harum dolores.",
+    "img": "https://i.pinimg.com/236x/44/d4/c3/44d4c397ff1831222a32620006d3e4ae.jpg"
+  },
+  {
+    "id": 4,
+    "value": "Eligendi mollitia est alias molestiae et voluptas ut natus aliquid. Dolorem autem saepe. Accusamus quae quia excepturi iure sint eum vitae. Voluptas rerum soluta rerum ex unde.",
+    "img": "https://i.pinimg.com/236x/44/cb/7f/44cb7fc19131e851f639f6e24acbdec6.jpg"
+  },
+  {
+    "id": 5,
+    "value": "Provident rerum fugiat qui. Soluta eos reiciendis alias rerum et sunt animi commodi. Omnis temporibus quia accusantium laudantium distinctio porro nostrum dolores voluptas. Quibusdam assumenda laudantium exercitationem ipsam. Quia repellendus ut a ea sed recusandae debitis. In velit odit alias quod est nulla maxime est reprehenderit.",
+    "img": "https://i.pinimg.com/236x/65/aa/58/65aa58f9ec28f1a889a2cce245d23110.jpg"
+  },
+  {
+    "id": 6,
+    "value": "Aliquam laborum sit ipsam. Odit possimus culpa voluptatem.",
+    "img": "https://i.pinimg.com/236x/3d/90/bc/3d90bc862205b58b4cba9d8ccf2ada3d.jpg"
+  },
+  {
+    "id": 7,
+    "value": "Veritatis eum aut officiis ut libero sed accusantium neque mollitia. Quisquam velit ratione adipisci at quos officiis nulla porro. Expedita soluta iure accusamus eius modi accusantium temporibus. Cumque omnis et. Voluptatem officiis labore molestiae nostrum numquam quia. Dolorem itaque et maiores atque beatae.",
+    "img": "https://i.pinimg.com/236x/6a/b0/d9/6ab0d93ee045cde3a25b5a0a22cd6435.jpg"
+  },
+  {
+    "id": 8,
+    "value": "Magnam dolor vel reprehenderit. Tenetur perspiciatis nam rerum quo molestias eligendi itaque atque. Reprehenderit laboriosam qui ipsam dolorum hic. Aut enim odit tempore et sed saepe dignissimos. Praesentium sapiente optio aut consequatur et est. Quaerat nam enim natus consequuntur temporibus.",
+    "img": "https://i.pinimg.com/236x/0f/41/f6/0f41f6073f27a4c8baf57d26f76b4b9a.jpg"
+  },
+  {
+    "id": 9,
+    "value": "Sed et rerum tenetur. Veritatis blanditiis harum aut voluptatem unde quisquam neque ab quod. Doloribus sequi adipisci at quae amet molestiae voluptatem impedit expedita. Iusto nam unde molestiae enim deserunt quos. Quasi voluptatem amet voluptatibus eius et.",
+    "img": "https://i.pinimg.com/236x/ce/87/3b/ce873bc16d0e03cf21ab687d9d3c8ced.jpg"
+  },
+  {
+    "id": 10,
+    "value": "Dicta dolor dolorem repellendus perspiciatis. Voluptates ut consequatur eos quaerat laudantium. Molestias atque magnam tempora numquam molestias distinctio et maxime.",
+    "img": "https://i.pinimg.com/236x/a1/2b/ab/a12babee7999f15e09d908fb2bcbdf52.jpg"
+  },
+  {
+    "id": 11,
+    "value": "Quo eos voluptas expedita incidunt. Non esse explicabo ut voluptates fugit omnis alias. Et non voluptatum repellendus in ut. Qui sunt voluptatem hic aut.",
+    "img": "https://i.pinimg.com/236x/21/c4/d3/21c4d38cd1401a12add89d309fc7940a.jpg"
+  },
+  {
+    "id": 12,
+    "value": "Blanditiis hic nostrum illum culpa quia commodi molestiae ab. Sed esse enim perspiciatis quasi. Nemo maiores delectus quod. Est inventore aut.",
+    "img": "https://i.pinimg.com/236x/d8/e5/8b/d8e58b3064f8978657f9453a2d981285.jpg"
+  }
+]
+                    }
+                },
+                mounted(){//相当于onload
+                    // console.log(this.$refs.item)
+                    // Array.from(this.$refs.item).forEach((el,index)=>{
+                        
+                    // })
+                    let items=this.$refs.item
+                    for(let i=0;i<items.length;i++){
+                        let image=new Image()
+                        image.src=this.list[i].img;
+                        image.onload=function(){
+                          let w=image.width
+                          let h=image.height
+                          let height=Math.round(h*200/w)
+                        // let height=Math.round(h/10)
+                          console.log(height)
+                          items[i].style.gridRowEnd=`span ${~~(height/10)}`//位运算符
+                        // items[i].style.gridRowEnd=`span ${height}`
+
+                        }
+                    }
+
+                }
+            })
+            console.log(app)
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .item{
+        width: 100px;
+    }
+    #container{
+        display: grid;
+        /* 每列的列宽度 */
+        grid-template-columns: 1fr 1fr 1fr;
+
+        
+         /* 每行的列宽度 */
+        /* grid-template-rows:1fr 1fr 1fr; 当你知道要几行 */
+         /* 列间距 */
+        column-gap: 5px;
+        grid-auto-rows: 10px; 
+        /*每个单元格宽度*/
+        /* grid-auto-rows: auto; 设置多余的网格高度 */
+        height: 540px;
+    }
+    /*
+    .item1{
+        grid-row-start: 1;
+        grid-row-end: span 10; /*拉伸几个单元格*/
+        /* 跨越两个网格线 拉伸
+    }*/
+    /* .item2{
+        grid-row-start: 1;
+        grid-row-end: span 15;
+    } */
+</style>
+<body>
+    <div id="container">
+        <div class="item item1">1</div>
+        <div class="item item2">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+    </div>
+
+    <script>
+        let heights=[150,60,100,60,150,90,180,55,22]
+        let colors=["#ef3429",
+        "#f68f25",
+        "#4ba846",
+        "#0476c2",
+        "#c077af",
+        "#f8d29d",
+        "#b4a87f",
+        "#d0e4a8",
+        "#4dc7ec"]
+      
+        let item= document.getElementsByClassName('item')
+      for(let i = 0; i < item.length;i++){
+          let height= Math.round(heights[i]/10)
+         item[i].style.gridRowEnd = `span ${height}`//heights[i] + 'px' 继承父容器网格的全部
+         item[i].style.background = colors[i]
+      }
+
+      
+    </script>
+</body>
+</html>
