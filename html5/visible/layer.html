@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src =" https://cdn.jsdelivr.net/npm/d3-hierarchy@3 "> </script>
+</head>
+
+<body>
+    <canvas width="800" height="800"></canvas>
+    <script>
+        let data={
+    "name":"中国",
+    "children":
+    [
+      { 
+        "name":"浙江" , 
+          "children":
+          [
+              {"name":"杭州" },
+              {"name":"宁波" },
+              {"name":"温州" },
+              {"name":"绍兴" }
+          ] 
+        },
+      { 
+        "name":"广西" , 
+        "children":
+        [
+          {"name":"桂林"},
+          {"name":"南宁"}
+        ]
+      }
+    ]
+  }
+        
+        const regions = d3.hierarchy(data) .sum(d => 1) .sort((a, b) => b.value - a.value); 
+        const pack = d3.pack() .size([1600, 1600]) .padding(3); 
+        const root = pack(regions);
+        console.log(root);
+        let cnv=document.querySelector('canvas')
+        let context=cnv.getContext('2d')
+        const TAU=2*Math.PI
+        function draw(ctx,node,{fillStyle='rgba(0,0,0,0.2)',textColor='white'}={}){
+            const children=node.children
+            const{x,y,r}=node
+            ctx.fillStyle=fillStyle
+            ctx.beginPath()
+            ctx.arc(x/5,y/5,r/5,0,TAU)
+
+            ctx.fill()
+            if(children){
+                for(let i=0;i<children.length;i++){
+                    draw(ctx,children[i])
+                }
+            }else{
+                    const name=node.data.name
+                    ctx.fillStyle=textColor
+                    ctx.font='1.5rem Arial'
+                    ctx.textAlign='center'
+                    ctx.fillText(name,x/5,y/5)
+            }
+        }
+        draw(context,root)
+    </script>
+</body>
+</html>

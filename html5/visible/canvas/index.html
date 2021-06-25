@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="512" height="512"></canvas>
+    <script>
+        const canvas=document.querySelector('canvas')
+        const context=canvas.getContext('2d')
+        //(canvas.width*0.5,0.5*canvas.height)
+
+        context.fillStyle='red' //准备油漆
+        context.save()//暂存状态
+        context.translate(-50,-50)
+        context.beginPath()//GPU
+        context.rect(canvas.width*0.5,0.5*canvas.height,100,100)//初始坐标与终止坐标
+        
+        context.fill()//喷油漆,绘制好的放在画布上
+        // context.translate(50,50)
+        context.restore()//恢复状态
+
+    </script>
+</body>
+</html>
