@@ -8,6 +8,7 @@ function test(){
         })(i)//自执行函数
     }
     return arr
+    
 }
 var myArr=test()
 
