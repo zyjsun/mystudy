@@ -6,13 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 </head>
 <body>
-    <div id="app"></div>
+    <div id="app" v-if="isLogin">{{message}}
+        <ul>
+            <li v-for="item in sortItems">{{item}}</li>
+        </ul>
+        <span v-text="msg"></span>
+        <p v-html="mshHtml"></p>
+    </div>
+        <!-- 如果为false则不渲染 v-show区别一个不加载，一个不渲染 -->
     <script>
-        let data={
-            message: 'hello world'
-        }
+        let app=new Vue({
+            el: '#app',
+            data:{
+            message: 'hello world!!!!',
+            isLogin:true,
+            items: [21,22,2,3,4,5],
+            msg: '磊哥',
+            mshHtml:'<h1>老陈<h1>'
+        },
+        computed:{//计算属性通常将数据源中的数据最一定的修饰在渲染
+            sortItems:function(){
+                return this.items.sort(this.sortNumber)
+            }
+        },
+        methods:{
+             sortNumber(a,b){
+                return a - b
+                    }
+              }
+         
+        })
+       
     </script>
 </body>
 </html>

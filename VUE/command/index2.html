@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+</head>
+<style>
+    .green{
+        color: green;
+    }
+</style>
+<body>
+    <div id="app">
+        浩楠的颜值：{{count}}
+        <button v-on:click="add">+</button>
+        <button @click="reduce">-</button>
+        <input  @keyup.enter="zz" type="text" v-model="inpValue">
+        <img v-bind:src="imgUrl" alt="">
+        <!-- 绑定属性 -->
+        <div class="name" :class="isGreen?'green':''" @click="togreen">老王</div>
+        <div :class="{name: isOK}">杰哥</div>
+        <div class="[classA,classB]">杰哥22</div>
+        <div :style="styleObj">杰哥3</div>
+    </div>
+    
+    <script>
+        let app=new Vue({
+            el: '#app',
+            data: {
+                count: 1,
+                inpValue:'',
+                isGreen: false,
+                isOK:true,
+                classA: name,
+                classB: 'red',
+                styleObj:{color:'red',fontSize: '30px'},
+                imgUrl: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201601%2F18%2F20160118100812_ZVnah.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1627891831&t=9fa52ed2f8d0ad69d07b073aed44f1a9'            },
+            methods: {
+            add(){
+                this.count++
+                this.inpValue='zyj'
+               },
+               reduce(){
+                   this.count--
+               },
+               zz(){
+                   console.log(this.inpValue)
+               },
+               togreen(){
+                this.isGreen=!this.isGreen
+               }
+            }
+        })
+    </script>
+</body>
+</html>
