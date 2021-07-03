@@ -7,16 +7,27 @@
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 </head>
+<style>
+    [v-cloak]{
+        display: none;
+    }
+</style>
 <body>
     <div id="app">
         <div v-pre>{{msg}}</div>
+        <!-- 是什么就是什么 -->
+        
+        <!-- <div v-cloak>{{msg}}</div> -->
+        <div v-once>第一次绑定的值：{{count}}</div>
+        <div><input type="text" v-model="count"></div>
     </div>
     
     <script>
         let app=new Vue({
             el: '#app',
             data: {
-                msg: 'Hello world'
+                msg: 'Hello world',
+                count: ''
             }
         
         })
