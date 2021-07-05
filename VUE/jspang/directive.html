@@ -1,0 +1,63 @@
+<!-- 自定义指令 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<body>
+    <div id="app">
+        <div v-zyj="color" id="demo">
+            {{num}}
+        </div>
+        <div>
+            <button @click="add">Add</button>
+        </div>
+    </div>
+    <p>
+        <button onclick="unbind()">解绑</button>
+    </p>
+    <script>
+        function unbind(){
+            app.$destroy();
+        }
+        // Vue.directive('zyj',function(el,binding,vnode){
+        //     el.style='color:'+binding.value;
+        // });
+        Vue.directive('zyj',{
+            bind:function(el,binding){//被绑定
+     el.style="color:"+binding.value
+     console.log('1 - bind');
+},
+inserted:function(){//绑定到节点
+      console.log('2 - inserted');
+},
+update:function(){//组件更新
+      console.log('3 - update');
+},
+componentUpdated:function(){//组件更新完成
+      console.log('4 - componentUpdated');
+},
+unbind:function(){//解绑
+      console.log('1 - unbind');
+}
+        })
+        // el.style='color'+binding.value
+        var app=new Vue({
+            el:'#app',
+            data:{
+                num:10,
+                color:'green'
+            },
+            methods:{
+                add:function(){
+                    this.num++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

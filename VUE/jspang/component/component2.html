@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <title>component-2</title>
+</head>
+<body>
+    <h1>component-2</h1>
+    <hr>
+    <div id="app">
+      <panda here="China"></panda>
+    </div>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            components:{
+                "panda":{
+                    template:`<div style="color:red;">Panda from {{ here }}.</div>`,
+                    props:['here']//属性值 vue不支持-
+                }
+            }
+        })
+    </script>
+</body>
+</html>

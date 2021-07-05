@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <title>vue.extend-扩展实例构造器</title>
+</head>
+<body>
+    <h1>vue.extend-扩展实例构造器</h1>
+    <hr>
+<div id="author"></div>
+
+    <script type="text/javascript">
+       var authorExtend = Vue.extend({
+           template:"<p><a :href='authorUrl'>{{authorName}}</a></p>",
+           data:function(){
+               return{
+                   authorName:'JSPang',
+                   authorUrl:'http://www.jspang.com'
+               }
+           }
+       });
+       new authorExtend().$mount('#author');
+    </script>
+</body>
+</html>

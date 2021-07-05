@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <title>Vue.set 全局操作</title>
+</head>
+<body>
+    <h1>Vue.set 全局操作</h1>
+    <hr>
+    <div id="app">
+        <ul>
+            <li v-for=" aa in arr">{{aa}}</li>
+        </ul>
+
+    </div>
+    <button onclick="add()">外部添加</button>
+
+    <script type="text/javascript">
+
+        function add(){
+            console.log("我已经执行了");
+        //    app.arr[1]='ddd';
+           Vue.set(app.arr,1,'ddd');
+        }
+        var outData={
+            arr:['aaa','bbb','ccc']
+        };
+        var app=new Vue({
+            el:'#app',
+            data:outData
+        })
+    </script>
+</body>
+</html>
