@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const basUrl = '';
+const basUrl = '';//跨域了所以不用放，直接做了代理
 
 export function get(url) {
   return function(params = {}) {

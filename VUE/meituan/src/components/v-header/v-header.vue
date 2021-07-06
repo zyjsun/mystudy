@@ -2,29 +2,56 @@
   <div class="header">
       <div class="content-wrapper">
           <div class="avatar">
-              <img width="64" height="64" src="http://p0.meituan.net/200.0/dpdeal/8fa63be2b9a102a7537f88982d2a59bb120927.jpg" alt="">
+              <img width="64" height="64" :src="seller.avatar" alt="">
           </div>
           <div class="content">
               <div class="title">
                   <span class="brand"></span>
-                  <span class="name">蜗牛的粥店</span>
+                  <span class="name">{{seller.name}}</span>
               </div>
               <div class="description">
-                  蜂鸟专送/38分钟送达
+                {{seller.description}}/{{seller.deliveryTime}}分钟送达
               </div>
                   <!-- 活动 -->
-           <supportIco :type="2"></supportIco>
+          <div class="support" v-if="seller.supports">
+           <supportIco :type="seller.supports[0].type"></supportIco>
+           <span class="text">{{seller.supports[0].description}}</span>
+           </div>
           </div>
-          <div class="support-count">5个</div>
+          <div class="support-count" v-if="seller.supports">
+            <span class="count">{{seller.supports.length}}个</span>
+              <i class="icon-keyboard_arrow_right"></i>
+          </div>
       </div>
+      <!-- 公告 -->
+      <div class="bulletin-wrapper">
+        <span class="bulletin-title"></span>
+        <span class="text">{{seller.bulletin}}</span>
+        <i class="icon-keyboard_arrow_right"></i>
+      </div>
+      <!-- 背景 -->
+      <div class="background">
+        <img :src="seller.avatar"  width="100%" height="100%" alt="">
+      </div>
+      <header-detail :seller="seller"></header-detail>
   </div>
 </template>
 
 <script>
 import SupportIco from '@/components/support-ico/support-ico'
+import HeaderDetail from '@/components/v-headerdetail/head-detail'
 export default {
     components:{
-      "supportIco": SupportIco
+      "supportIco": SupportIco,
+      "header-detail": HeaderDetail
+    },
+    props:{
+      seller: {
+        type: Object,
+        default(){
+          return {}
+        }
+      }
     }
 }
 </script>
@@ -72,7 +99,72 @@ export default {
         line-height: 12px;
         font-size: 12px;
       }
+      .support{
+        display: flex;
+        align-items: center;
+        .support-ico{
+          margin-right: 4px;
+        }
+        .text{
+          line-height: 12px;
+          font-size: 10px;
+        }
+      }
     }
+    .support-count{
+      position: absolute;
+      right: 12px;
+      bottom: 14px;
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      height: 14px;
+      line-height: 24px;
+      text-align: center;
+      border-radius: 14px;
+      background:rgba(7,17,27,0.2);
+      font-size: 10px;
+    }
+  }
+  .bulletin-wrapper{
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 8px;
+    background: rgba(7,17,27,0.2);
+    .bulletin-title{
+        flex: 0 0 22px;
+        width: 22px;
+        height: 12px;
+        margin-right: 4px;
+        background-image: url('bulletin@2x.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    .text{
+      flex: 1;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 10px;
+    }
+    .icon-keyboard_arrow_right{
+      flex: 0 0 10px;
+      width: 10px;
+      font-size: 10px;
+    }
+  }
+  
+  .background{
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    filter:blur(10px);
+    z-index: -1;
   }
 }
 </style>

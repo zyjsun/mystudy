@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-header></v-header>
+    <v-header :seller="seller"></v-header>
   </div>
 </template>
 <script>
@@ -8,9 +8,11 @@ import VHeader from './components/v-header/v-header.vue'
 import {getSeller} from  '@/api'
 
 export default{
-  //  data:{
-  //   seller: {}
-  // },
+   data(){
+     return {
+    seller: {}
+     }
+  },
   components:{
     VHeader
   }, 
@@ -18,7 +20,7 @@ export default{
   created(){
     getSeller().then(res=>{
       console.log(res)
-      // this.seller=res
+       this.seller=res
     })
   }
 }
