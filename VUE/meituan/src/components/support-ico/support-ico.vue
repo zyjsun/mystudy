@@ -1,5 +1,5 @@
 <template>
-  <span class="support-ico icon-1" :class="iconCls"></span>
+  <span class="support-ico" :class="iconCls"></span>
 </template>
 
 <script>
@@ -15,7 +15,7 @@ export default {
   computed: {
     iconCls() {
       const classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
-      return classMap[this.type]
+      return `icon-${this.size} ${classMap[this.type]}`
     }
   }
 }
@@ -29,6 +29,11 @@ export default {
 .icon-1{
   width: 12px;
   height: 12px;
+  background-size: 12px 12px;
+}
+.icon-2{
+  width: 16px;
+  height: 16px;
   background-size: 12px 12px;
 }
 .decrease{

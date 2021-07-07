@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" @click="showDetail">
       <div class="content-wrapper">
           <div class="avatar">
               <img width="64" height="64" :src="seller.avatar" alt="">
@@ -14,7 +14,7 @@
               </div>
                   <!-- 活动 -->
           <div class="support" v-if="seller.supports">
-           <supportIco :type="seller.supports[0].type"></supportIco>
+           <supportIco :size="1" :type="seller.supports[0].type"></supportIco>
            <span class="text">{{seller.supports[0].description}}</span>
            </div>
           </div>
@@ -33,7 +33,8 @@
       <div class="background">
         <img :src="seller.avatar"  width="100%" height="100%" alt="">
       </div>
-      <header-detail :seller="seller"></header-detail>
+      <header-detail :seller="seller"  v-show="detailVisible" @hide="hideDetail"></header-detail>
+      <!-- 重新冒泡了 -->
   </div>
 </template>
 
@@ -51,6 +52,20 @@ export default {
         default(){
           return {}
         }
+      }
+    },
+    data(){
+      return{
+        detailVisible:false
+      }
+    },
+    methods:{
+      showDetail(){
+        this.detailVisible=true
+      },
+      hideDetail(e){
+        console.log(e)
+         this.detailVisible=e
       }
     }
 }

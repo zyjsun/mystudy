@@ -48,7 +48,6 @@ export default new Router({
         console.log(to);
         console.log(from);
         next(true);
-
       }
     },{
       path: '*',

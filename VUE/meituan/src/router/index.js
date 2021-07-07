@@ -1,11 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Goods from '@/views/goods/goods'
 
-// import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/',
+    name: 'goods',
+    component: Goods
+  },{
+    path: '/commet',
+    name: 'comment',
+    component: ()=>import ('@/views/comments/comment.vue')
+    // 按需引入
+  },{
+    path: '/seller',
+    name: 'seller',
+    component: ()=>import ('@/views/seller/seller.vue')
+  }
 
   // {
   //   path: '/',
