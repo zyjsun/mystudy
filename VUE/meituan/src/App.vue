@@ -12,7 +12,7 @@
         <router-link to="/seller">商家</router-link>
       </div>
     </div>
-    <router-view></router-view>
+    <router-view :seller="seller"></router-view>
     <!-- 路由的可视化区域  把路由匹配的页面的dom界面加上-->
   </div>
 </template>
