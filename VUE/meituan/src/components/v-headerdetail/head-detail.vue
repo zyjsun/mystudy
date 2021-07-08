@@ -5,7 +5,7 @@
         <div class="detail-wrapper">
             <div class="detail-main">
                 <h1 class="name">蜗牛的店</h1>
-                <div class="start-wrapper">
+                <div class="start-wrapper" v-if="seller.score" >
                     <!-- 星星 -->
                     <Star :seller="seller"></Star>
                 </div>

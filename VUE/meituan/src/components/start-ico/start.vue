@@ -1,19 +1,12 @@
 <template>
-  <div class="star-wrapper">
-      <!-- <div class="star" v-for="(item,index) in arr" :key="index" >
-        <span class="star-item" :class="item"></span>
-        </div> -->
+  <div class="star-wrapper" >
+      <div class="star" v-for="(item,index) in arr" :key="index" >
+        <span class="star-item " :class="item"></span>
+        </div>
   </div>
 </template>
 
 <script>
-// function count(){
-//     var count=Math.floor(this.seller.score) 
-//     var arr=[]
-//     for(let i=0;i<count;i++)
-//        arr.push('on')
-//     return arr
-//     }
 export default {
 props:{
       seller: {
@@ -23,6 +16,23 @@ props:{
         }
       }
     },
+    data(){
+      return{
+        arr : []
+      }
+    },
+    created(){
+          console.log(Math.floor(this.seller.score))
+          for(let i=0;i<5;i++){
+            if(i<Math.floor(this.seller.score)){
+              this.arr.push('on')
+            }else{
+              this.arr.push('')
+            }
+          }
+          console.log(this.arr)
+        
+    }
     // data(){
     //    return{
            
@@ -35,19 +45,23 @@ props:{
 
 <style lang="less">
     .star-wrapper{
+      display: flex;
+        width: 100%;
+        height: 100%;
         margin-top: 18px;
         padding: 2px 0;
         text-align: center;
-        .star{
-            display: flex;
-            justify-content: center;
+         justify-content: center;
             align-items: center;
+        .star{
+          display: flex;
             .star-item{
                 background-size: 20px 20px;
                 height: 20px;
                 margin-right: 22px;
                 width: 20px;
                 background-repeat: no-repeat;
+                 background-image: url(./gray.png);
             }
             .star-item.on{
                 background-image: url(./star.png);
