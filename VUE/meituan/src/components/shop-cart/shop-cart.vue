@@ -95,7 +95,6 @@ export default {
         count += item.count;
       }
       console.log(this.car);
-      this._initScroll()
       return count;
     },
     totalPrice() {
@@ -126,6 +125,12 @@ export default {
       },
     clearOut() {
         this.clear=!this.clear
+         if(this.car.length>0){
+        this.$nextTick(() =>{
+            this._initScroll()
+         })
+       }
+    
     },
     empty(){
         this.car.forEach(car => {
