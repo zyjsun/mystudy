@@ -16,8 +16,45 @@
         </div>
       </el-header>
       <el-container>
-        <el-aside width="200px">Aside</el-aside>
-        <el-main>Main</el-main>
+        <el-aside width="200px">
+            <!-- 左侧菜单 -->
+            <el-menu 
+            default-active="/Home/userinfo"
+             class="el-menu-vertical-demo" 
+             background-color="#B3C0D1"
+             router>
+  <el-submenu index="1" > 
+      <!-- 超级菜单 -->
+    <template slot="title">
+      <i class="el-icon-location"></i>
+      <span>学生列表</span>
+    </template>
+    <el-menu-item index="/Home/userinfo">
+        <i class="el-icon-menu"></i>
+        <span slot="title">杨总</span>
+    </el-menu-item>
+
+    <el-menu-item index="userinfo2">
+        <i class="el-icon-menu"></i>
+        <span slot="title">张总</span>
+    </el-menu-item>
+
+    <el-menu-item index="1-1">
+        <i class="el-icon-menu"></i>
+        <span slot="title">李总</span>
+    </el-menu-item>
+  </el-submenu>
+
+  <el-menu-item index="2">
+    <i class="el-icon-menu"></i>
+    <span slot="title">作业情况</span>
+  </el-menu-item>
+  
+</el-menu>
+        </el-aside>
+        <el-main>
+            <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -77,5 +114,9 @@
   }
   .info{
     float: right;
+  }
+  .el-menu{
+      height: 100%;
+      
   }
 </style>

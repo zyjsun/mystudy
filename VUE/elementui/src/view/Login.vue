@@ -24,6 +24,7 @@ export default {
         check(){
             if(this.userName==="admin"&&this.passWord==="123456"){
                 this.$router.push({path:'/Home',query: {user: this.userName}})
+                // params 传参要有name 刷新不会保存
             }else{
                 this.$message.error('账号或密码错误')
             }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -9,7 +10,17 @@ const routes = [
     component: () => import ('@/view/Login.vue')
   },{
     path: '/Home',
-    component: ()=> import('@/view/Home.vue')
+    name:'home',
+    component: ()=> import('@/view/Home.vue'),
+    children:[
+      {
+      path:'userinfo',
+      component: ()=>import('@/view/userinfo.vue')
+      },{
+        path: 'userinfo2',
+        component: ()=>import('@/view/Form.vue')
+      }
+    ]
   }
 ]
 
