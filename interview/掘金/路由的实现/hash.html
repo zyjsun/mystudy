@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hsah实现</title>
+</head>
+
+<body>
+  <div class="page">
+    <ul>
+      <li><a href="#/home">首页</a></li>
+      <li><a href="#/about">关于</a></li>
+    </ul>
+    <div id="routerView"></div>
+  </div>
+  <script>
+    //监听路由变化
+    window.addEventListener('hashchange', onHashChange)
+    //页面初次加载就要执行一次hash监听
+    // window.onload = function () {
+    //   onHashChange()
+    // }
+    window.addEventListener('DOMContentloaded', onHashChange)
+    let routerView = document.getElementById('routerView')
+    function onHashChange() {
+      console.log(location.hash)
+      switch (location.hash) {
+        case '#/home': routerView.innerHTML = '这是首页页面'
+          return
+        case '#/about': routerView.innerHTML = '这是关于页面'
+          return
+      }
+    }
+  </script>
+</body>
+
+</html>
