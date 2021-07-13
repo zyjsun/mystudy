@@ -23,7 +23,7 @@
     let routerView = document.querySelector('#routerView')
 
     window.addEventListener('DOMContentLoaded', onload)
-    window.addEventListener('popState', onPopState)
+    window.addEventListener('popState', onPopState)//点击浏览器的前进与后退按钮使URL发生变化，靠监听popstate渲染正确的页面
 
     function onload() {
       let linkList = document.querySelectorAll('.page a[href]')
