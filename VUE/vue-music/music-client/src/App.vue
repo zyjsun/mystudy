@@ -10,7 +10,10 @@
     <v-tab></v-tab>
     <v-menu></v-menu>
     <!-- 菜单 -->
-    <router-view />
+    <keep-alive>
+      <router-view />
+    </keep-alive>
+
   </div>
 </template>
 <script>
