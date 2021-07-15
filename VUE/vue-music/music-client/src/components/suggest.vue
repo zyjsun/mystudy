@@ -3,18 +3,19 @@
             :pullup="pullup"
             :beforeScroll="beforeScroll"
             :pulldown="true"
-            :listenScroll="true"
+            :data="result"
             @scrollToEnd="searchMore"
             @beforeScroll="listScroll">
     <ul class="suggest-list">
       <li class="suggest-item"
-          v-for="(item,index) in result.songs "
-          :key="index">
+          v-for="(item,index) in result "
+          :key="index"
+          @click="select(item)">
         <div class="icon">
           <i class="icon">&#xe641;</i>
         </div>
         <div class="name">
-          <p class="text1">{{item.name}}</p>
+          <p class="text1">{{getDisplayName(item)}}</p>
         </div>
       </li>
     </ul>
@@ -57,8 +58,21 @@ export default {
     search () {
       this.page = 1;
       this.hasMore = true;
-      this.result = ''
+      this.result = []
       this.fetchResult(this.page)
+    },
+    select (item) {
+      this.$store.dispatch('setHistoryList', this.query)
+      this.$emit('select', item)
+      // this.$emit('addHis')
+    },
+    // _checkMore(data){
+    //   if(data.songs.length<20||((this.page-1)*20)>=data.songCount){
+    //       this.hasMore=false
+    //   }
+    // },
+    getDisplayName (item) {
+      return `${item.name}--${item.artists[0] && item.artists[0].name}`
     },
     fetchResult (page) {
       const params = {
@@ -68,11 +82,17 @@ export default {
       }
       api.MuscicSearch(params).then(res => {
         console.log(res)
-        this.result = res.data.result
+        this.result = [...this.result, ...res.data.result.songs]
+        this.hasMore = res.data.result.hasMore
       })
     },
     searchMore () {
-
+      if (!this.hasMore) {
+        return
+      } else {
+        this.page++
+        this.fetchResult(this.page)
+      }
     },
     listScroll () {
 
@@ -84,7 +104,7 @@ export default {
 <style lang="less">
 @import "../assets/css/function.less";
 .suggest {
-  height: 490px;
+  height: 100%;
   overflow: hidden;
 
   .suggest-list {

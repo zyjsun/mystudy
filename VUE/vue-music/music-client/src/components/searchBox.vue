@@ -18,6 +18,17 @@ export default {
     placeholder: {
       type: String,
       default: '搜索歌曲、歌手'
+    },
+    refresh: {
+      type: String,
+      default: ''
+    }
+  },
+  watch: {
+    refresh (value) {
+      if (this.query == '' && value) {
+        this.query = value
+      }
     }
   },
   data () {

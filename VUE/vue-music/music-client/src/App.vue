@@ -9,6 +9,7 @@
     </v-header>
     <v-tab></v-tab>
     <v-menu></v-menu>
+    <v-play></v-play>
     <!-- 菜单 -->
     <keep-alive>
       <router-view />
@@ -20,6 +21,7 @@
 import Header from '@/components/header/header'
 import Menu from '@/components/menu'
 import Tab from '@/components/tab'
+import Play from '@/components/play'
 export default ({
   data () {
     return {
@@ -29,7 +31,8 @@ export default ({
   components: {
     'v-header': Header,
     'v-menu': Menu,
-    'v-tab': Tab
+    'v-tab': Tab,
+    'v-play': Play
   },
 
 })

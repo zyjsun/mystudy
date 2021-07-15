@@ -2,11 +2,46 @@
   <div class="search">
     <div class="search-box-wrapper">
       <!-- 父组件接受参数 -->
-      <v-search-box @query="searchContent"></v-search-box>
+      <v-search-box @query="searchContent"
+                    :refresh="name"></v-search-box>
     </div>
-    <div class="search-result">
-      <v-suggest :query="query"></v-suggest>
+    <div class="search-result"
+         v-show="query">
+      <v-suggest :query="query"
+                 @select="saveSearch"></v-suggest>
+      <!-- @select="addHis" -->
     </div>
+    <!-- 热门搜索,历史搜索记录 -->
+    <div class="shortcut-wrapper"
+         v-show="!query">
+      <v-scroll class="shortcut">
+        <div>
+          <div class="hot-key">
+            <div class="title">热门搜索</div>
+            <ul>
+              <li class="item"
+                  v-for="(item,index) in hotKey "
+                  :key="index">
+                <span>{{item.first}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="search-history">
+            <h1 class="title">
+              <span class="text">搜索历史</span>
+              <span class="clear"
+                    @click="clearAll">
+                <i class="icon">&#xe612;</i>
+              </span>
+            </h1>
+            <!-- 历史记录 -->
+            <v-search-list :searches="searchHistory"
+                           @query="search"></v-search-list>
+          </div>
+        </div>
+      </v-scroll>
+    </div>
+
   </div>
 </template>
 
@@ -14,13 +49,54 @@
 import searchBox from '../components/searchBox.vue'
 import { searchMixin } from '@/common/js/mixin.js'
 import Suggest from '@/components/suggest.vue'
+import Scroll from '../components/scroll.vue'
+import api from '../common/api/index'
+import searchList from '../components/searchList.vue'
+import { mapGetters } from "vuex"
 export default {
   mixins: [searchMixin],
   // 把写的对象扩展到数据源(混入在一起)
   components: {
     'v-search-box': searchBox,
-    'v-suggest': Suggest
+    'v-suggest': Suggest,
+    'v-scroll': Scroll,
+    'v-search-list': searchList
   },
+  data () {
+    return {
+      hotKey: [],
+      name: ''
+    }
+  },
+  created () {
+    this._getHotKey();
+  },
+  methods: {
+    _getHotKey () {
+      api.HotSearchKey().then(res => {
+        console.log(res)
+        this.hotKey = res.data.result.hots.slice(0, 10)
+      })
+    },
+    clearAll () {
+      this.$store.dispatch('clearHistoryList')
+    },
+    saveSearch (song) {
+      //拿到选中的这首歌
+      console.log(song);
+      this.$store.dispatch('selectPlaySong', song)
+      //保存历史记录
+    },
+    search (e) {
+      this.name = e
+    }
+    // addHis () {
+    //   this.$store.dispatch("setHistoryList",this.query)
+    // }
+  },
+  computed: {
+    ...mapGetters(["searchHistory"])
+  }
 
 }
 </script>

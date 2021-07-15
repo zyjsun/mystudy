@@ -37,7 +37,19 @@ export function fetchGet (url, params) {
 }
 
 export default {
+  //歌曲搜索
   MuscicSearch (params) {
     return fetchGet('/search', params)
+  },
+  //热门搜索
+  HotSearchKey () {
+    return fetchGet('/search/hot')
+  },
+  //歌曲地址
+  MusicUrl (id) {
+    return fetchGet('/song/url', {
+      id
+    })
   }
+
 }

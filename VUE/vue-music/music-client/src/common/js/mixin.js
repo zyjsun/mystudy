@@ -1,3 +1,5 @@
+import { mapActions } from "vuex"
+
 export const searchMixin = {
   data () {
     return {
@@ -11,6 +13,12 @@ export const searchMixin = {
     searchContent (e) {
       //请求地址;
       this.query = e.trim()
-    }
+    },
+    // saveSearch () {
+    //   this.saveSearchHistory(this.query)
+    // },
+    ...mapActions([
+      'saveSearchHistory'
+    ])
   }
 }
