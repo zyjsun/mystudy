@@ -34,6 +34,7 @@ export default {
     },
     search (e) {
       this.$emit('query', e)
+      //子给父传参数
     }
   }
 }
