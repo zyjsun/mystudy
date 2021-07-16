@@ -20,3 +20,5 @@ reactive处理非基础数据类型
 const {reactive}=Vue;
 //proxy,{name: 'dell'}变成proxy({name:'dell'})}这样的一个响应式引用
 const nameObj=reactive([123])
+
+比vue2 性能更好
