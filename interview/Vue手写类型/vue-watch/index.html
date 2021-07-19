@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>{{msg}}</p>
+    <p>{{count}}</p>
+    <button @click='add'>增加</button>
+  </div>
+</body>
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: {
+      msg: '',
+      count: 1
+    },
+    methods: {
+      add() {
+        this.count++
+      }
+    },
+    // computed: {
+    //   msg() {
+    //     if (this.count < 10) {
+    //       return 'hello word'
+    //     } else {
+    //       return 'hello watch'
+    //     }
+    //   }
+    // },
+    watch: {
+      count(newValue) {
+        if (newValue > 10) {
+          this.msg = 'hello watch'
+        }
+      }
+    }
+  })
+</script>
+
+</html>
