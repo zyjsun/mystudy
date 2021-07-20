@@ -11,6 +11,10 @@ const routes = [
     meta: {
       index: 1
     }
+  }, {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/Login.vue')
   }
 ]
 
