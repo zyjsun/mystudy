@@ -1,14 +1,94 @@
 <template>
-  <van-button icon="plus"
-              type="primary" />
-  <van-button icon="plus"
-              type="primary">按钮</van-button>
-  <van-button icon="https://img.yzcdn.cn/vant/user-active.png"
-              type="primary">
-    按钮
-  </van-button>
-
+  <div class="app">
+    <router-view class="router-view"
+                 v-slot="{Component}">
+      <transition :name="transtionName">
+        <component :is="Component" />
+      </transition>
+    </router-view>
+  </div>
 </template>
 
+<script>
+import { toRefs } from 'vue'
+import { useRouter } from 'vue-router'
+export default ({
+  setup () {
+    const router = useRouter()
+    const state = {
+      transtionName: 'slide-left'
+    }
+    router.beforeEach((to, from) => {
+      if (to.meta.index > from.meta.index) {
+        state.transtionName = 'slide-left'
+      } else if (to.meta.index < from.meta.index) {
+        state.transtionName = 'slide-right'
+      } else {
+        state.transtionName = ''
+      }
+    })
+    return {
+      ...toRefs(state)
+    }
+  },
+})
+</script>
+
+
 <style lang="less">
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+#app {
+  height: 100%;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // text-align: center;
+  color: #2c3e50;
+}
+
+.router-view {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: 0 auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  height: 100%;
+  will-change: transform;
+  transition: all 500ms;
+  position: absolute;
+  backface-visibility: hidden;
+}
+.slide-right-enter {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-enter {
+  opacity: 0;
+  transform: translate3d(100%, 0, 0);
+}
+.slide-left-leave-active {
+  opacity: 0;
+  transform: translate3d(-100%, 0, 0);
+}
+
+.van-badge—fixed {
+  z-index: 1000;
+}
 </style>

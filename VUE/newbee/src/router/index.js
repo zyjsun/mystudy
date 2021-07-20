@@ -1,8 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import Home from '@/views/Home.vue'
 
 const routes = [
-
+  {
+    path: '/',
+    redirect: '/home'
+  }, {
+    path: '/home',
+    component: Home,
+    meta: {
+      index: 1
+    }
+  }
 ]
 
 const router = createRouter({
