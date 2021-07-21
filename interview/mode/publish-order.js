@@ -25,16 +25,17 @@ class EventEmitter {
   //移除订阅事件
   off (eventName, callback) {
     if (this.events[eventName]) {
-      this.emit[eventName] = this.events[eventName].filter(cb => cb != callback)
+      this.events[eventName] = this.events[eventName].filter(cb => cb != callback)
     }
     return this
   }
   //只执行一次订阅的事件，然后移除
   once (eventName, callback) {
-    let fn = (...res) => {
-      callback.apply(this, res);
-      //执行后立即取消订阅
-      this.off(eventName, fn)
+    let fn = (...rest) => {
+      // 执行一次
+      callback.apply(this, rest);
+      // 执行一次后即取消订阅
+      this.off(eventName, fn);
     }
     // 订阅执行时会触发 fn
     this.on(eventName, fn)
