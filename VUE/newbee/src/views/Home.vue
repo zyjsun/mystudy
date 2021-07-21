@@ -30,7 +30,8 @@
     <div class="good-box">
       <div class="good-item"
            v-for="item in newGoods"
-           :key="item.goodsId">
+           :key="item.goodsId"
+           @click="goToDeetail(item)">
         <img :src="item.goodsCoverImg"
              alt="">
         <div class="good-desc">
@@ -80,12 +81,14 @@ import swiper from '@/components/Swiper'
 import { nextTick, onMounted, reactive, toRefs } from 'vue'
 import { getHome } from '../api/service/home.js'
 import { Toast } from 'vant';
+import { useRouter } from 'vue-router'
 export default {
   components: {
     navBar,
     swiper
   },
   setup () {
+    const router = useRouter()
     const state = reactive({
       list: [],
       categoryList: [
@@ -157,8 +160,13 @@ export default {
       Toast.clear()
       // console.log(state.list)
     })
+    const goToDeetail = (item) => {
+      console.log(item)
+      router.push({ path: `/product/${item.goodsId}` })
+    }
     return {
-      ...toRefs(state)
+      ...toRefs(state),
+      goToDeetail
     }
   }
 

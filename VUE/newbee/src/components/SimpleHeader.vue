@@ -4,7 +4,7 @@
        v-if="back"
        @click="goBack"></i>
     <i v-else>&nbsp;&nbsp;&nbsp;</i>
-    <div class="simple-header-name">登录</div>
+    <div class="simple-header-name">{{name}}</div>
     <i class="nbicon nbmore"></i>
   </div>
 </template>

@@ -13,7 +13,7 @@ export default createStore({
     async updateCart ({ commit }) {
       const { data } = await getCart()
       commit('addCart', {
-        count: data.length || 0
+        cartCount: data.length || 0
       })
     }
   },
