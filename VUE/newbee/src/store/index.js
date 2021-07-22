@@ -6,17 +6,14 @@ export default createStore({
   },
   mutations: {
     addCart (state, payload) {
-      state.cartCount = payload.cartCount
-    },
-    addCartcount (state) {
-      state.cartCount++
+      state.cartCount = payload.count
     }
   },
   actions: {
     async updateCart ({ commit }) {
       const { data } = await getCart()
       commit('addCart', {
-        cartCount: data.length || 0
+        count: data.length || 0
       })
     }
   },

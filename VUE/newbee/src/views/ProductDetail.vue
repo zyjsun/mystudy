@@ -49,7 +49,7 @@
                            text="客服" />
       <van-action-bar-icon icon="cart-o"
                            text="购物车"
-                           :badge="cartCount"
+                           :badge="count?count:''"
                            @click="goToCart" />
       <van-action-bar-button type="warning"
                              text="加入购物车"
@@ -63,19 +63,14 @@
 
 <script>
 import sHeader from "@/components/SimpleHeader";
-import { reactive, toRefs } from "@vue/reactivity";
+import { reactive, toRefs, computed } from "@vue/reactivity";
 import { getDetail } from "../api/service/goods";
 import { addCart } from "../api/service/cart"
 import { onMounted } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from 'vuex';
+import { Toast } from 'vant';
 export default {
-  computed: {
-    cartCount () {
-      const store = useStore()
-      return store.state.cartCount
-    }
-  },
   components: {
     sHeader,
   },
@@ -83,38 +78,50 @@ export default {
     const route = useRoute()
     const router = useRouter();
     const store = useStore()
-    console.log(router);
     const state = reactive({
       detail: {
         goodsCarouselList: [],
       },
+      // isAdd=false
     });
     onMounted(async () => {
       const id = route.params.id
       const { data } = await getDetail(id);
       state.detail = data
       console.log(data);
+
     });
+    const count = computed(() => {
+      return store.state.cartCount
+    })
 
     const goToCart = () => {
       router.push('/cart')
     }
-    const handleAddCart = () => {
-      store.commit('addCartcount')
-      addCart({
-        "goodsCount": 1,
-        "goodsId": route.params.id
+    const handleAddCart = async () => {
+      const res = await addCart({
+        goodsCount: 1,
+        goodsId: route.params.id
       })
+      if (res.resultCode === '200') { Toast.success('添加成功') }
       store.dispatch('updateCart')
-
+      // state.isAdd=true
     }
-    const goToPay = () => { }
+    const goToPay = () => {
+      // if(state.isAdd) return
+      addCart({
+        goodsCount: 1,
+        goodsId: route.params.id
+      }).then(() => {
+      }).catch(() => { })
+      router.push({ path: '/cart' })
+    }
     return {
       ...toRefs(state),
       goToCart,
       handleAddCart,
-      goToPay
-
+      goToPay,
+      count
     };
   },
 };

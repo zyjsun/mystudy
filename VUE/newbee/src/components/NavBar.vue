@@ -34,13 +34,14 @@
 import { getLocal } from '@/common/js/util.js'
 import { computed, onMounted } from 'vue'
 import { useStore } from 'vuex'
-import { useRoute } from 'vue-router'
+
+// import { useRoute } from 'vue-router'
 
 export default {
 
   setup () {
 
-    const route = useRoute()
+    // const route = useRoute()
     const store = useStore()
     // const state = reactive({
     //   isLogin=false
@@ -51,11 +52,12 @@ export default {
     onMounted(() => {
       const token = getLocal('token')
       console.log(token)
-      const path = route.path//当前页面路由,存入页面的路径
-      if (token && !['/home', '/category'].includes(path)) {
+      // const path = route.path//当前页面路由,存入页面的路径
+      if (token) {
+        // && !['/home', '/category'].includes(path)
         // isLogin = true
         //以登录的情况做页面跳转
-        store.dispatch('addCart')
+        store.dispatch('updateCart')
       }
     })
     return {
