@@ -2,7 +2,8 @@
   <div class="cart-box">
     <s-header name="购物车"></s-header>
     <div class="cart-body">
-      <van-checkbox-group v-model="result">
+      <van-checkbox-group v-model="result"
+                          @change="groupChange">
         <van-swipe-cell :right-width="50"
                         v-for="(item, index) in list"
                         :key="index">
@@ -42,7 +43,9 @@
                     class="submit-all"
                     button-text="结算"
                     @submit="onSubmit">
-      <van-checkbox v-model="checked">全选</van-checkbox>
+      <van-checkbox v-model="checked"
+                    @click="allCheck"
+                    :checked="checkAll">全选</van-checkbox>
     </van-submit-bar>
     <navBar></navBar>
   </div>
@@ -64,50 +67,92 @@ export default {
   },
   setup () {
     const store = useStore()
+    const router = useRouter()
     const deleteCart = async (e) => {
       const data = await removeCart(e)
       console.log(data)
+      init()
+      Toast.loading({ message: '删除成功', forbidclick: true })
+      Toast.clear()
       store.dispatch('updateCart')
     }
     const sum = computed(() => {
-      let sums = 0
-      for (let item in state.list) {
-        // console.log(state.list)
-        // console.log(state.result)
+      // let sums = 0
+      // for (let item in state.list) {
+      //   // console.log(state.list)
+      //   // console.log(state.result)
 
-        if (state.result.includes(state.list[item].cartItemId)) {
-          // console.log(state.result.includes(state.list[item].cartItemId))
-          sums += state.list[item].sellingPrice * state.list[item].goodsCount
-          console.log(sums)
-        }
-      }
+      //   if (state.result.includes(state.list[item].cartItemId)) {
+      //     // console.log(state.result.includes(state.list[item].cartItemId))
+      //     sums += state.list[item].sellingPrice * state.list[item].goodsCount
+      //     console.log(sums)
+      //   }
+      let sums = 0
+      let _list = state.list.filter(item => state.result.includes(item.cartItemId))
+      _list.forEach(item => {
+        sums += item.goodsCount * item.sellingPrice
+      })
       return sums
     })
     const state = reactive({
       isBack: true,
       list: [],
-      result: []
-
+      result: [],
+      checkAll: false
     })
-    onMounted(async () => {
+    const init = async () => {
       Toast.loading({ message: '...加载中', forbidclick: true })
       const { data } = await getCart()
       state.list = data
       console.log(state.list)
       Toast.clear()
-    })
-    const router = useRouter()
-    router.beforeEach((to, from) => {
-      // to and from are both route objects. must call `next`.
-      if (from.name === '/home') {
-        state.isBack = false
-        console.log(state.isBack)
+    }//一开始加载
+
+    const allCheck = () => {
+      if (!state.checkAll) {
+        state.result = state.list.map(item => item.cartItemId)
+      } else {
+        state.result = []
       }
-    })
+    }
+    const groupChange = (result) => {
+      if (result.length == state.list.length) {
+        state.checkAll = true
+      } else {
+        state.checkAll = false
+      }
+      state.result = result
+    }
+    onMounted(
+      init()
+    )
+    const onSubmit = () => {
+      if (state.result.length <= 0) {
+        Toast.fail('请选中你的商品')
+        return
+      } else {
+        const params = state.result
+        console.log(params)
+        router.push({ path: '/address' })
+        // router.push({ path: '/order', query: { cartItemIds: params } })//把商品的id传过去
+      }
+    }
+    //跳转页面
+
+    // router.beforeEach((to, from) => {
+    //   // to and from are both route objects. must call `next`.
+    //   if (from.name === '/home') {
+    //     state.isBack = false
+    //     console.log(state.isBack)
+    //   }
+    // })
     return {
       ...toRefs(state),
       sum,
-      deleteCart
+      deleteCart,
+      allCheck,
+      groupChange,
+      onSubmit
     }
   }
 }

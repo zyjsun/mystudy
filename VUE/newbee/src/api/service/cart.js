@@ -13,3 +13,7 @@ export function removeCart (params) {
   return axios.delete(`/shop-cart/${params}`)
 }
 
+export function getByCartItemIds (params) {
+  return axios.get('/shop-cart/settle', { params });
+}
+
