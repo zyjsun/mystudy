@@ -49,6 +49,7 @@
                            text="客服" />
       <van-action-bar-icon icon="cart-o"
                            text="购物车"
+                           :badge="cartCount"
                            @click="goToCart" />
       <van-action-bar-button type="warning"
                              text="加入购物车"
@@ -69,6 +70,12 @@ import { onMounted } from "@vue/runtime-core";
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from 'vuex';
 export default {
+  computed: {
+    cartCount () {
+      const store = useStore()
+      return store.state.cartCount
+    }
+  },
   components: {
     sHeader,
   },
@@ -76,7 +83,6 @@ export default {
     const route = useRoute()
     const router = useRouter();
     const store = useStore()
-    const st = store.state
     console.log(router);
     const state = reactive({
       detail: {
@@ -94,12 +100,13 @@ export default {
       router.push('/cart')
     }
     const handleAddCart = () => {
-
-      let data = addCart({
-        goodsCount: st.cartCount,
-        goodsId: route.params.id
+      store.commit('addCartcount')
+      addCart({
+        "goodsCount": 1,
+        "goodsId": route.params.id
       })
-      console.log(data)
+      store.dispatch('updateCart')
+
     }
     const goToPay = () => { }
     return {
@@ -107,6 +114,7 @@ export default {
       goToCart,
       handleAddCart,
       goToPay
+
     };
   },
 };

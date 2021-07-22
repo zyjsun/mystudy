@@ -7,6 +7,9 @@ export default createStore({
   mutations: {
     addCart (state, payload) {
       state.cartCount = payload.cartCount
+    },
+    addCartcount (state) {
+      state.cartCount++
     }
   },
   actions: {

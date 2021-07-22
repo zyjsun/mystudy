@@ -46,7 +46,8 @@
     <div class="good-box">
       <div class="good-item"
            v-for="item in hots"
-           :key="item.goodsId">
+           :key="item.goodsId"
+           @click="goToDeetail(item)">
         <img :src="$filters.prefix(item.goodsCoverImg)"
              alt="" />
         <div class="good-desc">
@@ -62,7 +63,8 @@
     <div class="good-box">
       <div class="good-item"
            v-for="item in recommends"
-           :key="item.goodsId">
+           :key="item.goodsId"
+           @click="goToDeetail(item)">
         <img :src="$filters.prefix(item.goodsCoverImg)"
              alt="" />
         <div class="good-desc">
@@ -82,6 +84,7 @@ import { nextTick, onMounted, reactive, toRefs } from 'vue'
 import { getHome } from '../api/service/home.js'
 import { Toast } from 'vant';
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 export default {
   components: {
     navBar,
@@ -89,6 +92,7 @@ export default {
   },
   setup () {
     const router = useRouter()
+    const store = useStore()
     const state = reactive({
       list: [],
       categoryList: [
@@ -151,6 +155,7 @@ export default {
         forbidClick: true,
         duration: 0
       });
+      store.dispatch('updateCart')
       const { data } = await getHome()
       console.log(data)
       state.list = data.carousels
