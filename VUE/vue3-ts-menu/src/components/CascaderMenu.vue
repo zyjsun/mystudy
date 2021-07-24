@@ -1,25 +1,35 @@
 <template>
   <div class="wrap">
     <div class="menu-wrap">
-      <div class="menu-item">生命科学</div>
+      <div class="menu-item"
+           v-for="menuItem in data"
+           :key="menuItem.id"
+           :class="getActiveClass(menuItem.id)"
+           @click="onMenuItemClick(menuItem.id)">{{menuItem.name}}</div>
     </div>
-    <cascader-menu v-if="false"></cascader-menu>
+
+    <cascader-menu v-if="subMenu&&subMenu.length"
+                   :data="subMenu"
+                   :activeIds='activeIds'
+                   :depath='newDepth'></cascader-menu>
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
+import { ref, watch, reactive, computed } from "@vue/runtime-core";
 import data from "../../public/test.js";
-import { ref, watch } from "vue";
 interface IProps {
   data: typeof data;
   activeIds?: number[];
   depath: number;
 }
+
 export default {
   props: ["data", "activeIds", "depath"],
-  setup(props: IProps) {
-    const { data, activeIds, depath = 0 } = props;
+  setup(props: IProps, context) {
+    const { data, activeIds, depath = 0 } = reactive(props);
     const activeId = ref<number | null | undefined>(null);
+
     watch(
       () => activeIds,
       (newActiveIds) => {
@@ -34,13 +44,39 @@ export default {
         immediate: true,
       }
     );
+    const getActiveClass = (id: number) => {
+      if (id === activeId.value) {
+        return "menu-active";
+      }
+      return "";
+    };
+
+    const newDepth = ref(depath + 1);
+    const getActiveSubMenu = () => {
+      return data?.find(({ id }) => id === activeId.value)?._child;
+    };
+    const subMenu = computed(getActiveSubMenu);
+    const onSubActiveChange = (ids) => {
+      context.emit("change", [activeId.value].concat(ids));
+    };
+    const onMenuItemClick = (menuItem) => {
+      const newActiveId = menuItem;
+      if (newActiveId !== activeId.value) {
+        activeId.value = newActiveId;
+      }
+    };
     return {
       activeId,
-      depath,
+      getActiveClass,
+      subMenu,
+      onSubActiveChange,
+      newDepth,
+      onMenuItemClick,
     };
   },
 };
 </script>
+
 <style>
 .wrap {
   padding: 12px 0;
