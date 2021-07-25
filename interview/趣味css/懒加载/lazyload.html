@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  .zz {
+    height: 600px;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+  }
+</style>
+
+<body>
+  <div class="zz"></div>
+  <p>zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+    zzzzzzzzzzzzzz</p>
+  <p>zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+    zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+    zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+    zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+    zzzzzzzzzzzzzzzzzzzzzzzzz
+  </p>
+  <img data-src="1-1.jpg">
+  <!-- 浏览器碰到这个属性的时候是不会像默认
+    属性那样进行属性处理 -->
+  <img data-src="1-2.png">
+  <img data-src="1-3.png">
+  <img data-src="1-4.png">
+  <script>
+    const images = document.querySelectorAll('img')
+    //intersectionObserver 用来new一个实例
+    const callback = entries => {
+      // console.log(entries)
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const image = entry.target;
+          const data_src = image.getAttribute('data-src')
+          image.setAttribute('src', data_src)
+          observer.unobserve(image)
+          console.log('触发')
+        }
+
+      })
+
+    };
+    const observer = new IntersectionObserver(callback)
+
+    images.forEach(image => {
+      observer.observe(image)
+    })
+    // window.addEventListener('scroll', (e) => {
+    //   images.forEach(image => {
+    //     const imageTop = image.getBoundingClientRect().top
+    //     if (imageTop < window.innerHeight) {
+    //       const data_src = image.getAttribute('data-src')
+    //       image.setAttribute('src', data_src)
+    //     };
+    //     console.log('scroll触发')
+    //   })
+    // })
+
+  </script>
+</body>
+
+</html>
