@@ -1,17 +1,16 @@
-let ary=[1,2,[3,[4,5]],6]//多维数组换成一维数组
+let ary = [1, 2, [3, [4, 5]], 6]//多维数组换成一维数组
 
 
-// const [arr]=[...ary]
-// console.log(arr)
-//1
 
-// while(ary.some(Array.isArray)){//判断是不是数组
-//     ary=[].concat(...ary) //1,2,[3,[4,5]],6 先解构后运算，数组中有数组会进行一次解构
-//     console.log(ary)
+
+// while (ary.some(Array.isArray)) {//判断是不是数组
+//   ary = [].concat(...ary) //1,2,[3,[4,5]],6 先解构后运算，数组中有数组会进行一次解构
+//   console.log(ary)
 // }
 
 //2
-// let str=JSON.stringify(ary)
+// let str = JSON.stringify(ary)
+
 // ary = str.replace(/(\[|\])/g, '');
 // console.log(ary)
 
@@ -33,14 +32,14 @@ let ary=[1,2,[3,[4,5]],6]//多维数组换成一维数组
 //     }
 
 //第三种处理：递归处理5
-let result = [];
-let fn = function(ary) {
-  for(let i = 0; i < ary.length; i++){
-    let item = ary[i];
-    if (Array.isArray(ary[i])){
-      fn(item);
-    } else {
-      result.push(item);
-    }
-  }
-}
+// let result = [];
+// let fn = function(ary) {
+//   for(let i = 0; i < ary.length; i++){
+//     let item = ary[i];
+//     if (Array.isArray(ary[i])){
+//       fn(item);
+//     } else {
+//       result.push(item);
+//     }
+//   }
+// }
