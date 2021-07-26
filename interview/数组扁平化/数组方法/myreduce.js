@@ -64,3 +64,14 @@ console.log(array1.myReduce(reducer, 5));
 
 console.log(array2.myReduce(reducer2, { label: '一', num: 0 }));
 
+const map = new Map();
+for (let str of strs) {
+  let array = Array.from(str);
+  array.sort();
+  let key = array.toString();
+  let list = map.get(key) ? map.get(key) : new Array();
+  list.push(str);
+  map.set(key, list);
+}
+return Array.from(map.values());
+
