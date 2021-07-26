@@ -16,3 +16,5 @@ Object.prototype.a = function () { }
 Function.prototype.b = function () { }
 
 var f = new F() //只有a  b保存至大写Function中
+
+//等执行栈里面的正常任务执行之后会执行队列里面的回调函数结果

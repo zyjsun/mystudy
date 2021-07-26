@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="main">
+    <div class="switchWrapper flexCenter">
+      <div class="btn flexCenter">
+        <div class="text flexCenter">去登陆</div>
+        <div class="text flexCenter">去注册</div>
+      </div>
+    </div>
+  </div>
+  <!-- 表单区域 -->
+  <div class="outerBox">
+    <div class="container flexCenter">
+      <div class="signInBox">
+        <!-- 注册内容区 -->
+        <div class="container">
+          <div class="box sign-box">
+            <form action="/signup" method="POST">
+              <div class="field">
+                <label class="label">用户名</label>
+                <div class="control">
+                  <input class="input" name="name" type="text" placeholder="请输入用户名">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">邮箱</label>
+                <div class="control">
+                  <input class="input" name="email" type="email" placeholder="请输入你的邮箱">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">密码</label>
+                <div class="control">
+                  <input class="input" name="password" type="password" placeholder="请输入密码">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">重复密码</label>
+                <div class="control">
+                  <input class="input" name="repassword" type="password" placeholder="确认你的密码">
+                </div>
+              </div>
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-primary">立即注册</button>
+                </div>
+                <div class="control">
+                  <a href="/signin" class="button is-text">已有账号，去登录</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const main = document.querySelector('.main')
+    const btn = document.querySelector('.btn')
+    const signInBox = document.querySelector('.signInBox')
+    btn.onclick = () => {
+      if (main.className.indexOf('active') != -1) {
+        main.className = 'main'
+        setTimeout(() => {
+          signInBox.innerText = '注册内容区';
+        }, 500)
+      } else {
+        main.className = 'main active'
+        setTimeout(() => {
+          signInBox.innerText = '登录内容区';
+        }, 500);
+      }
+    }
+  </script>
+</body>
+
+</html>

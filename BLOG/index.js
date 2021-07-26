@@ -6,9 +6,12 @@ const serve = require('koa-static')// 处理静态资源
 const mongoose = require('mongoose')
 const CONFIG = require('./config/config')
 mongoose.connect(CONFIG.mongodb)// 连接上mongodb
+const session = require('koa-session')
+const bodyparse = require('koa-bodyparser')
 
 const app = new Koa()
 
+// 使用模板引擎
 app.use(views(path.join(__dirname, 'views'), {
   map: { html: 'nunjucks' }
 }))
@@ -16,6 +19,14 @@ app.use(views(path.join(__dirname, 'views'), {
 app.use(serve(
   path.join(__dirname, 'public')
 ))// 请求静态资源
+
+app.use(bodyparse())
+// 操作session会话
+app.keys = ['somethings']
+app.use(session({
+  key: CONFIG.session.key,
+  maxAge: CONFIG.session.maxAge
+}, app))
 router(app)
 
 app.listen(3000, () => {
