@@ -8,8 +8,11 @@ const setLocalCartList = (state) => {
 
 const getLocaCartList = () => {
   // { shopId: {shopName:'', productList:{ productId: {} }}}
-  if (localStorage.cartList == null) return {}
-  return JSON.parse(localStorage.cartList)
+  try {
+    return JSON.parse(localStorage.cartList);
+  } catch(e) {
+    return {}
+  }
 }
 
 export default Vuex.createStore({
@@ -17,53 +20,56 @@ export default Vuex.createStore({
     cartList: getLocaCartList()
   },
   mutations: {
-    changeCartItemInfo (state, payload) {
+    changeCartItemInfo(state, payload) {
       const { shopId, productId, productInfo } = payload
       let shopInfo = state.cartList[shopId] || {
-        shopName: '', productList: {}
+        shopName: '', productList:{}
       }
       let product = shopInfo.productList[productId]
-      if (!product) {
+      if(!product) {
         productInfo.count = 0
         product = productInfo
       }
       product.count = product.count + payload.num
-      if (payload.num > 0) { product.check = true }
-      if (product.count < 0) { product.count = 0 }
+      if(payload.num > 0) { product.check = true }
+      if(product.count < 0) { product.count = 0 }
       shopInfo.productList[productId] = product
       state.cartList[shopId] = shopInfo
       setLocalCartList(state)
     },
-    changeShopName (state, payload) {
+    changeShopName(state, payload) {
       const { shopId, shopName } = payload
       const shopInfo = state.cartList[shopId] || {
-        shopName: '', productList: {}
+        shopName: '', productList:{}
       }
       shopInfo.shopName = shopName
       state.cartList[shopId] = shopInfo
       setLocalCartList(state)
     },
-    changeCartItemChecked (state, payload) {
+    changeCartItemChecked(state, payload) {
       const { shopId, productId } = payload
       const product = state.cartList[shopId].productList[productId]
       product.check = !product.check
       setLocalCartList(state)
     },
-    cleanCartProducts (state, payload) {
+    cleanCartProducts(state, payload) {
       const { shopId } = payload
       state.cartList[shopId].productList = {}
       setLocalCartList(state)
     },
-    setCartItemsChecked (state, payload) {
+    setCartItemsChecked(state, payload) {
       const { shopId } = payload
       const products = state.cartList[shopId].productList
-      if (products) {
-        for (let key in products) {
+      if(products) {
+        for(let key in products) {
           const product = products[key]
           product.check = true
         }
       }
       setLocalCartList(state)
+    },
+    clearCartData(state, shopId) {
+      state.cartList[shopId].productList = {}
     }
   }
 })

@@ -23,11 +23,11 @@
           </p>
         </div>
         <div class="product__number">
-          <span class="product__number__minus"
-                @click="() => { changeCartItem(shopId, item._id, item, -1, shopName) }">-</span>
+          <span class="product__number__minus iconfont"
+                @click="() => { changeCartItem(shopId, item._id, item, -1, shopName) }">&#xe691;</span>
           {{getProductCartCount(shopId, item._id)}}
-          <span class="product__number__plus"
-                @click="() => { changeCartItem(shopId, item._id, item, 1, shopName) }">+</span>
+          <span class="product__number__plus iconfont"
+                @click="() => { changeCartItem(shopId, item._id, item, 1, shopName) }">&#xe668;</span>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@ import { reactive, ref, toRefs, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
 import { get } from '../../util/request'
-import { useCommonCartEffect } from './commonCartEffect'
+import { useCommonCartEffect } from '../../effects/cartEffects'
 
 const categories = [
   { name: '全部商品', tab: 'all' },
@@ -181,24 +181,17 @@ export default {
       position: absolute;
       right: 0;
       bottom: 0.12rem;
-      &__minus,
-      &__plus {
-        display: inline-block;
-        width: 0.2rem;
-        height: 0.2rem;
-        line-height: 0.16rem;
-        border-radius: 50%;
-        font-size: 0.2rem;
-        text-align: center;
-      }
+      line-height: 0.18rem;
       &__minus {
-        border: 0.01rem solid $medium-fontColor;
+        position: relative;
+        top: 0.02rem;
         color: $medium-fontColor;
         margin-right: 0.05rem;
       }
       &__plus {
-        background: $btn-bgColor;
-        color: $bgColor;
+        position: relative;
+        top: 0.02rem;
+        color: $btn-bgColor;
         margin-left: 0.05rem;
       }
     }

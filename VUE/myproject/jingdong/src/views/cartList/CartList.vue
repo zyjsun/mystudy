@@ -1,5 +1,5 @@
 <template>
-  <div class="cart">作业部分代码，同学尝试实现</div>
+  <div class="cart">zz</div>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ export default {
 
 <style lang="scss" scoped>
 .cart {
-  margin-top: .2rem;
+  margin-top: 0.2rem;
   text-align: center;
 }
 </style>

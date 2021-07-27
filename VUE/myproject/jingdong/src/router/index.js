@@ -1,36 +1,50 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: () => import('@/views/home/Home.vue')
-  }, {
-    path: '/shop/:id',
-    name: 'Shop',
-    component: () => import('@/views/shop/Shop.vue')
-
-  }, {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/views/login/Login.vue'),
-    beforeEnter (to, from, next) {
-      // const isLogin=localStorage.isLogin;
-      // if(isLogin){
-      //   next({name: 'Home'});
-      // }else{
-      //   next()
-      // }
-      //进入该页面之前
-      const { isLogin } = localStorage;
-      isLogin ? next({ name: 'Home' }) : next();
-    }
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: () => import('@/views/register/Regester.vue')
-  },
+const routes = [{
+  path: '/',
+  name: 'Home',
+  component: () => import('../views/home/Home.vue')
+}, {
+  path: '/cartList',
+  name: 'CartList',
+  component: () => import('../views/cartList/CartList.vue')
+}, {
+  path: '/orderConfirmation/:id',
+  name: 'OrderConfirmation',
+  component: () => import('../views/orderConfirmation/OrderConfirmation.vue')
+}, {
+  path: '/orderList',
+  name: 'OrderList',
+  component: () => import('../views/orderList/OrderList.vue')
+}, {
+  path: '/shop/:id',
+  name: 'Shop',
+  component: () => import('../views/shop/Shop.vue')
+}, {
+  path: '/register',
+  name: 'Register',
+  component: () => import('../views/register/Regester.vue'),
+  beforeEnter (to, from, next) {
+    const { isLogin } = localStorage;
+    isLogin ? next({ name: 'Home' }) : next();
+  }
+}, {
+  path: '/login',
+  name: 'Login',
+  component: () => import('../views/login/Login.vue'),
+  beforeEnter (to, from, next) {
+    const { isLogin } = localStorage;
+    isLogin ? next({ name: 'Home' }) : next();
+  }
+},
+  // {
+  //   path: '/about',
+  //   name: 'About',
+  //   // route level code-splitting
+  //   // this generates a separate chunk (about.[hash].js) for this route
+  //   // which is lazy-loaded when the route is visited.
+  //   
+  // }
 ]
 
 const router = createRouter({
@@ -39,19 +53,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // const isLogin = localStorage.isLogin;
-  // if (isLogin || to.name === "Login") {
-  //   next();
-  // } else {
-  //   next({ name: "Login" })
-  // }
-  // next()
-
   const { isLogin } = localStorage;
   const { name } = to;
-  const isLoginOrRegister = (name == "Login" || name == "Register");
-  (isLogin || isLoginOrRegister) ? next() : next({ name: 'Login' })
+  const isLoginOrRegister = (name === "Login" || name === "Register");
+  (isLogin || isLoginOrRegister) ? next() : next({ name: 'Login' });
 })
-
 
 export default router
