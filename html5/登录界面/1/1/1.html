@@ -22,8 +22,35 @@
   <div class="outerBox">
     <div class="container flexCenter">
       <div class="signInBox">
+        <!-- 登录 -->
+        <div id="denglu">
+          <div class="box sign-box">
+            <form action="/signin" method="POST">
+              <div class="field">
+                <label class="label">用户名</label>
+                <div class="control">
+                  <input class="input" name="name" type="text" autocomplete="off" placeholder="请输入用户名">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">密码</label>
+                <div class="control">
+                  <!— 禁止自动填充用户名密码 —>
+                    <input type="password" />
+                    <input class="input" name="password" type="password" placeholder="请输入密码">
+                </div>
+              </div>
+              <div class="field is-grouped">
+                <div class="control">
+                  <button class="button is-primary">立即登录</button>
+                </div>
+
+              </div>
+            </form>
+          </div>
+        </div>
         <!-- 注册内容区 -->
-        <div class="container">
+        <div id="zhuce">
           <div class="box sign-box">
             <form action="/signup" method="POST">
               <div class="field">
@@ -54,9 +81,6 @@
                 <div class="control">
                   <button class="button is-primary">立即注册</button>
                 </div>
-                <div class="control">
-                  <a href="/signin" class="button is-text">已有账号，去登录</a>
-                </div>
               </div>
             </form>
           </div>
@@ -68,16 +92,22 @@
     const main = document.querySelector('.main')
     const btn = document.querySelector('.btn')
     const signInBox = document.querySelector('.signInBox')
+    const denglu = document.getElementById('denglu')
+    const zhucei = document.getElementById('zhuce')
+    denglu.style.display = 'none'
+    zhucei.style.display = 'none'
     btn.onclick = () => {
       if (main.className.indexOf('active') != -1) {
         main.className = 'main'
         setTimeout(() => {
-          signInBox.innerText = '注册内容区';
+          denglu.style.display = 'none'
+          zhucei.style.display = 'block'
         }, 500)
       } else {
         main.className = 'main active'
         setTimeout(() => {
-          signInBox.innerText = '登录内容区';
+          denglu.style.display = 'block'
+          zhucei.style.display = 'none'
         }, 500);
       }
     }

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/bulma/0.9.3/css/bulma.min.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/github-markdown-css/2.10.0/github-markdown.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body>
+  {% include "views/components/notification.html" %}
+  {% block body %}
+  <div>no body</div>
+  {% endblock %}
+  {# include "./components/footer.html" #}
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    $(function () {
+      if ($('.notifications')) {
+        setTimeout(() => {
+          $('.notifications').fadeOut()
+        }, 2000)
+      }
+    })
+  </script>
+  {% block script %}
+  {% endblock %}
+</body>
+
+</html>

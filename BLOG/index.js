@@ -8,6 +8,7 @@ const CONFIG = require('./config/config')
 mongoose.connect(CONFIG.mongodb)// 连接上mongodb
 const session = require('koa-session')
 const bodyparse = require('koa-bodyparser')
+const flash = require('./middlewares/flash.js')
 
 const app = new Koa()
 
@@ -27,6 +28,11 @@ app.use(session({
   key: CONFIG.session.key,
   maxAge: CONFIG.session.maxAge
 }, app))
+app.use(flash())
+app.use(async (ctx, next) => {
+  ctx.state.ctx = ctx
+  await next()
+})
 router(app)
 
 app.listen(3000, () => {

@@ -92,3 +92,7 @@ body{
   transform: translateX(calc(-900px + 100%));
 }
 
+#denglu{
+  position:absolute;
+  left: 0;
+}
