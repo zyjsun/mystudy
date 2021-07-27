@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 const PostSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
-    refs: 'USer',
+    ref: 'USer',
     require: true
   },
   title: {
@@ -21,7 +21,10 @@ const PostSchema = new Schema({
     type: Number,
     default: 0
   },
-
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category'
+  },
   meta: {
     createAt: {
       type: Date,
