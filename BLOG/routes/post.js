@@ -2,6 +2,7 @@ const CategoryModel = require('../models/category')
 const PostModel = require('../models/post')
 const CommentModel = require('../models/comment')
 const marked = require('marked')
+
 // 从数据库取文章
 module.exports = {
   async index (ctx, next) {
@@ -82,6 +83,10 @@ module.exports = {
       const comments = await CommentModel.find({ postId }).populate({
         path: 'from', select: 'name'
       })
+      comments.forEach(comment => {
+        comment.content = marked(comment.content)
+        // console.log(comment.content)
+      })
       // console.log(post)
       await ctx.render('post', {
         title: post.title,
@@ -89,6 +94,59 @@ module.exports = {
         content,
         comments
       })
+    }
+  },
+  async del (ctx, next) {
+    const deleteId = ctx.params.id
+    if (deleteId.length !== 24) {
+      ctx.throw(404, '评论不存在')
+    }
+    const content = await PostModel.findById(deleteId)
+    if (!content) {
+      ctx.throw(404, '该文章不存在')
+    }
+    await PostModel.findByIdAndRemove(deleteId)
+    ctx.flash = { success: '删除成功' }
+    ctx.redirect('/')
+  },
+
+  async edit (ctx, next) {
+    const editId = ctx.params.id
+    if (ctx.method === 'GET') {
+      if (editId.length !== 24) {
+        ctx.throw(404, '此文章不存在或已经删除')
+      }
+      const post = await PostModel.findById(editId)
+      const categories = await CategoryModel.find({})
+      if (!post) {
+        ctx.throw(404, '此文章不存在或已经删除')
+      }
+      if (post.author.toString() !== ctx.session.user._id.toString()) {
+        ctx.throw(401, '没有权限')
+      }
+      await ctx.render('edit', {
+        title: '更新文章',
+        post,
+        categories
+      })
+    } else {
+      const { title, content, category } = ctx.request.body
+      let errMsg = ''
+      if (title === '') {
+        errMsg = '标题不能为空'
+      } else if (content === '') {
+        errMsg = '分类名不能为空'
+      }
+      if (errMsg) {
+        ctx.flash = { warning: errMsg }
+        ctx.redirect('back')
+      }
+
+      await PostModel.findByIdAndUpdate(editId, {
+        title, content, category
+      })
+      ctx.flash = { success: '文章更新成功' }
+      ctx.redirect(`/posts/${editId}`)
     }
   }
 }

@@ -51,8 +51,10 @@ module.exports = {
 
   // 退出登录
   signout (ctx, next) {
-    ctx.session.user = null
-    ctx.flash = { warning: '退出登录' }
-    ctx.redirect('/')
+    if (ctx.session.user) {
+      ctx.session.user = null
+      ctx.flash = { warning: '退出登录' }
+      ctx.redirect('/')
+    }
   }
 }

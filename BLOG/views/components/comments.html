@@ -22,9 +22,9 @@
         <a href="/user/{{comment.from.name}}">
           <strong>{{comment.from.name}}</strong>
         </a>
-        <small>31m</small>
+        <small>{{comment.meta.createAt}}</small>
         <br>
-        {{marked(comment.content) | safe}}
+        {{comment.content | safe}}
       </p>
     </div>
     <nav>
