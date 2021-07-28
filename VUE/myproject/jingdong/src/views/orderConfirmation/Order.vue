@@ -58,7 +58,7 @@ const useMakeOrderEffect = (shopId, shopName, productList) => {
   return { handleConfirmOrder }
 }
 
-// 蒙层展示相关的逻辑
+// 蒙层展示相关的逻辑 取消支付订单就消失
 const useShowMaskEffect = () => {
   const showConfirm = ref(false)
   const handleShowConfirmChange = (status) => {

@@ -1,7 +1,10 @@
 <template>
   <div class="wrapper">
+    <!-- 顶部页面 -->
     <TopArea />
+    <!-- 商品页面 -->
     <ProductList />
+    <!-- 结算页面 -->
     <Order />
   </div>
 </template>

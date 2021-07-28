@@ -54,7 +54,7 @@ const useOrderListEffect = () => {
         order.totalPrice = totalPrice
         order.totalNumber = totalNumber
       })
-      data.list = result.data
+      data.list = result.data//订单的商品数量数
     }
   }
   getNearbyList()
