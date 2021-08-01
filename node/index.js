@@ -12,20 +12,39 @@ https.get('https://www.mafengwo.cn/gonglve/', (res) => {
     // console.log(html);
     let travelList = [];
     // console.log($('li'))
-    $('.feed-item').each(function () {
+    let i = 0;
+    $('.gl-post .feed-item').each(function () {
       let imgArr = []
       const title = $('.title', this).text()
       const content = $('.txt .info', this).text()
       const content2 = $('.art .info', this).text()
       let info = content == '' ? content2 : content
-      imgArr.push($('.clearfix img', this).attr('src'))
-      travelList.push({ title, info, imgArr })
+      const author = $('.art .author', this).text()
+      const authorImg = $('.art img', this).attr('src')
+      const nums = $('.art .nums', this).text()
+      const Author = { author, authorImg, nums }
+      // $('.imgs .clearfix li').each(function () {
+      //   const src = $('img', this).attr('src')
+      //   console.log(src)
+      // })
+      // console.log($('.art img', this).attr('src'))
+      $('.art img', this).attr('src') == undefined ? $('.imgs .clearfix li').each(function () {
+        const src = $('img', this).attr('src')
+        console.log(i++)
+        console.log(src)
+        // console.log('---------')
+        imgArr.push(src)
+      }) : imgArr.push($('.art img', this).attr('src'))
+      // console.log(imgArr)
+      // console.log(i++)
+      travelList.push({ title, info, imgArr, Author })
     })
-    fs.writeFile('./travel.json', JSON.stringify(travelList), (err) => {
-      if (!err) {
-        console.log('文件写入完成')
-      }
-    })
+
+    // fs.writeFile('./travel.json', JSON.stringify(travelList), (err) => {
+    //   if (!err) {
+    //     console.log('文件写入完成')
+    //   }
+    // })
 
   })
 })

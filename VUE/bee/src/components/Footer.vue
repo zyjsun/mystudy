@@ -55,7 +55,7 @@ export default {
       text-align: center;
       color: #666;
       &.router-link-active {
-        color: rgba(255, 197, 61, 100);
+        color: #4fc08d;
       }
       span {
         font-size: 12px;
