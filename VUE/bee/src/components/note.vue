@@ -22,9 +22,8 @@ export default {
 <style lang="less">
 .travelList {
   width: 100vw;
-  padding: 20px 0;
-  font-size: 14px;
-  line-height: 24px;
-  border-radius: 20px;
+  border-radius: 20px solid yellowgreen;
+  .title {
+  }
 }
 </style>

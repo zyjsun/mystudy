@@ -1,0 +1,18 @@
+{
+  "name": "webpack",
+  "version": "1.0.0",
+  "description": "1. 读入口文件里面的所有内容\r 2. 分析入口文件，递归的去读取所依赖的模块，生成AST\r 3. 根据AST，生成浏览器能运行的代码",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.14.8",
+    "@babel/parser": "^7.14.9",
+    "@babel/preset-env": "^7.14.9",
+    "@babel/traverse": "^7.14.9"
+  }
+}
