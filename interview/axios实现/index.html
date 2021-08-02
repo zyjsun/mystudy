@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>axios</title>
+  <script src="./myAxios.js"></script>
+</head>
+
+<body>
+  <button class="btn">点我发请求</button>
+</body>
+<script>
+  document.querySelector('.btn').onclick = function () {
+    axios.interceptors.request.use(
+      (config) => {
+        config.method = 'get'
+        console.log('right request')
+        return config
+      },
+      (err) => {
+        console.log('fail request')
+        return Promise.reject(err)
+      }
+    )
+    axios.interceptors.response.use(
+      (res) => {
+        res = { message: '你的数据被我篡改了' }
+        console.log('right response')
+        return res
+      },
+      (err) => {
+        console.log('fail response')
+        return Promise.reject(err)
+      }
+    )
+    // axios.get('http://localhost:5000/getTest').then(res => {
+    //   console.log('postAxios 成功响应', res)
+    // })
+    axios({
+      url: 'http://localhost:5000/getTest'
+    }).then(res => {
+      console.log('postAxios 成功响应', res)
+    })
+  }
+
+
+</script>
+
+</html>
