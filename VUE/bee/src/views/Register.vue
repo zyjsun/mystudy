@@ -11,13 +11,22 @@
       <label for="username">账号</label>
       <input type="text"
              name="username"
+             placeholder="输入账号"
              v-model="username" />
     </div>
     <div class="input-group">
-      <label for="username">密码</label>
+      <label for="password">密码</label>
       <input type="password"
              name="password"
+             placeholder="输入你的密码"
              v-model="password" />
+    </div>
+    <div class="input-group">
+      <label for="repassword">确认密码</label>
+      <input type="password"
+             name="repassword"
+             placeholder="确认你的密码"
+             v-model="repassword" />
     </div>
     <div class="sign"
          @click="onSubmit">注册</div>
@@ -29,17 +38,24 @@
 <script>
 import { toRefs } from '@vue/reactivity'
 import { reactive } from 'vue'
+import router from 'vue-router'
+import { post } from '../../api/axios'
 export default {
   setup () {
     const state = reactive({
       username: '',
-      passwoed: ''
+      passwoed: '',
+      repassword: ''
     })
     const onSubmit = () => {
-
+      post('/register', {
+        name: state.username,
+        password: state.passwoed
+      })
+      Toast('注册成功', 'success')
     }
     const toRegister = () => {
-
+      router.push('/login')
     }
     return {
       ...toRefs(state),

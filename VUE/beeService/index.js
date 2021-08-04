@@ -1,28 +1,36 @@
-const Koa = require('koa')
-const router = require('./router')
-const mongoose = require('mongoose')
-const CONFIG = require('./config/config')
-mongoose.connect(CONFIG.mongodb)// 连接上mongodb
+const koa = require("koa");
+const Router = require("./router");
+const cors = require("koa2-cors");
+const bodyParser = require("koa-bodyparser");
+const mongoose = require("mongoose");
+// 本地require
 const session = require('koa-session')
-const bodyparse = require('koa-bodyparser')
+const CONFIG = require("./config/config");
+const app = new koa();
+// app.use(async (ctx, next)=> {
+//   ctx.set('Access-Control-Allow-Origin', "http://localhost:8080"); // 允许那个网站请求
+//   ctx.set('Access-Control-Allow-Headers', 'X-Requested-With, accept, origin, Content-Type,XMLHttpRequest,application/json');
+//   ctx.set('Access-Control-Allow-Methods', 'POST , GET');
+//   ctx.set('Access-Control-Allow-Credentials', true);
+//   await next();
+// });
+app.use(cors());
 
-const app = new Koa()
-
-
-app.use(bodyparse())
 // 操作session会话
-app.keys = ['somethings']
+app.keys = ['somethings']  // 
 app.use(session({
   key: CONFIG.session.key,
   maxAge: CONFIG.session.maxAge
 }, app))
 
-app.use(async (ctx, next) => {
-  ctx.state.ctx = ctx
-  await next()
-})
-router(app)
+app.use(bodyParser());
+mongoose.connect(CONFIG.mongodb, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-app.listen(3000, () => {
-  console.log('服务在3000端口已启动')
-})
+Router(app);
+
+app.listen(3000, (res, req) => {
+  console.log("服务器在3000端口启动!");
+});

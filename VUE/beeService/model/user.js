@@ -26,4 +26,5 @@ const UserSchema = new Schema({
 })
 
 // 通过 mongoose.model 往数据库里面映射出一张User表
+mongoose.set('useCreateIndex', true)
 module.exports = mongoose.model('USer', UserSchema)
