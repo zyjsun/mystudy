@@ -54,3 +54,22 @@ deactived: 停止使用缓存时调用
 # arr[index]=xxx 会触发视图更新嘛？
  vue 中没有劫持数组，视图不更新
 
+ # 修饰符
+ - lazy 改变输入框的值时value不会改变，离开输入框时v-model才会改变
+ - trim把首尾空格过滤掉
+ - number 将值转换为数字，先数字再字母只显示数字，反之修饰符无效
+ - stop 阻止冒泡
+ - capture 从里往外冒泡，外网捕获
+ - self 只有点击事件的本身才有作用
+ - once 事件只执行一次
+ - prevent 阻止默认事件，如a标签的跳转
+ - native 加在自定义事件上，保证事件能执行
+ - right left middle 鼠标左中右的按键触发事件
+ - passive 监听元素滚动事件，会触发onscroll事件，移动端相当于整个.lazy修饰符
+ - camel 加了就能识别
+ - sync 当父组件传值进子组件，子组件想要改变这个值时，可以这么做
+ <chidren :foo.sync="bar"></children> 父组件
+ 子组件 this.$emit('update:foo',newValue)
+
+ - keyCode键盘的按键
+

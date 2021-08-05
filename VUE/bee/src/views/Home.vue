@@ -30,7 +30,7 @@
 import buttom from '../components/Footer.vue'
 import note from '../components/note.vue'
 import { ref, onMounted } from 'vue'
-import { get } from '../../api/axios'
+import { getLocal } from '../../src/common/local.js'
 export default {
   components: {
     "b-footer": buttom,
@@ -38,10 +38,14 @@ export default {
   },
   setup () {
     let active = ref(2)
+    onMounted(() => {
+      const token = getLocal('token')
+      console.log(token)
+    })
     const travelList = ref([])
     const getTrevalList = async () => {
-      const result = await get('/api/suggest')
-      travelList.value = result
+      // const result = await get('/api/suggest')
+      // travelList.value = result
     }
     onMounted(() => {
       getTrevalList()

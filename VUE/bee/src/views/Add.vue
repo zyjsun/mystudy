@@ -36,7 +36,7 @@
 <script>
 import buttom from '../components/Footer.vue'
 import { reactive, toRefs } from 'vue'
-import { post } from '../../api/axios'
+import { addNote } from '../../api/service/TravelNote'
 import { useRouter } from 'vue-router'
 export default {
   components: {
@@ -56,15 +56,24 @@ export default {
     }
     const onSubmit = async (values) => {
       console.log('submit', values);
-      await post('/api/suggest', {
+      addNote({
         title: values.title,
-        info: values.content,
+        content: values.content,
         imgArr: state.img,
         Author: {
           author: values.authorName,
           nums: '20浏览 2留言'
         }
       })
+      // await post('/api/suggest', {
+      //   title: values.title,
+      //   info: values.content,
+      //   imgArr: state.img,
+      //   Author: {
+      //     author: values.authorName,
+      //     nums: '20浏览 2留言'
+      //   }
+      // })
       router.push('/')
     }
     return {

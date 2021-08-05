@@ -50,8 +50,6 @@
 //   vm.a = 1
 // }, 2000);
 
-
-
 class Watcher {
   constructor(opts) {
     this.$data = this.getBaseType(opts.data) === 'Object' ? opts.data : {}

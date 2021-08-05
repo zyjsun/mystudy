@@ -12,6 +12,7 @@
       <input type="text"
              name="username"
              placeholder="输入账号"
+             required
              v-model="username" />
     </div>
     <div class="input-group">
@@ -19,6 +20,7 @@
       <input type="password"
              name="password"
              placeholder="输入你的密码"
+             required
              v-model="password" />
     </div>
     <div class="input-group">
@@ -26,41 +28,52 @@
       <input type="password"
              name="repassword"
              placeholder="确认你的密码"
+             required
              v-model="repassword" />
     </div>
     <div class="sign"
          @click="onSubmit">注册</div>
     <text class="register"
-          @click="toRegister">已有账号去登录</text>
+          @click="toLogin">已有账号去登录</text>
   </div>
 </template>
 
 <script>
 import { toRefs } from '@vue/reactivity'
 import { reactive } from 'vue'
-import router from 'vue-router'
-import { post } from '../../api/axios'
+import { useRouter } from 'vue-router'
+import { register } from '../../api/service/user'
+import { Toast } from 'vant'
 export default {
   setup () {
+    const router = useRouter()
     const state = reactive({
       username: '',
-      passwoed: '',
+      password: '',
       repassword: ''
     })
-    const onSubmit = () => {
-      post('/register', {
+    const onSubmit = async () => {
+      if (state.username == '' || state.password == ''
+        || state.repassword == '') {
+        Toast('不能为空', 'fail', 1000)
+        return
+      }
+      if (state.password !== state.repassword) {
+        Toast('输入密码不正确', 'fail', 1000)
+        return
+      }
+      await register({
         name: state.username,
-        password: state.passwoed
+        password: state.password
       })
-      Toast('注册成功', 'success')
     }
-    const toRegister = () => {
-      router.push('/login')
+    const toLogin = () => {
+      router.push({ path: '/login' })
     }
     return {
       ...toRefs(state),
       onSubmit,
-      toRegister
+      toLogin
     }
   }
 }

@@ -30,17 +30,30 @@
 <script>
 import { toRefs } from '@vue/reactivity'
 import { reactive } from 'vue'
+import { login } from '../../api/service/user'
+import { useRouter } from 'vue-router'
+import { setLocal } from '../common/local.js'
 export default {
+
   setup () {
+    const router = useRouter()
     const state = reactive({
       username: '',
-      passwoed: ''
+      password: ''
     })
-    const onSubmit = () => {
-
+    const onSubmit = async () => {
+      // console.log(state.username, state.password)
+      const { data } = await login({
+        name: state.username,
+        password: state.password
+      })
+      console.log(data)
+      setLocal(data)
+      //刷新页面，让axios.js中的token重置
+      window.location.href = '/'
     }
     const toRegister = () => {
-
+      router.push({ path: '/register' })
     }
     return {
       ...toRefs(state),
