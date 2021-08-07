@@ -1,23 +1,27 @@
 <template>
   <div class="TL">
     <div class="travelList"
-         v-for="item in travelList"
-         :key="item.title">
+         v-for="item in travelList.allNote"
+         :key="item._id">
       <div class="title">{{item.title}}</div>
       <div class="img">
-        <div v-for="(pic,index) of item.imgArr"
+        <div v-for="(img,index) in item.contentImg"
              :key="index">
-          <img :src="pic"
+
+          <img :src="img.content"
                alt="">
         </div>
+
       </div>
-      <div class="content">{{item.info}}</div>
+
+      <div class="content">{{item.content}}</div>
+      <!-- <div class="content">{{item.contentImg[0].content}}</div> -->
       <div class="Author">
         作者:
-        <img :src="item.Author.authorImg"
+        <img :src="item.authorImg"
              alt="">
-        <span>{{item.Author.author}}</span>
-        <span class="author">{{item.Author.nums}}</span>
+        <span>{{item.author}}</span>
+        <span class="author">{{item.meta.createAt}}</span>
       </div>
       <div class="function">
         <van-icon name="like-o"
@@ -33,8 +37,14 @@
 </template>
 
 <script>
+// import { onMounted } from '@vue/runtime-core'
 export default {
-  props: ['travelList']
+  props: ['travelList'],
+  setup () {
+    // onMounted(()=>{
+    //   console.log(travelList)
+    // })
+  }
 }
 </script>
 

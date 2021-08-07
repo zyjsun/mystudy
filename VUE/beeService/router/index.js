@@ -3,6 +3,7 @@ module.exports = (app) => {
   router.post('/login', require('./user').Login)
   router.post('/register', require('./user').register)
   router.post('/addNote', require('./addNote').add)
+  router.get('/showNote', require('./addNote').show)
   app
     .use(router.routes())
     .use(router.allowedMethods())

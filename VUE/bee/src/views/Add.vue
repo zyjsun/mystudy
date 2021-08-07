@@ -19,8 +19,8 @@
                    placeholder="请输入作者名"
                    :rules="[{ required: true, message: '请输入你的名字' }]" />
       </van-cell-group>
-      <van-uploader :after-read="afterRead"
-                    :rules="[{ required: true, message: '请上传你的照片' }]" />
+      <van-uploader v-model="fileList"
+                    multiple />
       <div style="margin: 16px; color: yellowgreen">
         <van-button round
                     block
@@ -36,7 +36,7 @@
 <script>
 import buttom from '../components/Footer.vue'
 import { reactive, toRefs } from 'vue'
-import { addNote } from '../../api/service/TravelNote'
+import { add } from '../../api/service/TravelNote.js'
 import { useRouter } from 'vue-router'
 export default {
   components: {
@@ -46,38 +46,27 @@ export default {
     const state = reactive({
       title: '',
       content: '',
-      img: '',
+      fileList: [],
       authorName: ''
     })
     const router = useRouter()
-    const afterRead = (file) => {
-      state.img = file
-      console.log(state.img)
-    }
+    // const afterRead = (file) => {
+    //   state.img = file
+    //   console.log(state.img.content)
+    // }
     const onSubmit = async (values) => {
-      console.log('submit', values);
-      addNote({
+      // console.log('submit', values);
+      // console.log(state.fileList)
+      await add({
         title: values.title,
         content: values.content,
-        imgArr: state.img,
-        Author: {
-          author: values.authorName,
-          nums: '20浏览 2留言'
-        }
+        contentImg: state.fileList,
+        author: values.authorName
       })
-      // await post('/api/suggest', {
-      //   title: values.title,
-      //   info: values.content,
-      //   imgArr: state.img,
-      //   Author: {
-      //     author: values.authorName,
-      //     nums: '20浏览 2留言'
-      //   }
-      // })
-      router.push('/')
+      router.push({ path: '/' })
     }
     return {
-      afterRead, onSubmit, ...toRefs(state)
+      onSubmit, ...toRefs(state)
     }
   }
 }

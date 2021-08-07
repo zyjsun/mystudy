@@ -29,23 +29,28 @@
 <script>
 import buttom from '../components/Footer.vue'
 import note from '../components/note.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, reactive, toRefs } from 'vue'
 import { getLocal } from '../../src/common/local.js'
+import { getList } from '../../api/service/TravelNote'
 export default {
   components: {
     "b-footer": buttom,
     "b-note": note
   },
   setup () {
+    const state = reactive({
+      active: 2,
+      travelList: []
+    })
     let active = ref(2)
     onMounted(() => {
       const token = getLocal('token')
       console.log(token)
     })
-    const travelList = ref([])
+
     const getTrevalList = async () => {
-      // const result = await get('/api/suggest')
-      // travelList.value = result
+      state.travelList = await getList()
+      console.log(state.travelList.allNote)
     }
     onMounted(() => {
       getTrevalList()
@@ -53,7 +58,7 @@ export default {
 
     return {
       active,
-      travelList
+      ...toRefs(state)
     };
   }
 
