@@ -7,3 +7,7 @@ export function login (params) {
 export function register (params) {
   return axios.post('/register', params)
 }
+
+export function getInfo (params) {
+  return axios.post('/userInfo', params)
+}

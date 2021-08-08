@@ -43,12 +43,12 @@ export default {
     })
     const onSubmit = async () => {
       // console.log(state.username, state.password)
-      const { data } = await login({
+      const { _id } = await login({
         name: state.username,
         password: state.password
       })
-      console.log(data)
-      setLocal(data)
+      console.log(_id)
+      setLocal('token', _id)
       //刷新页面，让axios.js中的token重置
       window.location.href = '/'
     }

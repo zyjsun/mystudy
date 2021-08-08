@@ -33,19 +33,15 @@ module.exports = {
 
   // 登录
   async Login (ctx, next) {
-    console.log(ctx.request.body)
+    // console.log(ctx.request.body)
     const { name, password } = ctx.request.body;
     const user = await UserModel.findOne({ name })
-    console.log(user);
-    console.log(user && await bcrypt.compare(password, user.password));
     if (user && await bcrypt.compare(password, user.password)) {
-      // ctx.body = {
-      //   _id: user._id,
-      //   name: user.name,
-      // }
+      console.log(user);
       ctx.body = {
         message: '登录成功',
-        resultCode: 200
+        resultCode: 200,
+        _id: user._id,
       }
     } else {
       ctx.body = {
@@ -54,6 +50,18 @@ module.exports = {
       }
     }
   },
+  async show (ctx, next) {
+    const token = ctx.request.body
+
+    const user = await UserModel.findOne({ _id: token })
+    // console.log(user)
+    ctx.body = {
+      message: '更新成功',
+      resultCode: 200,
+      _user: user,
+    }
+
+  }
 
 
   // 退出登录

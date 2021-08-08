@@ -1,7 +1,7 @@
 
 import axios from 'axios'
 import { Toast } from 'vant'
-import router from '../src/router/index'
+// import router from '../src/router/index'
 
 axios.defaults.baseURL = 'http://127.0.0.1:3000'
 // axios.defaults.withCredentials = true//跨域请求可以携带cookie
@@ -20,7 +20,7 @@ axios.interceptors.response.use(res => {
     return Promise.reject(this.data)
   } else {
     Toast.success(res.data.message)
-    router.push({ path: '/' })
+    // router.push({ path: '/' })
   }
   return res.data
 })

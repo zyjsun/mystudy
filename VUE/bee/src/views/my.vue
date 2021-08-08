@@ -1,65 +1,169 @@
+
 <template>
-  <div class="wrapper">
-    <div class="header">我的</div>
-    <div class="myinfo">
-      <div class="left">
-        <img src="../assets/logo.png"
-             alt="">
-      </div>
-      <div class="right">
-        <div class="name">
-
+  <div class="user-box">
+    <van-skeleton title
+                  avatar="true"
+                  :row="3"
+                  :loading="loading">
+      <div class="user-info">
+        <div class="info">
+          <img :src="state.userInfo._user.userImg" />
+          <div class="user-desc">
+            <span>昵称：{{state.userInfo._user.nickname}}</span>
+            <span>登录名：{{state.userInfo._user.name}}</span>
+            <span class="name">个性签名：{{state.userInfo._user.signContent}}</span>
+          </div>
         </div>
-        <div class="signName">
-
-        </div>
       </div>
-    </div>
-    <div class="myCreate">我发表的</div>
-    <div class="save">我的收藏</div>
+    </van-skeleton>
+    <ul class="user-list">
+      <li class="van-hairline--bottom">
+        <span>我的游记</span>
+        <van-icon name="arrow" />
+      </li>
+      <li class="van-hairline--bottom">
+        <span>我收藏的游记</span>
+        <van-icon name="arrow" />
+      </li>
+      <li class="van-hairline--bottom">
+        <span>账号管理</span>
+        <van-icon name="arrow" />
+      </li>
+      <li>
+        <span>关于我们</span>
+        <van-icon name="arrow" />
+      </li>
+    </ul>
+    <nav-bar></nav-bar>
   </div>
-  <b-footer></b-footer>
 </template>
 
 <script>
+import { onMounted, reactive, ref } from '@vue/runtime-core'
 import buttom from '../components/Footer.vue'
+import { getLocal } from '../common/local'
+import { Toast } from 'vant'
+import { useRouter } from 'vue-router'
+import { getInfo } from '../../api/service/user'
 export default {
   components: {
-    "b-footer": buttom
+    "nav-bar": buttom
+  },
+  setup () {
+    const loading = ref(true);
+    const state = reactive({
+      userInfo: {}
+    }
+    )
+    const token = getLocal('token')
+    const router = useRouter()
+    const getUserInfo = async () => {
+      state.userInfo = await getInfo({
+        _id: token
+      })
+      loading.value = false;
+      console.log(state.userInfo._user)
+    }
+    onMounted(() => {
+      if (!token) {
+        Toast('没有登录，请登录', 'fail')
+        router.push({ path: '/login' })
+      }
+      getUserInfo()
+    })
+
+    return {
+      state,
+      loading
+    }
   }
 }
 </script>
 
-<style lang="less">
-.wrapper {
-  width: 100px;
-  margin: 0 auto;
-  .header {
-    width: 100%;
-    height: 40px;
-    color: #fff;
-    text-align: center;
-    background-color: yellowgreen;
-
-    padding-top: 10px;
-    z-index: 100;
-    font-size: 20px;
-    overflow: hidden;
-  }
-  .myinfo {
-    width: 100%;
-    height: 200px;
+<style lang="less" scoped>
+.user-box {
+  .user-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
     display: flex;
-    flex: 1;
     justify-content: space-between;
-    border-radius: 30px;
-    border: 10px;
-    box-shadow: 7px 7px 10px #ececec;
-    background: rgb(243, 239, 239);
-    z-index: 1000;
-    .left img {
-      width: 100px;
-      height: 100px;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #252525;
+    background: #fff;
+    border-bottom: 1px solid #dcdcdc;
+    .user-name {
+      font-size: 14px;
+    }
+  }
+  .user-info {
+    width: 94%;
+    margin: 10px;
+    height: 115px;
+    background: linear-gradient(90deg, #1baeae, #51c7c7);
+    box-shadow: 0 2px 5px #269090;
+    border-radius: 6px;
+    .info {
+      position: relative;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      padding: 25px 20px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-top: 4px;
+      }
+      .user-desc {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        line-height: 20px;
+        font-size: 14px;
+        color: #fff;
+        span {
+          color: #fff;
+          font-size: 14px;
+          padding: 2px 0;
+        }
+      }
+      .account-setting {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 13px;
+        color: #fff;
+        .van-icon-setting-o {
+          font-size: 16px;
+          vertical-align: -3px;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+  .user-list {
+    padding: 0 20px;
+    margin-top: 20px;
+    li {
+      height: 40px;
+      line-height: 40px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      .van-icon-arrow {
+        margin-top: 13px;
+      }
     }
   }
 }

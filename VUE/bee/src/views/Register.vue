@@ -66,6 +66,7 @@ export default {
         name: state.username,
         password: state.password
       })
+      router.push({ path: '/login' })
     }
     const toLogin = () => {
       router.push({ path: '/login' })
