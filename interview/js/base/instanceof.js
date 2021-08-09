@@ -1,14 +1,27 @@
-function myInstanceof(left,right){
-  let proto=left._proto_;
-  let prototype=right.prototype
-  while(L!=null){//最上层
-  if(proto==prototype){
-      return true
-  }else{
-      proto=left._proto_
+// function _instanceof (obj, type) {
+//   //Object.prototype.toString.call(obj)
+//   let proto = obj.__proto__
+//   let prototype = type.prototype
+//   while (proto !== null) {
+//     if (proto == prototype) {
+//       return true
+//     } else {
+//       proto = proto.__proto__
+//     }
+//   }
+//   return false
+// }
+
+function _instanceof (L, R) {
+  let O = R.prototype
+  let N = L.__proto__
+  while (N !== null) {
+    if (N === O) return true
+    N = N.__proto__
   }
+  return false
 }
-return false
-}
-var str1=new String('hello world')
-console.log(myInstanceof(str1,String))
+
+// var str1 = 'hello world'
+console.log(_instanceof([], String))
+// console.log('111' instanceof String);

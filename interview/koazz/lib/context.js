@@ -17,6 +17,5 @@ function defineSetter (prop, name) {
 defineGetter('request', 'url')
 defineGetter('request', 'path')
 defineGetter('response', 'body')
-
 defineSetter('response', 'body')
 module.exports = proto
