@@ -25,7 +25,8 @@
         <span>我收藏的游记</span>
         <van-icon name="arrow" />
       </li>
-      <li class="van-hairline--bottom">
+      <li class="van-hairline--bottom"
+          @click="manageUser">
         <span>账号管理</span>
         <van-icon name="arrow" />
       </li>
@@ -50,6 +51,7 @@ export default {
     "nav-bar": buttom
   },
   setup () {
+
     const loading = ref(true);
     const state = reactive({
       userInfo: {}
@@ -64,6 +66,14 @@ export default {
       loading.value = false;
       console.log(state.userInfo._user)
     }
+    const manageUser = () => {
+      router.push({
+        path: '/myinfo',
+        query: { "user": state.userInfo._user }
+      }
+
+      )
+    }
     onMounted(() => {
       if (!token) {
         Toast('没有登录，请登录', 'fail')
@@ -74,7 +84,8 @@ export default {
 
     return {
       state,
-      loading
+      loading,
+      manageUser
     }
   }
 }
@@ -107,8 +118,8 @@ export default {
     width: 94%;
     margin: 10px;
     height: 115px;
-    background: linear-gradient(90deg, #1baeae, #51c7c7);
-    box-shadow: 0 2px 5px #269090;
+    background: linear-gradient(90deg, #1bae3b, #65c751);
+    box-shadow: 0 2px 5px #329026;
     border-radius: 6px;
     .info {
       position: relative;
