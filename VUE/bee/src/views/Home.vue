@@ -50,7 +50,7 @@ export default {
 
     const getTrevalList = async () => {
       state.travelList = await getList()
-      console.log(state.travelList.allNote)
+      // console.log(state.travelList.allNote)
     }
     onMounted(() => {
       getTrevalList()

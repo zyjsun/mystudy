@@ -42,44 +42,43 @@
 <script>
 import { onMounted, reactive, ref } from '@vue/runtime-core'
 import buttom from '../components/Footer.vue'
-import { getLocal } from '../common/local'
+
 import { Toast } from 'vant'
 import { useRouter } from 'vue-router'
-import { getInfo } from '../../api/service/user'
+import { useStore } from 'vuex'
 export default {
   components: {
     "nav-bar": buttom
   },
   setup () {
-
+    const router = useRouter()
     const loading = ref(true);
+    const store = useStore()
     const state = reactive({
       userInfo: {}
-    }
-    )
-    const token = getLocal('token')
-    const router = useRouter()
-    const getUserInfo = async () => {
-      state.userInfo = await getInfo({
-        _id: token
-      })
-      loading.value = false;
-      console.log(state.userInfo._user)
-    }
+    })
+
+    // const getUserInfo = async () => {
+    //   state.userInfo = await getInfo({
+    //     _id: token
+    //   })
+    //   loading.value = false;
+    //   console.log(state.userInfo._user)
+    // }
     const manageUser = () => {
       router.push({
-        path: '/myinfo',
-        query: { "user": state.userInfo._user }
+        path: '/myinfo'
       }
-
       )
     }
-    onMounted(() => {
-      if (!token) {
+    onMounted(async () => {
+      await store.dispatch('getUser')
+      state.userInfo = store.state.userInfo
+      if (state.userInfo !== {}) {
         Toast('没有登录，请登录', 'fail')
         router.push({ path: '/login' })
       }
-      getUserInfo()
+      loading.value = false;
     })
 
     return {

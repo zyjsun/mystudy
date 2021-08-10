@@ -13,11 +13,15 @@
 </template>
 
 <script>
-import { useRoute } from 'vue-router'
+import { onMounted, reactive } from '@vue/runtime-core';
+import $store from '../store/index'
 export default {
   setup () {
-    const route = useRoute()
-    const user = route.query.user
+    let user = reactive({})
+    onMounted(() => {
+      user = $store.state.userInfo
+      console.log(user);
+    })
     return {
       user
     }
