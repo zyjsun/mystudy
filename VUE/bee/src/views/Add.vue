@@ -88,7 +88,7 @@ export default {
 }
 </script>
 
-<style lang='less'>
+<style scoped lang='less'>
 .all {
   margin: 0 auto;
   background-image: url("../assets/add.jpg");
