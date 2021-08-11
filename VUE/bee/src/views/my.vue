@@ -74,7 +74,7 @@ export default {
     onMounted(async () => {
       await store.dispatch('getUser')
       state.userInfo = store.state.userInfo
-      if (state.userInfo !== {}) {
+      if (state.userInfo == {}) {
         Toast('没有登录，请登录', 'fail')
         router.push({ path: '/login' })
       }

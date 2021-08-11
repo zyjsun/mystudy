@@ -11,3 +11,7 @@ export function register (params) {
 export function getInfo (params) {
   return axios.post('/userInfo', params)
 }
+
+export function updateInfo (params) {
+  return axios.post('/updateInfo', params)
+}

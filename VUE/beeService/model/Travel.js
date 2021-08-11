@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 const TravelSchema = new Schema({
   title: {
     type: String,
-    require: true,
+    require: true
   },
   content: {
     type: String,

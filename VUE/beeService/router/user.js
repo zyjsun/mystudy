@@ -56,12 +56,25 @@ module.exports = {
     const user = await UserModel.findOne({ _id: token })
     // console.log(user)
     ctx.body = {
-      message: '更新成功',
+      message: '用户已经登录',
       resultCode: 200,
       _user: user,
     }
 
+  },
+  async updateUser (ctx, next) {
+    let { signContent, nickname, userImg, password, _id } = ctx.request.body
+    // console.log(userImg)
+    const salt = bcrypt.genSaltSync(10)
+    password = await bcrypt.hash(password, salt)
+    await UserModel.findByIdAndUpdate(_id, { signContent, nickname, password, userImg })
+    ctx.body = {
+      message: '修改成功,请重新登录',
+      resultCode: 200
+    }
   }
+
+
 
 
   // 退出登录

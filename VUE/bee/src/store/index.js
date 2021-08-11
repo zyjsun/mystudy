@@ -16,7 +16,7 @@ export default createStore({
       state.userInfo = await getInfo({
         _id: token
       })
-      console.log(state.userInfo)
+      // console.log(state.userInfo)
       // return this.state.userInfo._user
       // console.log(this.state.userInfo)
     }

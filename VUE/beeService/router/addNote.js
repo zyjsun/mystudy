@@ -1,12 +1,12 @@
 
 const TravelModel = require('../model/Travel')
-
 module.exports = {
   async add (ctx, next) {
     // console.log(ctx.request.body)
-    const { title, content, contentImg, author } = ctx.request.body
+    const { title, content, contentImg, author, authorImg } = ctx.request.body
+
     let note = {
-      title, content, contentImg, author
+      title, content, contentImg, author, authorImg
     }
     await TravelModel.create(note)
     ctx.body = {
