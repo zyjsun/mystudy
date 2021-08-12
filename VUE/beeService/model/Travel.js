@@ -30,7 +30,7 @@ const TravelSchema = new Schema({
   },
   meta: {
     createAt: {
-      type: Date,
+      type: String,
       default: getTime()
     }
   }

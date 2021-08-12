@@ -5,7 +5,8 @@ export default createStore({
   state: {
     userInfo: {
 
-    }
+    },
+    _id: ''
   },
   mutations: {
 
@@ -13,6 +14,7 @@ export default createStore({
   actions: {
     async getUser ({ state }) {
       const token = getLocal('token')
+      state._id = token
       state.userInfo = await getInfo({
         _id: token
       })

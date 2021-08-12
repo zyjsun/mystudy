@@ -15,11 +15,7 @@
                      name="content"
                      placeholder="请输入游记内容"
                      :rules="[{ required: true, message: '输入游记内容不能为空' }]" />
-          <!-- <van-field v-model="authorName"
-                     label="你的昵称"
-                     name="authorName"
-                     placeholder="请输入作者名"
-                     :rules="[{ required: true, message: '请输入你的名字' }]" /> -->
+
         </van-cell-group>
       </div>
       <div class="photo">
@@ -57,7 +53,6 @@ export default {
       content: '',
       fileList: [],
       userInfo: {}
-      // authorName: ''
     })
     const router = useRouter()
     const store = useStore()
@@ -68,7 +63,6 @@ export default {
         Toast('没有登录，请登录', 'fail')
         router.push({ path: '/login' })
       }
-
     })
     const onSubmit = async (values) => {
 

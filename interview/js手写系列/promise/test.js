@@ -45,3 +45,82 @@ myPromise.prototype.then = function (onFulfilled, onRejected) {//接受两个参
   }
 
 }
+
+
+
+
+
+
+
+
+
+// Function.prototype.myApply = function (context) {
+//   context = context || window
+//   if (typeof this !== 'function') {
+//     throw typeof Error
+//   }
+//   const fn = Symbol(context)
+//   context[fn] = this
+//   let result
+//   if (arguments[1]) {
+//     result = context[fn](...arguments[1])
+//   } else {
+//     result = context[fn]()
+//   }
+//   delete context[fn]
+//   return result
+// }
+
+// Function.prototype.mycall = function (context) {
+//   context = context || window
+//   if (typeof this !== 'function') {
+//     throw typeof Error
+//   }
+//   const fn = Symbol(context)
+//   context[fn] = this
+//   let arg = [...arguments].slice(1)
+//   let result
+//   if (arg) {
+//     result = context[fn](...arg)
+//   } else {
+//     result = context[fn]()
+//   }
+//   delete context[fn]
+//   return result
+// }
+
+
+// Function.prototype.myBind = function (context) {
+//   if (typeof this !== 'function') {
+//     throw new TypeError('error')
+//   }
+//   context = context || window
+//   const _this = this
+//   let args = [...arguments].slice(1)
+//   let fn = function () { }
+//   let F = function () {
+//     if (this instanceof F) {
+//       return new _this(...args, ...arguments)
+//     }
+//     return _this.apply(context, args.concat(...arguments))
+//   }
+//   fn.prototype = _this.prototype
+//   F.prototype = fn.prototype
+//   return F
+// }
+
+// let obj = {
+//   name: 'zz'
+//   // fn:function person(){
+
+//   // }
+// }
+// //obj.person()
+// function person (x, y, z) {
+//   console.log(this.name)
+//   console.log(x, y, z);
+// }
+// // let a = person.mybind(obj)
+// // a(1, 2, 4)
+// // person.myApply(obj, [1, 2, 3])
+

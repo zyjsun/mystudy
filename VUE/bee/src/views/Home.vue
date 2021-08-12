@@ -30,7 +30,6 @@
 import buttom from '../components/Footer.vue'
 import note from '../components/note.vue'
 import { ref, onMounted, reactive, toRefs } from 'vue'
-// import { getLocal } from '../../src/common/local.js'
 import { getList } from '../../api/service/TravelNote'
 export default {
   components: {
@@ -43,14 +42,8 @@ export default {
       travelList: []
     })
     let active = ref(2)
-    // onMounted(() => {
-    //   const token = getLocal('token')
-    //   console.log(token)
-    // })
-
     const getTrevalList = async () => {
       state.travelList = await getList()
-      // console.log(state.travelList.allNote)
     }
     onMounted(() => {
       getTrevalList()

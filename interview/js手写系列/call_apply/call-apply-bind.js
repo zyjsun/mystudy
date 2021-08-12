@@ -93,6 +93,8 @@ Function.prototype.myApply = function (context) {
 //     return _this.apply(context, args.concat(...arguments))
 //   }
 // }
+
+//重点
 Function.prototype.myBind = function (context) {
   if (typeof this !== 'function') {
     throw new TypeError('error')
@@ -110,8 +112,8 @@ Function.prototype.myBind = function (context) {
     // 把this调用掉
     return _this.apply(context, args.concat(...arguments))
   }
-  fn.prototype = _this.prototype
-  F.prototype = new fn()
+  fn.prototype = _this.prototype//调用mycall的函数的this
+  F.prototype = new fn()//mybind 返回的函数的显式原型加上调用mycall的函数的this的显示原型，不然new出来的实例识别不了调用mycall的函数的原型
 
   // F.prototype = _this.prototype
   return F
@@ -131,7 +133,7 @@ function person (x, y, z) {
 
 // person.myApply(obj)
 // let test = person.myBind(obj, 1, 2, 3)
-// test()
+// new test() person{}
 
 
 function Animal (name, color) {
@@ -142,7 +144,7 @@ Animal.prototype.say = function () {
   return `I'm a ${this.color} ${this.name}`;
 };
 const Cat = Animal.myBind(null, 'cat');
-const cat = new Cat('white');
+const cat = new Cat('white');//f()
 if (cat.say() === 'I\'m a white cat' &&
   cat instanceof Cat && cat instanceof Animal) {
   console.log('success');

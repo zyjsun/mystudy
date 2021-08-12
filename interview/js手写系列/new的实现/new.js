@@ -25,7 +25,7 @@ function myNew (arg) {
 
 function Fn (name) {
   this.name = name
-  return {}
+  // return {}
 }
 
 myNew(Fn, 'zz')//{name: zz}
