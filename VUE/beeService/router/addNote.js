@@ -20,5 +20,16 @@ module.exports = {
       allNote,
       resultCode: 200
     }
+  },
+  async goods (ctx, next) {
+    console.log(ctx.request.body)
+    const { nums, _id } = ctx.request.body
+    await TravelModel.findOneAndUpdate(_id, { nums })
+    // ctx.body = {
+    //   allNote,
+    //   resultCode: 200
+    // }
   }
+
 }
+

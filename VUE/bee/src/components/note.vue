@@ -33,8 +33,9 @@
                   size="25"
                   class="hand"
                   :class="{'active':header}"
-                  @click="good(index)" />
+                  @click="good(index,item)" />
       </div>
+
     </div>
   </div>
 </template>
@@ -47,33 +48,48 @@ import $store from '../store/index'
 import { onMounted } from '@vue/runtime-core'
 import { Toast } from 'vant'
 export default {
-  props: ['travelList'],
-  setup (props) {
+  props: {
+    travelList: {
+      type: Object
+    }
+  },
+  setup () {//不能修改
     const state = reactive({
       headerlove: false,
       header: false,
-      allNote: props.allNote,
+      List: {},
       num: [],
       id: ''
     })
-    const good = (index) => {
+    //点赞
+    const good = (index, item) => {
       if ($store.state._id) {
         state.header = !state.header
+        console.log(index, item)
+        const _id = item._id
+        // const numId=index
         debounce(async () => {
+          console.log(2)
           state.num[index]++
           await goods({
-            num: state.num
+            num: state.num[index],
+            _id: _id
           })
-        }, 1000)
+        }, 100)()
       } else {
         Toast('登陆后即可点赞', 'fail')
       }
     }
+    // const change = () => {
+    //   state.List = props
+    // }
+    //收藏
     const like = () => {
       state.headerlove = !state.headerlove
     }
-    onMounted(() => {
-      console.log(props.travelList.allNote, state.allNote)
+    onMounted(async () => {
+      // await change()
+      // console.log(props)
       // for (let i = 0; i < props.travelList.allNote.length; i++) {
       //   state.num[i] = props.travelList.allNote[i].nums
       // }
@@ -83,7 +99,7 @@ export default {
     return {
       ...toRefs(state),
       good,
-      like
+      like,
     }
   }
 }
