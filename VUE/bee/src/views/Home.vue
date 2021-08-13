@@ -30,7 +30,7 @@
 import buttom from '../components/Footer.vue'
 import note from '../components/note.vue'
 import { ref, onMounted, reactive, toRefs } from 'vue'
-import { getList } from '../../api/service/TravelNote'
+import $store from '../store/index'
 export default {
   components: {
     "b-footer": buttom,
@@ -41,11 +41,13 @@ export default {
       active: 2,
       travelList: []
     })
+
     let active = ref(2)
     const getTrevalList = async () => {
-      state.travelList = await getList()
+      state.travelList = $store.state.travelList
     }
-    onMounted(() => {
+    onMounted(async () => {
+      await $store.dispatch('getTrevalList')
       getTrevalList()
     })
 

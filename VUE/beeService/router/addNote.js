@@ -2,11 +2,11 @@
 const TravelModel = require('../model/Travel')
 module.exports = {
   async add (ctx, next) {
-    // console.log(ctx.request.body)
-    const { title, content, contentImg, author, authorImg } = ctx.request.body
+
+    const { title, content, contentImg, author, authorImg, goodnums } = ctx.request.body
 
     let note = {
-      title, content, contentImg, author, authorImg
+      title, content, contentImg, author, authorImg, goodnums
     }
     await TravelModel.create(note)
     ctx.body = {
@@ -23,12 +23,11 @@ module.exports = {
   },
   async goods (ctx, next) {
     console.log(ctx.request.body)
-    const { nums, _id } = ctx.request.body
-    await TravelModel.findOneAndUpdate(_id, { nums })
-    // ctx.body = {
-    //   allNote,
-    //   resultCode: 200
-    // }
+    const { goodnums, _id } = ctx.request.body
+    await TravelModel.findOneAndUpdate(_id, { goodnums })
+    ctx.body = {
+      resultCode: 200
+    }
   }
 
 }

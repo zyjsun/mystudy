@@ -29,6 +29,7 @@
         <van-icon name="down"
                   size="25"
                   @click="showContent" />
+        <span>点赞数{{goodnums[index]}}</span>
         <van-icon name="good-job-o"
                   size="25"
                   class="hand"
@@ -58,8 +59,8 @@ export default {
       headerlove: false,
       header: false,
       List: {},
-      num: [],
-      id: ''
+      id: '',
+      goodnums: $store.state.goodnums
     })
     //点赞
     const good = (index, item) => {
@@ -70,12 +71,12 @@ export default {
         // const numId=index
         debounce(async () => {
           console.log(2)
-          state.num[index]++
+          $store.state.goodnums[index]++
           await goods({
-            num: state.num[index],
+            goodnums: $store.state.goodnums[index],
             _id: _id
           })
-        }, 100)()
+        }, 1000)()
       } else {
         Toast('登陆后即可点赞', 'fail')
       }

@@ -52,7 +52,8 @@ export default {
       title: '',
       content: '',
       fileList: [],
-      userInfo: {}
+      userInfo: {},
+      nums: 0
     })
     const router = useRouter()
     const store = useStore()
@@ -70,6 +71,7 @@ export default {
         title: values.title,
         content: values.content,
         contentImg: state.fileList,
+        goodnums: state.nums,
         author: state.userInfo._user.nickname,
         authorImg: state.userInfo._user.userImg
       })
