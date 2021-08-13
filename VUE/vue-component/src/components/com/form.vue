@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'iForm',
-  provide () {
+  provide() {
     return {
       form: this
     }
@@ -16,7 +16,7 @@ export default {
     mode: {
       type: Object
     },
-    prop: {
+    rules: {
       type: Object
     }
   },
@@ -25,7 +25,7 @@ export default {
       fields: []
     }
   },
-  created () {
+  created() {
     this.$on('on-form-item-add', (field) => {
       if (field) this.fields.push(field)
     })
@@ -34,29 +34,30 @@ export default {
     })
   },
   methods: {
-    validate (callback) {
+    validate(callback) {
       return new Promise(resolve => {
-        let valid = true, count = 0
+        let valid = true
+        let count = 0
         this.fields.forEach(field => {
           field.validate('', errors => {
             if (errors) {
               valid = false
             }
-            if (++count == this.fields.length) {
-              //全部完成
+            if (++count === this.fields.length) {
+              // 全部完成
               resolve(valid)
               if (typeof callback === 'function') {
                 callback(valid)
               }
             }
           })
-        })
+        });
       })
     }
   }
-
 }
 </script>
 
 <style>
+
 </style>

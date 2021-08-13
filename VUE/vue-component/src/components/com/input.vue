@@ -1,33 +1,31 @@
 <template>
-  <input type="text"
-         @input="handleInput"
-         @blur="handBlur"
-         :value="currentValue">
+  <input type="text" :value="currentValue" @input="handleInput" @blur="handleBlur">
 </template>
 
 <script>
-import Emmiter from '../mixins/emitter.js'
+import Emitter from '../../mixins/emitter.js'
 export default {
   name: 'iInput',
-  mixins: [Emmiter],
-  data () {
+  mixins: [ Emitter ],
+  data() {
     return {
       currentValue: ''
     }
   },
   methods: {
-    handleInput (event) {
+    handleInput(event) {
       const value = event.target.value
       this.currentValue = value
       this.$emit('input', value)
       this.dispatch('iFormItem', 'on-form-change', value)
     },
-    handBlur () {
+    handleBlur() {
       this.dispatch('iFormItem', 'on-form-blur', this.currentValue)
     }
-  },
+  }
 }
 </script>
 
 <style>
+
 </style>
