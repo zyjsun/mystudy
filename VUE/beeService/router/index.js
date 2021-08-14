@@ -7,6 +7,9 @@ module.exports = (app) => {
   router.post('/userInfo', require('./user').show)
   router.post('/updateInfo', require('./user').updateUser)
   router.post('/goods', require('./addNote').goods)
+  router.get('/getGoodImg', require('./goodImg').getGoodImg)
+  router.post('/sendGoodImg', require('./goodImg').sendGoodImg)
+
 
   app
     .use(router.routes())

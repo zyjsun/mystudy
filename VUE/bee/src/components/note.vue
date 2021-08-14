@@ -11,7 +11,6 @@
                alt="">
         </div>
       </div>
-
       <div class="content">{{item.content}}</div>
       <div class="Author">
         作者:
@@ -19,6 +18,16 @@
              alt="">
         <span>{{item.author}}</span>
         <span class="author">{{item.meta.createAt}}</span>
+      </div>
+      <div class="goodcontent">
+        <span>点赞数{{goodnums[index]}}</span>
+        点赞者：
+        <div v-for="(pic,index2) of goodImg[index]"
+             :key="index2">
+          <img :src="pic"
+               v-if="isgoodindex[]=='true'"
+               alt="">
+        </div>
       </div>
       <div class="function">
         <van-icon name="like-o"
@@ -29,7 +38,6 @@
         <van-icon name="down"
                   size="25"
                   @click="showContent" />
-        <span>点赞数{{goodnums[index]}}</span>
         <van-icon name="good-job-o"
                   size="25"
                   class="hand"
@@ -48,6 +56,7 @@ import { goods } from '../../api/service/TravelNote'
 import $store from '../store/index'
 import { onMounted } from '@vue/runtime-core'
 import { Toast } from 'vant'
+import { sendGoodImg, getGoodImg } from '../../api/service/GoodImage'
 export default {
   props: {
     travelList: {
@@ -60,23 +69,49 @@ export default {
       header: false,
       List: {},
       id: '',
-      goodnums: $store.state.goodnums
+      goodnums: $store.state.goodnums,
+      isgood: [],
+      goodImg: []
     })
     //点赞
     const good = (index, item) => {
       if ($store.state._id) {
         state.header = !state.header
-        console.log(index, item)
+
         const _id = item._id
-        // const numId=index
+        // state.goodImg = $store.state.userInfo._user.userImg
+        if (!state.goodImg[index].includes($store.state.userInfo._user.userImg)) {
+          state.goodImg[index].push($store.state.userInfo._user.userImg)
+        }
+
         debounce(async () => {
-          console.log(2)
-          $store.state.goodnums[index]++
-          await goods({
-            goodnums: $store.state.goodnums[index],
-            _id: _id
-          })
-        }, 1000)()
+          if (state.isgood[index] == 'false') {
+            $store.state.goodnums[index]++
+            state.isgood[index] = 'true'
+            await goods({
+              goodnums: $store.state.goodnums[index],
+              _id: _id
+            })
+            await sendGoodImg({
+              allGoodImg: state.goodImg,
+              index: index
+            })
+          } else {
+            if (state.goodImg[index].includes($store.state.userInfo._user.userImg)) {
+              state.goodImg[index].splice(state.goodImg[index].indexOf($store.state.userInfo._user.userImg), 1)
+            }
+            $store.state.goodnums[index]--
+
+            state.isgood[index] = 'false'
+            await goods({
+              goodnums: $store.state.goodnums[index],
+              _id: _id
+            })
+            await sendGoodImg({
+              allGoodImg: state.goodImg
+            })
+          }
+        }, 100)()
       } else {
         Toast('登陆后即可点赞', 'fail')
       }
@@ -89,13 +124,24 @@ export default {
       state.headerlove = !state.headerlove
     }
     onMounted(async () => {
+
+      let list = ''
+      for (let i = 0; i < state.goodnums.length + 1; i++) {
+        state.goodImg.push([])
+        state.isgood.push('false')
+      }
+      console.log(state.isgood);
+      list = await getGoodImg()
+      state.goodImg = list.GoodImgArray[0].allGoodImg
+
+      // state.isgood.shift()
       // await change()
       // console.log(props)
       // for (let i = 0; i < props.travelList.allNote.length; i++) {
       //   state.num[i] = props.travelList.allNote[i].nums
       // }
 
-      console.log($store.state._id)
+      // console.log($store.state._id)
     })
     return {
       ...toRefs(state),
@@ -133,6 +179,21 @@ export default {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+    }
+    .goodcontent {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 20px;
+      justify-content: space-between;
+      img {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+      }
+      span {
+        line-height: 20px;
+      }
     }
     .function {
       height: 40px;

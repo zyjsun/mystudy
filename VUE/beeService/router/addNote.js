@@ -22,9 +22,9 @@ module.exports = {
     }
   },
   async goods (ctx, next) {
-    console.log(ctx.request.body)
+    // console.log(ctx.request.body)
     const { goodnums, _id } = ctx.request.body
-    await TravelModel.findOneAndUpdate(_id, { goodnums })
+    await TravelModel.findByIdAndUpdate(_id, { goodnums })
     ctx.body = {
       resultCode: 200
     }

@@ -37,7 +37,7 @@ module.exports = {
     const { name, password } = ctx.request.body;
     const user = await UserModel.findOne({ name })
     if (user && await bcrypt.compare(password, user.password)) {
-      console.log(user);
+      // console.log(user);
       ctx.body = {
         message: '登录成功',
         resultCode: 200,

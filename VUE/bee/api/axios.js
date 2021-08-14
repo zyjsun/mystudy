@@ -26,7 +26,7 @@ axios.interceptors.response.use(res => {
   } else {
     // console.log(res.data.message);
     if (res.data.message == "用户已经登录" || res.data.message == undefined) {
-      console.log(1)
+      // console.log(1)
     } else {
       Toast.success(res.data.message)
     }

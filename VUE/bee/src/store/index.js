@@ -7,7 +7,6 @@ export default createStore({
     userInfo: {
     },
     travelList: {
-
     },
     goodnums: [],
     _id: ''
