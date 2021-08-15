@@ -11,10 +11,11 @@ module.exports = {
   },
   async sendGoodImg (ctx, next) {
 
-    const { allGoodImg, index } = ctx.request.body
+    const { allGoodImg, userName, index } = ctx.request.body
     // console.log(ctx.request.body);
     let __v = 0
     let list = []
+    let item = { allGoodImg, userName }
     // let _id = '6117d709ef536640100245cc'
     // console.log((await GoodImgModel.exists()).valueOf)
     list = await GoodImgModel.find({})
@@ -22,10 +23,11 @@ module.exports = {
     if (list.toString() !== '') {
       console.log(2);
       await GoodImgModel.findOneAndUpdate(__v, {
-        allGoodImg
+        allGoodImg,
+        userName
       })
     } else {
-      await GoodImgModel.create(allGoodImg)
+      await GoodImgModel.create(item)
     }
     ctx.body = {
       resultCode: 200,

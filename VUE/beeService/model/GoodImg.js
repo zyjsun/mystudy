@@ -6,7 +6,12 @@ const GoodImg = new Schema({
   allGoodImg: {
     type: Array,
     default: []
+  },
+  userName: {
+    type: Array,
+    default: []
   }
+
 })
 
 module.exports = mongoose.model('GoodImg', GoodImg)

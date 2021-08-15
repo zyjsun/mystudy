@@ -21,11 +21,11 @@
       </div>
       <div class="goodcontent">
         <span>点赞数{{goodnums[index]}}</span>
-        点赞者：
+        <span>点赞者：</span>
         <div v-for="(pic,index2) of goodImg[index]"
              :key="index2">
           <img :src="pic"
-               v-if="isgoodindex[]=='true'"
+               v-if="isgood[index]=='true'"
                alt="">
         </div>
       </div>
@@ -41,7 +41,7 @@
         <van-icon name="good-job-o"
                   size="25"
                   class="hand"
-                  :class="{'active':header}"
+                  :class="{'active': isgood[index]=='true'}"
                   @click="good(index,item)" />
       </div>
 
@@ -65,50 +65,60 @@ export default {
   },
   setup () {//不能修改
     const state = reactive({
-      headerlove: false,
-      header: false,
+      headerlove: [],
       List: {},
       id: '',
       goodnums: $store.state.goodnums,
       isgood: [],
-      goodImg: []
+      goodImg: [],
+      userName: []
     })
     //点赞
     const good = (index, item) => {
       if ($store.state._id) {
-        state.header = !state.header
-
         const _id = item._id
-        // state.goodImg = $store.state.userInfo._user.userImg
-        if (!state.goodImg[index].includes($store.state.userInfo._user.userImg)) {
+
+        if (!state.goodImg[index].includes($store.state.userInfo._user.userImg) ||
+          !state.userName[index].includes($store.state.userInfo._user.name)) {
           state.goodImg[index].push($store.state.userInfo._user.userImg)
         }
-
         debounce(async () => {
           if (state.isgood[index] == 'false') {
-            $store.state.goodnums[index]++
+            if (!state.userName[index].includes($store.state.userInfo._user.name)) {
+              state.userName[index].push($store.state.userInfo._user.name)
+            } else {
+              Toast('亲你已经赞过')
+              return
+            }
             state.isgood[index] = 'true'
+
+            $store.state.goodnums[index]++
             await goods({
               goodnums: $store.state.goodnums[index],
               _id: _id
             })
             await sendGoodImg({
               allGoodImg: state.goodImg,
+              userName: state.userName,
               index: index
             })
           } else {
-            if (state.goodImg[index].includes($store.state.userInfo._user.userImg)) {
-              state.goodImg[index].splice(state.goodImg[index].indexOf($store.state.userInfo._user.userImg), 1)
-            }
+            state.goodImg[index].splice(state.goodImg[index].indexOf($store.state.userInfo._user.userImg), 1)
+            state.userName[index].splice(state.goodImg[index].indexOf($store.state.userInfo._user.name), 1)
+            state.isgood[index] = 'false'
+            //  if(state.userName[index].includes($store.state.userInfo._user.name)){
+            //         Toast('亲你已经赞过')
+            // return
+            //   }
             $store.state.goodnums[index]--
 
-            state.isgood[index] = 'false'
             await goods({
               goodnums: $store.state.goodnums[index],
               _id: _id
             })
             await sendGoodImg({
-              allGoodImg: state.goodImg
+              allGoodImg: state.goodImg,
+              userName: state.userName,
             })
           }
         }, 100)()
@@ -128,11 +138,16 @@ export default {
       let list = ''
       for (let i = 0; i < state.goodnums.length + 1; i++) {
         state.goodImg.push([])
+        state.userName.push([])
         state.isgood.push('false')
       }
-      console.log(state.isgood);
+      console.log($store.state.userInfo._user.name);
       list = await getGoodImg()
-      state.goodImg = list.GoodImgArray[0].allGoodImg
+      console.log(list);
+      for (let i = 0; i < list.GoodImgArray[0].allGoodImg.length; i++) {
+        state.goodImg[i] = list.GoodImgArray[0].allGoodImg[i]
+        state.userName[i] = list.GoodImgArray[0].userName[i]
+      }
 
       // state.isgood.shift()
       // await change()
@@ -156,8 +171,9 @@ export default {
 .TL {
   width: 90vw;
   margin: 0 auto;
+  margin-bottom: 40px;
   .travelList {
-    border-radius: 20px solid yellowgreen;
+    border-bottom: solid yellowgreen;
     width: 100%;
     margin-bottom: 20px;
     .img {
@@ -185,12 +201,13 @@ export default {
       flex-direction: row;
       width: 100%;
       height: 20px;
-      justify-content: space-between;
+
       img {
         width: 20px;
         height: 20px;
         border-radius: 50%;
       }
+
       span {
         line-height: 20px;
       }
