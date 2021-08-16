@@ -35,9 +35,9 @@
                   size="25"
                   :class="{'active':headerlove}"
                   @click="like" />
-        <van-icon name="down"
+        <van-icon name="closed-eye"
                   size="25"
-                  @click="showContent" />
+                  @click="showContent(index)" />
         <van-icon name="good-job-o"
                   size="25"
                   class="hand"
@@ -57,6 +57,8 @@ import $store from '../store/index'
 import { onMounted } from '@vue/runtime-core'
 import { Toast } from 'vant'
 import { sendGoodImg, getGoodImg } from '../../api/service/GoodImage'
+
+import { useRouter } from 'vue-router'
 export default {
   props: {
     travelList: {
@@ -64,6 +66,7 @@ export default {
     }
   },
   setup () {//不能修改
+    const router = useRouter()
     const state = reactive({
       headerlove: [],
       List: {},
@@ -91,7 +94,6 @@ export default {
               return
             }
             state.isgood[index] = 'true'
-
             $store.state.goodnums[index]++
             await goods({
               goodnums: $store.state.goodnums[index],
@@ -130,20 +132,22 @@ export default {
     //   state.List = props
     // }
     //收藏
+    const showContent = (index) => {
+      router.push({ path: `/content/${index}` })
+    }
     const like = () => {
       state.headerlove = !state.headerlove
     }
     onMounted(async () => {
-
       let list = ''
       for (let i = 0; i < state.goodnums.length + 1; i++) {
         state.goodImg.push([])
         state.userName.push([])
         state.isgood.push('false')
       }
-      console.log($store.state.userInfo._user.name);
+      // console.log($store.state.userInfo._user.name);
       list = await getGoodImg()
-      console.log(list);
+      // console.log(list);
       for (let i = 0; i < list.GoodImgArray[0].allGoodImg.length; i++) {
         state.goodImg[i] = list.GoodImgArray[0].allGoodImg[i]
         state.userName[i] = list.GoodImgArray[0].userName[i]
@@ -162,6 +166,7 @@ export default {
       ...toRefs(state),
       good,
       like,
+      showContent
     }
   }
 }

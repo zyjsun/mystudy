@@ -13,3 +13,4 @@ function zjy (str) {
 
 }
 console.log(zjy('11011'));
+
