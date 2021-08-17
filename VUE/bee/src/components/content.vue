@@ -10,7 +10,7 @@
         <span>发布于{{date}}</span>
       </div>
       <div class="photo">
-        <van-swipe :loop="false"
+        <van-swipe :loop="true"
                    :height="200"
                    :autoplay="1000"
                    lazy-render

@@ -12,5 +12,38 @@ function zjy (str) {
   }
 
 }
-console.log(zjy('11011'));
+// console.log(zjy('11011'));
+// 已知一个奇怪的队列，这个队列中有n个数，初始状态时，顺序是1,2,3,4,…n，是1-n按顺序排列。
+// 这个队列只支持一种操作，就是把队列中的第i号元素提前到队首(1<i<=n)，如有4个元素，初始为1，2，3，4,
+// 可以将3提前到队首，得到3，1，2，4 。 
+//  现在给出一个经过若干次操作之后的序列，请你找出这个序列至少是由原序列操作了多少次得到的。
 
+function change (carr) {
+  let arr = [...carr]
+  let j = 0
+  arr.sort((a, b) => a - b)
+  console.log(arr, carr);
+  for (let i = 0; i < arr.length; i++) {
+    // arr.splice(arr.indexOf(carr[i]), 1)
+    // console.log(arr);
+    // arr.unshift(carr[i])
+    // console.log(arr);
+    let index = carr.indexOf(carr[i] - 1)
+    // console.log(index);
+    // console.log(index);
+    let temp
+    temp = carr[index]//1
+    carr[index] = carr[i]//
+    carr[i] = temp
+    console.log(carr);
+    // [carr[i], carr[index]] = [carr[index], carr[i]]
+    j++
+    if (arr.toString() == carr.toString()) {
+      return j
+    }
+  }
+
+}
+a = [1, 2]
+b = [1, 2]
+console.log(change([3, 1, 2, 4]))
