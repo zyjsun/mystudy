@@ -66,28 +66,31 @@ export default {
 <style lang="less">
 .note {
   width: 100%;
-  height: 100vh;
+
   margin: 0 auto;
-  background-image: url("../assets/add.jpg");
+
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   .title {
     display: flex;
     flex-direction: column;
-
+    height: 50px;
     font-size: 40px;
     box-sizing: border-box;
     padding: 0 10px;
-    color: aquamarine;
+    color: rgb(223, 238, 233);
+    background-color: rgb(155, 211, 133);
     span {
       font-size: 10px;
       line-height: 10px;
-      float: right;
+      color: aquamarine;
+      right: 0;
+      top: 80px;
+      position: absolute;
     }
   }
   .photo {
-    margin-top: 10px;
     img {
       background-repeat: no-repeat;
       width: 100%;
@@ -99,9 +102,12 @@ export default {
     font-size: 20px;
     line-height: 20px;
     text-align: center;
-    // white-space: ;
+    background-color: rgb(217, 238, 211);
   }
   .author {
+    float: right;
+    padding: 0 10px;
+    line-height: 20px;
     img {
       width: 20px;
       height: 20px;

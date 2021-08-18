@@ -21,7 +21,8 @@
         <span>我的游记</span>
         <van-icon name="arrow" />
       </li>
-      <li class="van-hairline--bottom">
+      <li class="van-hairline--bottom"
+          @click="myLove">
         <span>我收藏的游记</span>
         <van-icon name="arrow" />
       </li>
@@ -80,11 +81,14 @@ export default {
       }
       loading.value = false;
     })
-
+    const myLove = () => {
+      router.push({ path: '/mylove' })
+    }
     return {
       state,
       loading,
-      manageUser
+      manageUser,
+      myLove
     }
   }
 }

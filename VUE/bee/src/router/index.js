@@ -30,6 +30,11 @@ const routes = [
     path: '/content/:id',
     name: 'content',
     component: import('../components/content.vue')
+  },
+  {
+    path: '/myLove',
+    name: 'myLove',
+    component: import('../components/myLove.vue')
   }
 ]
 

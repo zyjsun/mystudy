@@ -41,7 +41,9 @@ class ToDoList extends Component {
       <Fragment>
         <div>
           <label htmlFor='insertArea'>输入内容</label>
-          <input id="insertArea" className="input" value={this.state.inputValue} onChange={this.handleInputChange.bind(this)}></input>
+          <input id="insertArea" className="input"
+            value={this.state.inputValue}
+            onChange={this.handleInputChange.bind(this)}></input>
           <button onClick={this.subMit.bind(this)}>提交</button>
         </div>
         <ul>

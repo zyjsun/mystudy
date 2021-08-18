@@ -33,8 +33,8 @@
         <van-icon name="like-o"
                   class="love"
                   size="25"
-                  :class="{'active':headerlove}"
-                  @click="like" />
+                  :class="{'active' :headerlove[index]==true}"
+                  @click="like(index)" />
         <van-icon name="closed-eye"
                   size="25"
                   @click="showContent(index)" />
@@ -57,7 +57,6 @@ import $store from '../store/index'
 import { onMounted } from '@vue/runtime-core'
 import { Toast } from 'vant'
 import { sendGoodImg, getGoodImg } from '../../api/service/GoodImage'
-
 import { useRouter } from 'vue-router'
 export default {
   props: {
@@ -80,7 +79,6 @@ export default {
     const good = (index, item) => {
       if ($store.state._id) {
         const _id = item._id
-
         if (!state.goodImg[index].includes($store.state.userInfo._user.userImg) ||
           !state.userName[index].includes($store.state.userInfo._user.name)) {
           state.goodImg[index].push($store.state.userInfo._user.userImg)
@@ -108,12 +106,7 @@ export default {
             state.goodImg[index].splice(state.goodImg[index].indexOf($store.state.userInfo._user.userImg), 1)
             state.userName[index].splice(state.goodImg[index].indexOf($store.state.userInfo._user.name), 1)
             state.isgood[index] = 'false'
-            //  if(state.userName[index].includes($store.state.userInfo._user.name)){
-            //         Toast('亲你已经赞过')
-            // return
-            //   }
             $store.state.goodnums[index]--
-
             await goods({
               goodnums: $store.state.goodnums[index],
               _id: _id
@@ -128,15 +121,20 @@ export default {
         Toast('登陆后即可点赞', 'fail')
       }
     }
-    // const change = () => {
-    //   state.List = props
-    // }
-    //收藏
+
     const showContent = (index) => {
       router.push({ path: `/content/${index}` })
     }
-    const like = () => {
-      state.headerlove = !state.headerlove
+    const like = (index) => {
+      // console.log(!state.headerlove[index]);
+      if ($store.state._id) {
+        state.headerlove[index] = !state.headerlove[index]
+        $store.state.loveArr = state.headerlove
+
+      } else {
+        Toast('登陆后即可收藏', 'fail')
+      }
+      // console.log(state.headerlove[index], index);
     }
     onMounted(async () => {
       let list = ''
@@ -144,6 +142,7 @@ export default {
         state.goodImg.push([])
         state.userName.push([])
         state.isgood.push('false')
+        state.headerlove.push('false')
       }
       // console.log($store.state.userInfo._user.name);
       list = await getGoodImg()
@@ -152,15 +151,6 @@ export default {
         state.goodImg[i] = list.GoodImgArray[0].allGoodImg[i]
         state.userName[i] = list.GoodImgArray[0].userName[i]
       }
-
-      // state.isgood.shift()
-      // await change()
-      // console.log(props)
-      // for (let i = 0; i < props.travelList.allNote.length; i++) {
-      //   state.num[i] = props.travelList.allNote[i].nums
-      // }
-
-      // console.log($store.state._id)
     })
     return {
       ...toRefs(state),

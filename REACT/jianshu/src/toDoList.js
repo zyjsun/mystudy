@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-import 'antd/dist/antd.css'
-import { Input, Button, List } from 'antd';
-import store from './store/index.js'
+import axios from 'axios'
 
+import TodoListUI from './TodoListUI.js';
+import store from './store/index.js'
+import { getInputChangeAction, getAddItem, delItem, initListAction } from './store/actionCreators'
 
 
 class toDoList extends Component {
+  componentDidMount () {//生命周期
+    console.log('zz');
+    axios.get('https://www.fastmock.site/mock/39ac87de3060aa2bb2ba20a0ff375c81/cat-movie/hot')
+      .then((res) => {
+        // console.log(res);
+        const action = initListAction(res.data.movieList)
+        store.dispatch(action)
+      })
+  }
+
   constructor(props) {
     super(props)
     this.state = store.getState()
@@ -19,10 +30,11 @@ class toDoList extends Component {
   handleInputChange (e) {
     //创建一个action
     // console.log(e.target.value);
-    const action = {
-      type: 'change_input_value',
-      value: e.target.value
-    }
+    // const action = {
+    //   type: CHANGE_INPUT_VALUE,
+    //   value: e.target.value
+    // }
+    const action = getInputChangeAction(e.target.value)
     // const newState=
     store.dispatch(action)
 
@@ -30,45 +42,34 @@ class toDoList extends Component {
 
   submit () {
     // console.log(e);
-    const action = {
-      type: 'change_list_value',
+    // const action = {
+    //   type: ADD_TODO_ITEM,
 
-    }
+    // }
+    const action = getAddItem()
     store.dispatch(action)
-    this.setState({
-      inputValue: ''
-    })
+    // this.setState({
+    //   inputValue: ''
+    // })
   }
 
   remove (e) {
-    console.log(e);
-    const action = {
-      type: 'del_list_value',
-      value: e
-    }
+    // console.log(e);
+    // const action = {
+    //   type: DELETE_TODO_ITEM,
+    //   value: e
+    // }
+    const action = delItem(e)
     store.dispatch(action)
   }
   render () {
     return (
-      <div style={{ marginTop: '10px', marginLeft: '10px' }}>
-        <div>
-          <Input onChange={this.handleInputChange.bind(this)} type="text"
-            value={this.state.inputValue}
-            style={{ width: '300px', marginRight: '10px' }}
-            placeholder="todo info" />
-          <Button type="primary" onClick={this.submit.bind(this)}>提交</Button>
-        </div>
-        <List
-          style={{ marginTop: '10px', width: '300px' }}
-          bordered
-          dataSource={this.state.list}
-          renderItem={(item, index) => (
-            <List.Item onClick={this.remove.bind(this, index)}>
-              {item}
-            </List.Item>
-          )}
-        />
-      </div>
+      <TodoListUI inputValue={this.state.inputValue}
+        list={this.state.list}
+        handleInputChange={this.handleInputChange}
+        submit={this.submit}
+        remove={this.remove}
+      />
     );
   }
 

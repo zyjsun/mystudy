@@ -8,11 +8,12 @@
                      label="游记标题"
                      name="title"
                      placeholder="请输入标题"
-                     size=large
                      :rules="[{ required: true, message: '标题不能为空' }]" />
           <van-field v-model="content"
                      label="游记内容"
                      name="content"
+                     type="textarea"
+                     autosize="true"
                      placeholder="请输入游记内容"
                      :rules="[{ required: true, message: '输入游记内容不能为空' }]" />
 

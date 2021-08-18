@@ -9,10 +9,20 @@ export default createStore({
     travelList: {
     },
     goodnums: [],
-    _id: ''
+    _id: '',
+    loveArr: [],
+    loveContentArr: []
   },
   mutations: {
+    getLoveList (state) {
+      console.log(1);
+      state.loveArr.forEach((item, index) => {
+        if (item == true) {
+          state.loveContentArr.push(state.travelList.allNote[index])
+        }
+      })
 
+    }
   },
   actions: {
     async getUser ({ state }) {
@@ -31,7 +41,8 @@ export default createStore({
         state.goodnums[i] = state.travelList.allNote[i].goodnums
       }
       console.log(state.goodnums);
-    }
+    },
+
   },
   modules: {
 
