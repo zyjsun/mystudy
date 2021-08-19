@@ -58,6 +58,7 @@ import { onMounted } from '@vue/runtime-core'
 import { Toast } from 'vant'
 import { sendGoodImg, getGoodImg } from '../../api/service/GoodImage'
 import { useRouter } from 'vue-router'
+import { postLoveContext, getLoveContext } from '../../api/service/LoveContext'
 export default {
   props: {
     travelList: {
@@ -125,12 +126,15 @@ export default {
     const showContent = (index) => {
       router.push({ path: `/content/${index}` })
     }
-    const like = (index) => {
+    const like = async (index) => {
       // console.log(!state.headerlove[index]);
       if ($store.state._id) {
         state.headerlove[index] = !state.headerlove[index]
-        $store.state.loveArr = state.headerlove
-
+        console.log(state.headerlove);
+        await postLoveContext({
+          _id: $store.state._id,
+          goodArr: state.headerlove
+        })
       } else {
         Toast('登陆后即可收藏', 'fail')
       }
@@ -138,15 +142,22 @@ export default {
     }
     onMounted(async () => {
       let list = ''
+      let loveList = ''
       for (let i = 0; i < state.goodnums.length + 1; i++) {
         state.goodImg.push([])
         state.userName.push([])
         state.isgood.push('false')
-        state.headerlove.push('false')
+        state.headerlove.push(false)
       }
       // console.log($store.state.userInfo._user.name);
       list = await getGoodImg()
-      // console.log(list);
+      await $store.dispatch('getUser')
+      loveList = await getLoveContext({
+        _id: $store.state._id
+      })
+      Array.from(loveList.data.goodArr).forEach((item, index) => {
+        state.headerlove[index] = item
+      })
       for (let i = 0; i < list.GoodImgArray[0].allGoodImg.length; i++) {
         state.goodImg[i] = list.GoodImgArray[0].allGoodImg[i]
         state.userName[i] = list.GoodImgArray[0].userName[i]

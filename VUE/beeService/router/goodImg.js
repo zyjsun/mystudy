@@ -10,8 +10,7 @@ module.exports = {
     }
   },
   async sendGoodImg (ctx, next) {
-
-    const { allGoodImg, userName, index } = ctx.request.body
+    const { allGoodImg, userName } = ctx.request.body
     // console.log(ctx.request.body);
     let __v = 0
     let list = []

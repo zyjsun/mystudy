@@ -38,7 +38,6 @@ export default {
   },
   setup () {
     const state = reactive({
-      active: 2,
       travelList: []
     })
 
@@ -49,6 +48,7 @@ export default {
     onMounted(async () => {
       await $store.dispatch('getTrevalList')
       getTrevalList()
+
     })
 
     return {
