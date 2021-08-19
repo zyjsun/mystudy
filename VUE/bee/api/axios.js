@@ -5,7 +5,7 @@ import { Toast } from 'vant'
 
 // import router from '../src/router/index'
 
-axios.defaults.baseURL = 'http://127.0.0.1:3000'
+axios.defaults.baseURL = 'http://127.0.0.1:3001'
 // axios.defaults.withCredentials = true//跨域请求可以携带cookie
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers['token'] = localStorage.getItem('token') || ''

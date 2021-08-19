@@ -33,6 +33,6 @@ mongoose.connect(CONFIG.mongodb, {
 
 Router(app);
 
-app.listen(3000, (res, req) => {
-  console.log("服务器在3000端口启动!");
+app.listen(3001, (res, req) => {
+  console.log("服务器在3001端口启动!");
 });
