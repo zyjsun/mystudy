@@ -2,6 +2,7 @@ import React from 'react';
 import { CSSTransition } from 'react-transition-group'
 import { connect } from 'react-redux';
 import { actionCreators } from './store/index'
+import { Link } from 'react-router-dom'
 import {
   HeaderWrapper,
   Logo,
@@ -21,12 +22,14 @@ const Header = (props) => {
       <WrapperContainer>
         <Logo />
         <Nav>
-          <NavItem className='left active'>首页</NavItem>
-          <NavItem className='left'>下载app</NavItem>
-          <NavItem className='right'>登录</NavItem>
-          <NavItem className='right'>
-            <i className='iconfont'> &#xe636;</i>
-          </NavItem>
+          <Link to='/login'>
+            <NavItem className='left active'>首页</NavItem>
+            <NavItem className='left'>下载app</NavItem>
+            <NavItem className='right'>登录</NavItem>
+            <NavItem className='right'>
+              <i className='iconfont'> &#xe636;</i>
+            </NavItem>
+          </Link>
           <SearchWrapper>
             <CSSTransition in={props.focused} timeout={200} classNames='slide'>
               <NavSearch className={props.focused ? 'focused' : ''} onFocus={props.changeOnfocus} onBlur={props.changeOnfocus}></NavSearch>
