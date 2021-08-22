@@ -27,6 +27,7 @@
         <van-icon name="arrow" />
       </li>
       <li class="van-hairline--bottom"
+          v-if="state.isLogin"
           @click="manageUser">
         <span>账号管理</span>
         <van-icon name="arrow" />
@@ -36,6 +37,20 @@
         <van-icon name="arrow" />
       </li>
     </ul>
+    <div v-if="state.isLogin"
+         class="loginOut"
+         @click="outLogin">
+      <van-button type="danger"
+                  size="large">退出登录</van-button>
+    </div>
+    <div v-else
+         class="loginOut"
+         @click="Login">
+      <van-button type="danger"
+                  color="green"
+                  size="large">登录</van-button>
+    </div>
+
     <nav-bar></nav-bar>
   </div>
 </template>
@@ -56,9 +71,15 @@ export default {
     const loading = ref(true);
     const store = useStore()
     const state = reactive({
-      userInfo: {}
+      userInfo: {},
+      isLogin: false
     })
-
+    const outLogin = () => {
+      state.isLogin = false
+      loading.value = true;
+      localStorage.removeItem('token')
+      Toast('退出成功，请重新登录')
+    }
     // const getUserInfo = async () => {
     //   state.userInfo = await getInfo({
     //     _id: token
@@ -72,6 +93,10 @@ export default {
       }
       )
     }
+    const Login = () => {
+      router.push({ path: '/login' })
+    }
+
     onMounted(async () => {
       await store.dispatch('getUser')
       state.userInfo = store.state.userInfo
@@ -80,6 +105,7 @@ export default {
         router.push({ path: '/login' })
       }
       loading.value = false;
+      state.isLogin = true
     })
     const myLove = () => {
       router.push({ path: '/mylove' })
@@ -88,7 +114,9 @@ export default {
       state,
       loading,
       manageUser,
-      myLove
+      myLove,
+      outLogin,
+      Login
     }
   }
 }
@@ -179,6 +207,11 @@ export default {
         margin-top: 13px;
       }
     }
+  }
+  .loginOut {
+    width: 100%;
+    position: absolute;
+    bottom: 40px;
   }
 }
 </style>

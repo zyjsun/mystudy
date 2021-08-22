@@ -152,6 +152,10 @@ export default {
       // console.log($store.state.userInfo._user.name);
       list = await getGoodImg()
       await $store.dispatch('getUser')
+      console.log($store.state._id);
+      if ($store.state._id === null) {
+        router.push({ path: '/login' })
+      }
       loveList = await getLoveContext({
         _id: $store.state._id
       })

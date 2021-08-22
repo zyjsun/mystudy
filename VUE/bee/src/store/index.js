@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import { getLocal } from '../common/local'
 import { getInfo } from '../../api/service/user'
 import { getList } from '../../api/service/TravelNote'
+
 export default createStore({
   state: {
     userInfo: {
@@ -26,11 +27,14 @@ export default createStore({
   },
   actions: {
     async getUser ({ state }) {
+
       const token = getLocal('token')
       state._id = token
-      state.userInfo = await getInfo({
-        _id: token
-      })
+      if (state._id !== null) {
+        state.userInfo = await getInfo({
+          _id: token
+        })
+      }
     },
     async getTrevalList ({ state }) {
       state.travelList = await getList()

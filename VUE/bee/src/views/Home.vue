@@ -42,7 +42,7 @@ export default {
     })
 
     let active = ref(2)
-    const getTrevalList = async () => {
+    const getTrevalList = () => {
       state.travelList = $store.state.travelList
     }
     onMounted(async () => {
