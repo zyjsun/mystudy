@@ -1,18 +1,18 @@
 <template>
-  <div>
-    <van-nav-bar title="我的收藏"
-                 left-text="返回"
-                 left-arrow
-                 @click-left="onClickLeft" />
-    <div v-for="(item,index) in likeArr"
-         :key="index">
-      <van-swipe-cell>
-        <van-card num="2"
-                  price=""
-                  desc=item
-                  title="游记标题"
-                  class="goods-card"
-                  :thumb=item.contentImg />
+  <van-nav-bar title="我的收藏"
+               left-text="返回"
+               left-arrow
+               class="top"
+               @click-left="onClickLeft" />
+  <div class="all">
+    <div>
+      <van-swipe-cell v-for="(item,index) in likeArr"
+                      :key="index">
+        <!-- <span>{{pic}}--{{index2}}</span> -->
+        <img :src="item.contentImg[0].content" />
+        <van-card :desc="item.content"
+                  :title="item.title"
+                  class="goods-card" />
         <template #right>
           <van-button square
                       text="删除"
@@ -51,7 +51,7 @@ export default {
           state.likeArr.push($store.state.travelList.allNote[index])
         }
       });
-      console.log(state.likeArr);
+      console.log(state.likeArr[2].contentImg);
     })
     return {
       ...toRefs(state),
@@ -62,13 +62,8 @@ export default {
 }
 </script>
 
-<style>
-.goods-card {
-  margin: 0;
-  background-color: white;
-}
-
-.delete-button {
-  height: 100%;
+<style lang="less">
+.top {
+  position: fixed;
 }
 </style>

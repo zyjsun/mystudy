@@ -6,7 +6,7 @@
 # Symbol
   1. Symbol函数接受一个可选参数，方便代码阅读和后期调试
   2. 用Object.getOwnPropertyNames(),Object.keys()或者for...in等方法无法显示Symbol属性名
-  3. Object。getOwnPropertySymbols方法返回包含所有Symbol属性的数组
+  3. Object.getOwnPropertySymbols方法返回包含所有Symbol属性的数组
   4. Symbol函数不能使用new,因为是原始值
   5. Symbol。for函数创建共享Symbol,如果已经存在，直接返回已有的Symbol
   6. Symbol函数创建的原始值是唯一的
