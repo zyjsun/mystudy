@@ -1,18 +1,20 @@
 <template>
-  <van-nav-bar title="我的收藏"
-               left-text="返回"
-               left-arrow
-               class="top"
-               @click-left="onClickLeft" />
+  <van-sticky :offset-top="0">
+    <van-nav-bar title="我的收藏"
+                 left-text="返回"
+                 left-arrow
+                 @click-left="onClickLeft" />
+  </van-sticky>
   <div class="all">
     <div>
       <van-swipe-cell v-for="(item,index) in likeArr"
                       :key="index">
         <!-- <span>{{pic}}--{{index2}}</span> -->
-        <img :src="item.contentImg[0].content" />
+
         <van-card :desc="item.content"
                   :title="item.title"
                   class="goods-card" />
+        <img :src="item.contentImg[0].content" />
         <template #right>
           <van-button square
                       text="删除"
@@ -21,7 +23,6 @@
         </template>
       </van-swipe-cell>
     </div>
-
   </div>
 </template>
 
@@ -63,7 +64,4 @@ export default {
 </script>
 
 <style lang="less">
-.top {
-  position: fixed;
-}
 </style>
