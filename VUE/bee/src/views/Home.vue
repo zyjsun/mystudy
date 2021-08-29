@@ -16,10 +16,7 @@
       <van-tab title="游记">
         <b-note :travelList="travelList"></b-note>
       </van-tab>
-      <van-tab title="关注">内容 1111111111111111111111
-        1111111111111111111111111111111
-        1111111111111111111111111111
-      </van-tab>
+
     </van-tabs>
 
   </div>
