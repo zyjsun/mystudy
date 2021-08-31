@@ -92,7 +92,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .all {
   background-image: url("../assets/update.jpg");
   background-repeat: no-repeat;

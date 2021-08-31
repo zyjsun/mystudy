@@ -1,6 +1,6 @@
 <template>
   <div class="all">
-
+    <van-nav-bar title="添加游记" />
     <van-form @submit="onSubmit">
       <div class="content">
         <van-cell-group inset>
@@ -33,7 +33,6 @@
       </div>
     </van-form>
   </div>
-
   <b-footer></b-footer>
 </template>
 
@@ -85,8 +84,10 @@ export default {
 }
 </script>
 
-<style scoped lang='less'>
+<style  lang='less' scoped >
 .all {
+  height: 100vh;
+  position: relative;
   margin: 0 auto;
   background-image: url("../assets/add.jpg");
   background-repeat: no-repeat;

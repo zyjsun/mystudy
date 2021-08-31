@@ -25,5 +25,22 @@ module.exports = {
       data: res,
       resultCode: 200
     }
+  },
+  async delLoveContent (ctx, next) {
+    const { _id, index } = ctx.request.body
+    // console.log(index, _id);
+    let obj = await Lovetext.findById({ _id })
+    console.log(obj.goodArr);
+    obj.goodArr[index] = false
+    let goodArr = obj.goodArr
+    let res = await Lovetext.findByIdAndUpdate({ _id }, {
+      goodArr
+    })
+    if (res !== null) {
+      ctx.body = {
+        resultCode: 200,
+        message: '删除成功'
+      }
+    }
   }
 }

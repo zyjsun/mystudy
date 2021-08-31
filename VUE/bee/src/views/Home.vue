@@ -3,7 +3,7 @@
     <van-search v-model="value"
                 shape="round"
                 background="#4fc08d"
-                placeholder="请输入目的地" />
+                placeholder="请输入你想去的地方" />
   </div>
   <div class="tab">
     <van-tabs v-model="active"
@@ -59,7 +59,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .header {
   display: flex;
   left: 0;

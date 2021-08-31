@@ -6,3 +6,6 @@ export function postLoveContext (params) {
 export function getLoveContext (params) {
   return axios.post('/getLoveContext', params)
 }
+export function delLoveContent (params) {
+  return axios.post('/delLoveContent', params)
+}

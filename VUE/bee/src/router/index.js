@@ -35,7 +35,13 @@ const routes = [
     path: '/myLove',
     name: 'myLove',
     component: import('../components/myLove.vue')
+  },
+  {
+    path: '/my',
+    name: 'my',
+    component: import('../components/my.vue')
   }
+
 ]
 
 const router = createRouter({

@@ -17,7 +17,8 @@
       </div>
     </van-skeleton>
     <ul class="user-list">
-      <li class="van-hairline--bottom">
+      <li class="van-hairline--bottom"
+          @click="my">
         <span>我的游记</span>
         <van-icon name="arrow" />
       </li>
@@ -110,13 +111,18 @@ export default {
     const myLove = () => {
       router.push({ path: '/mylove' })
     }
+
+    const my = () => {
+      router.push({ path: '/my' })
+    }
     return {
       state,
       loading,
       manageUser,
       myLove,
       outLogin,
-      Login
+      Login,
+      my
     }
   }
 }

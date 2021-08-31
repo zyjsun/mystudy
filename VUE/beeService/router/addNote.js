@@ -21,6 +21,14 @@ module.exports = {
       resultCode: 200
     }
   },
+  async del (ctx, next) {
+    const { _id } = ctx.request.body
+    await TravelModel.findByIdAndRemove({ _id })
+    ctx.body = {
+      message: '删除成功',
+      resultCode: 200
+    }
+  },
   async goods (ctx, next) {
     // console.log(ctx.request.body)
     const { goodnums, _id } = ctx.request.body
