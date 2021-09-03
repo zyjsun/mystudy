@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul id="target">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <script>
+    var ul = document.getElementById("target");
+    console.log(ul.children);
+    var lists = ul.getElementsByTagName("li");
+    let frag = document.createDocumentFragment()//创建虚拟节点
+    var len = lists.length;
+    while (len--) {
+      frag.appendChild(ul.children[len]);
+    };
+    ul.appendChild(frag)//appendChild() 方法可向节点的子节点列表的末尾添加新的子节点。
+
+// 提示：如果文档树中已经存在了 newchild，它将从文档树中删除，然后重新插入它的新位置。
+  </script>
+</body>
+
+</html>
