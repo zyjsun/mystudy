@@ -12,22 +12,27 @@
 
 
 let arr = [[1, 2, 3], [1, 2, [2, 3, 4]]]
-let result = []
-function flat (arr) {
-  for (let i = 0; i < arr.length; i++) {
-    if (Array.isArray(arr[i])) {
-      flat(arr[i])
-    } else {
-      result.push(arr[i])
-    }
-  }
-  return result
+// let result = []
+// function flat (arr) {
+//   for (let i = 0; i < arr.length; i++) {
+//     if (Array.isArray(arr[i])) {
+//       flat(arr[i])
+//     } else {
+//       result.push(arr[i])
+//     }
+//   }
+//   return result
+// }
+function flat2 (arr) {
+  let str = JSON.stringify(arr)
+  str = str.replace(/(\[|\])/g, '')
+  console.log(str);
+  str = '[' + str + ']'
+  // JSON.parse(str)
+  return str
 }
 
-// let str = JSON.stringify(ary);
-// str = str.replace(/(\[|\])/g , '')
-// str = '[' + str + ']'
-// console.log(JSON.parse(str));
+console.log(flat2(arr));
 
 // function flat (ary) {
 //   while (ary.some(Array.isArray)) {
@@ -62,4 +67,4 @@ function getCardsOrder (input, cards) {
     return getCardsOrder(input, cards)
   }
 }
-console.log(getCardsOrder(input, []));
+// console.log(getCardsOrder(input, []));
