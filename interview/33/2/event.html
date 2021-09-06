@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+
+<body>
+  <input type='file' id='input' />
+  <img src="" id='preview' alt="">
+  <script>
+    const input = document.getElementById('input')
+    input.addEventListener('change', function (e) {
+      console.log(this.files);
+      // var img_src = URL.createObjectURL(this.files[0]);
+      // document.getElementById("preview").src = img_src;
+      showImg(this)
+    })
+    function showImg(obj) {
+      let file = $(obj)[0].files[0]
+      let imgData = ''
+      if (file) {
+        let reader = new FileReader() // 读取文件
+        reader.readAsDataURL(file) // 得到base64地址
+        reader.onload = function (evt) { // 读取操作完成
+          $('#img').attr('src', evt.target.result)
+        }
+      }
+    }
+    const img = 'https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/default.640d9a7.png'
+    function getBase64Image(img) {
+      let canvas = document.createElement('canvas')
+      canvas.width = img.width
+      canvas.height = img.height
+      let ctx = canvas.getContext('2d')
+      ctx.drawImage(img, 0, 0, img.width, img.height)
+      let ext = img.src.substring(img.src.lastIndexOf('.') + 1).toLowerCase()
+      img.setAttribute("crossOrigin", 'Anonymous')
+      let dataURL = canvas.toDataURL('image/' + ext)//会默认转BASE64格式
+      return dataURL
+    }
+    let image = new Image()
+    image.src = img
+    image.onload = function () {
+      let base64 = getBase64Image(image)
+      // console.log(base64);
+    }
+  </script>
+</body>
+
+</html>

@@ -3,20 +3,32 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <style>
-    .heightTest {
-      height: 1000px;
-      min-height: 500px;
-      max-height: 300px;
-    }
-  </style>
 </head>
+<style>
+  .all {
+    display: table;
+  }
+
+
+  .inner {
+    display: table-cell;
+    vertical-align: middle;
+    background-color: blue;
+  }
+
+  .inneer2 {
+    background-color: aqua;
+  }
+</style>
 
 <body>
-  <div class="heightTest"></div>
+  <div class="all">
+    <span class='inner'>zzzz</span>
+    <div class='inneer2'>11111</div>
+  </div>
 </body>
 
 </html>
