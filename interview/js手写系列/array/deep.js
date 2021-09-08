@@ -17,7 +17,6 @@ let a = {
   b: [1, 2, 3],
   c: 'a'
 }
-a.prototype.z = '1'
 
 
 console.log(a.hasOwnProperty('z'))

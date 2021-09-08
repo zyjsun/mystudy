@@ -1,6 +1,6 @@
 import React from 'react';
 // import App from './App'
-import Demo1 from './views/demo1';
+import Demo from './views/demo4';
 import ReactDOM from 'react-dom';
 
 
@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Demo1 />
+    <Demo />
   </React.StrictMode>,
   document.getElementById('root')
 );
