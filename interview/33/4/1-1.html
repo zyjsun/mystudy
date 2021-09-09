@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id='btn'>+</button>
+  <script type='text/javascript'>
+    var btn = document.getElementById('btn')
+    // button.onclick = function () {
+
+    // }
+    // button.attachEvent(eventType, handle)
+    //仅仅只在IE浏览器中生效
+    btn.attachEvent('onclick', function a() {
+      console.log(1);
+    })
+    btn.attachEvent('onclick', function a() {
+      console.log(2);
+    })
+  </script>
+</body>
+
+</html>

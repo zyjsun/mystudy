@@ -59,7 +59,8 @@ em.emit('magazineEvent1', '发布-订阅模式');
 em.off('magazineEvent1', user1Callback).emit('magazineEvent1', '发布-1');
 
 
-em.once('magazineEvent2', user1Callback).emit('magazineEvent2', '第二本第一次')
+em.once('magazineEvent2', user1Callback)
+em.emit('magazineEvent2', '第二本第一次')
 em.emit('magazineEvent2', '第二本第二次')
 
 

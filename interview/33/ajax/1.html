@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="status"></div>
+
+  <script>
+    function ajax(url, method, cb) {
+      let xhr = new XMLHttpRequest()
+      // xhr.onprogress = function(event) {
+      //   let divStatus = document.getElementById('status')
+      //   divStatus.innerHTML = `Received ${event.position} of ${event.totalSize} bytes`
+      // }
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+          if (xhr.status == 200) {
+            cb()
+          } else {
+            console.log('fail');
+          }
+        }
+      }
+
+      xhr.open(method, url, true)
+      xhr.addEventListener('progress', function (event) {
+        console.log(event);
+        let divStatus = document.getElementById('status')
+        divStatus.innerHTML = `Received ${event.loaded} of ${event.total} bytes`
+      })
+      xhr.send(null)
+
+    }
+    ajax('https://www.fastmock.site/mock/39ac87de3060aa2bb2ba20a0ff375c81/cat-movie/mostLike', 'GET', () => {
+      console.log('ok');
+    })
+  </script>
+</body>
+
+</html>

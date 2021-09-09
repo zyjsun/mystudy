@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul id='zz'>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+  <script>
+    //兼容ie,ie下对应的属性名
+
+    // let lis = document.querySelectorAll('li')
+    //   // console.log(lis);
+    //   .forEach((li) => {
+    //     li.addEventListener('click', function () {
+    //       console.log(this.innerHTML);
+    //     })
+    //   })
+    let ul = document.getElementById('zz')
+    ul.onclick = function (e) {
+      let event = e || window.event
+      let curTarget = event.target || event.srcElement
+      if (curTarget.tagName.toLowerCase() == 'li') {
+        console.log(curTarget.innerText);
+      }
+    }//ie能读明白
+
+  </script>
+</body>
+
+</html>
