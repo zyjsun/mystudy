@@ -11,3 +11,19 @@
 xhr.abort()
 
 # 4.实现一个xhr请求的进度条？
+
+# 5.跨域
+ cors：简单请求：1. 使用head,get，post
+                2. header是Accept,Accept-language
+                content-language
+                content-Type:application/x-www-form-urlencoded||multipart/form-data||text/plain
+# 6.json.stringify和json.parse()的区别
+
+# 7. json.stringify， json.parse()实现深拷贝有什么缺点？
+    1. 无法拷贝函数，undefined。
+    2. 拷贝正则表达式会得到空对象。
+    3. 如果拷贝的对象里面有时间对象，拷贝完成
+    后会是一个字符串不再是对象。
+    4. 对象存在循环引用无法拷贝
+    5. 对象中含有Infinty,-Infinty时，拷贝的序列会改变。
+    6. 只能拷贝可枚举的自有属性，继承过来属性会丢失

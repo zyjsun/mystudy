@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- A页面引入B页面的链接 -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+  <script type="text/javascript">
+    //创建一个work对象
+    var work = new Worker('./worker.js')
+    //发消息
+    work.postMessage('100')
+    //监听消息
+    work.onmessage = function (e) {
+      console.log(e.data)
+    }
+
+  </script>
+</body>
+
+</html>
