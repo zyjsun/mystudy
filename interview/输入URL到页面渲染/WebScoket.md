@@ -25,4 +25,3 @@ httponly-这个属性可以防止XSS,它会禁止javascript脚本来访问cookie
 
 secure - 这个属性告诉浏览器仅在请求为https的时候发送cookie。
 
-结果应该是这样的：Set-Cookie=<cookie-value>.....

@@ -41,3 +41,5 @@ class Clock {
 
 let c = new Clock()
 console.log(c.start(), c.stop());
+
+
