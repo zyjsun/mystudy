@@ -1,5 +1,8 @@
 # 1.ajax的实现
-
+创建Ajax实例，
+打开请求，发送请求配置项。
+事件监听，
+发送ajax请求
 # 2.readyState状态码？
 0=> UNSET 刚创建xhr,还没有发送
 1=> Opened 已经执行了open这个操作
