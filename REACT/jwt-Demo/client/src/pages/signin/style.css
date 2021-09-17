@@ -1,0 +1,9 @@
+.signin{
+  width: 500px;
+  height: 300px;
+  padding: 30px;
+  background: #eee;
+  box-shadow: 0 0 10px #aaa;
+  margin: 0 auto;
+  margin-top: 200px;
+}
