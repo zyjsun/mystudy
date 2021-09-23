@@ -31,6 +31,8 @@ Dom AJAX Timeout
   - 怪异模式： 浏览器自己的标准来解析（不加DOCTYPE的时候）
 # 5.css画个扇形？
 
+
+
 # 6. css中 transtion 和 animate有什么区别？ animate如何停留在最后一帧？
 - transition: 一般用来做过度，没有时间轴的概念，通过事件触发（一次），
   没有中间状态（只有开始与结束）
