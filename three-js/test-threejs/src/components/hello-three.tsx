@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import './index.css'
 import {
   WebGLRenderer,
   PerspectiveCamera,
@@ -24,6 +25,7 @@ const HelloThreejs: React.FC = () => {
       const geometry = new BoxGeometry(1, 1, 1)
       // 创建材质
       const material = new MeshPhongMaterial({ color: 0x44aa88 })
+
       // 创建网格
       const cube = new Mesh(geometry, material)
       scene.add(cube)
@@ -54,7 +56,7 @@ const HelloThreejs: React.FC = () => {
 
 
   return (
-    <canvas ref={canvasRef} />
+    <canvas ref={canvasRef} className="full-screen" />
   )
 }
 
