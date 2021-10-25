@@ -1,8 +1,9 @@
 
-import HelloThreejs from "./components/hello-three";
+// import HelloThreejs from "./components/hello-three";
+import HelloPrimitives from "./components/hello-primitives"
 const App = () => {
   return (
-    <HelloThreejs />
+    <HelloPrimitives />
   )
 }
 

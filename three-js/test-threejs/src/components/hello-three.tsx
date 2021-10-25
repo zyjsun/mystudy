@@ -24,11 +24,21 @@ const HelloThreejs: React.FC = () => {
       // 创建几何体
       const geometry = new BoxGeometry(1, 1, 1)
       // 创建材质
-      const material = new MeshPhongMaterial({ color: 0x44aa88 })
+      const material1 = new MeshPhongMaterial({ color: 0x44aa88 })
+      const material2 = new MeshPhongMaterial({ color: 0xc50d0d })
+      const material3 = new MeshPhongMaterial({ color: 0x439b20a })
 
       // 创建网格
-      const cube = new Mesh(geometry, material)
-      scene.add(cube)
+      const cube1 = new Mesh(geometry, material1)
+      cube1.position.x = -2
+      const cube2 = new Mesh(geometry, material2)
+      cube2.position.x = 0
+      const cube3 = new Mesh(geometry, material3)
+      cube3.position.x = 2
+      const cubes = [cube1, cube2, cube3]
+      scene.add(cube1)
+      scene.add(cube2)
+      scene.add(cube3)
 
       // 创建光源
       const light = new DirectionalLight(0xFFFFFF, 1)
@@ -44,8 +54,16 @@ const HelloThreejs: React.FC = () => {
       // 添加自动旋转动画
       const render = (time: number) => {
         time = time * 0.001
-        cube.rotation.x = time
-        cube.rotation.y = time
+        // cube.rotation.x = time
+        // cube.rotation.y = time
+        const canvas = renderer.domElement //获取canvas
+        camera.aspect = canvas.clientWidth / canvas.clientHeight //设置镜头宽高比
+        camera.updateProjectionMatrix() //通知镜头更新视锥
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight, false)
+        cubes.map(cube => {
+          cube.rotation.x = time
+          cube.rotation.y = time
+        })
         renderer.render(scene, camera)
         window.requestAnimationFrame(render)
       }
