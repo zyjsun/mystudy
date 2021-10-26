@@ -5,19 +5,20 @@ import * as Three from 'three'
 import myCircle from './MyCircle'
 import myWrieframe from './my-wireframe'
 const meshArr: (Three.Mesh | Three.LineSegments)[] = []
+//创建随机色材料
+export const createMaterial = () => {
+  const material = new Three.MeshPhongMaterial({ side: Three.DoubleSide })
+  const hue = Math.floor(Math.random() * 100) / 100 //随机色相
+  const staturation = 1 //饱和度
+  const luminace = 0.5 //亮度
+  material.color.setHSL(hue, staturation, luminace)
+  return material
+}
 const HelloPrimitives = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const cameraRef = useRef<Three.PerspectiveCamera | null>(null)
   const renderRef = useRef<Three.WebGL1Renderer | null>(null)
-  //创建随机色材料
-  const createMaterial = () => {
-    const material = new Three.MeshPhongMaterial({ side: Three.DoubleSide })
-    const hue = Math.floor(Math.random() * 100) / 100 //随机色相
-    const staturation = 1 //饱和度
-    const luminace = 0.5 //亮度
-    material.color.setHSL(hue, staturation, luminace)
-    return material
-  }
+
   const createInit = useCallback(() => { //初始化舞台
     //初始化场景
     const scene = new Three.Scene()
